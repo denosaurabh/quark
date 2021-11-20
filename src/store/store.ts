@@ -1,6 +1,11 @@
 import create from 'zustand'
 
-const useStore = create(() => {
+interface StoreI {
+  router: unknown
+  dom: unknown
+}
+
+const useStore = create<StoreI>(() => {
   return {
     router: null,
     dom: null,

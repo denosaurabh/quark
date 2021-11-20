@@ -1,28 +1,31 @@
+import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-// Step 5 - delete Instructions components
-import Instructions from '@/components/dom/Instructions'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
 // If something goes wrong go back to a static import to show the error.
 // https://github.com/pmndrs/react-three-next/issues/49
-const Shader = dynamic(() => import('@/components/canvas/Shader/Shader'), {
+
+const World = dynamic(() => import('@/components/canvas/World'), {
   ssr: false,
 })
 
-// dom components goes here
-const DOM = () => {
-  return (
-    // Step 5 - delete Instructions components
-    <Instructions />
-  )
-}
+const Character = dynamic(() => import('@/components/canvas/Character'), {
+  ssr: false,
+})
+
+// const Shader = dynamic(() => import('@/components/canvas/Shader/Shader'), {
+//   ssr: false,
+// })
 
 // canvas components goes here
 const R3F = () => {
   return (
     <>
-      <Shader />
+      <Suspense fallback={null} r3f>
+        <Character r3f />
+        <World r3f />
+      </Suspense>
     </>
   )
 }
@@ -30,7 +33,6 @@ const R3F = () => {
 const Page = () => {
   return (
     <>
-      <DOM />
       <R3F r3f />
     </>
   )

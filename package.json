@@ -10,15 +10,29 @@
     "node": ">=14"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-waffle": "^2.0.0",
+    "@openzeppelin/contracts": "^4.3.3",
     "@react-three/drei": "^7.19.3",
     "@react-three/fiber": "^7.0.17",
+    "axios": "^0.24.0",
+    "ethereum-waffle": "^3.0.0",
+    "ethers": "^5.0.0",
     "glsl-random": "^0.0.5",
+    "gun": "^0.2020.1235",
+    "hardhat": "^2.6.8",
+    "immer": "^9.0.6",
+    "ipfs-http-client": "50.1.2",
+    "leva": "^0.9.14",
+    "nanoid": "^3.1.30",
     "next": "^12.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "short-uuid": "^4.2.0",
     "three": "^0.134.0",
-    "three-stdlib": "^2.5.4"
+    "three-mesh-bvh": "^0.5.2",
+    "three-stdlib": "^2.5.4",
+    "web3modal": "^1.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.15.4",
@@ -27,6 +41,7 @@
     "@types/react": "^17.0.35",
     "autoprefixer": "^10.3.4",
     "babel-plugin-glsl": "^1.0.0",
+    "chai": "^4.2.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
