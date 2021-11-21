@@ -14,6 +14,7 @@ import {
 import useMouseDegreeOnDrag from '@/hooks/useMouseDegreeOnDrag'
 import { GLTF } from 'three-stdlib'
 import useCharacter from '@/store/character'
+import detectLeftButtonBtn from '@/utils/detectLeftMouseBtn'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -59,7 +60,7 @@ export default function Character({
 
         if (intersectsAhead.length) {
           const closestBase = intersectsAhead.reduce((fir, sec) => {
-            return fir.distance < sec.distance ? fir : sec  
+            return fir.distance < sec.distance ? fir : sec
           }, [])
 
           if (closestBase.distance < 1) {
@@ -117,11 +118,11 @@ export default function Character({
     ])
   })
 
-  const onMouseDown = () => {
-    setMoveForward(true)
+  const onMouseDown = (e) => {
+    detectLeftButtonBtn(e) && setMoveForward(true)
   }
 
-  const onMouseUp = () => {
+  const onMouseUp = (e) => {
     setMoveForward(false)
   }
 
@@ -142,6 +143,7 @@ export default function Character({
         {...props}
         dispose={null}
         userData={{ id: 'character' }}
+        position={[0, 10, 0]}
       >
         <group scale={0.9}>
           <mesh

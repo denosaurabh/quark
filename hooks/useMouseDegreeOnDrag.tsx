@@ -1,3 +1,4 @@
+import detectLeftButtonBtn from '@/utils/detectLeftMouseBtn'
 import { useEffect, useState } from 'react'
 
 const useMouseDegreeOnDrag = () => {
@@ -18,8 +19,8 @@ const useMouseDegreeOnDrag = () => {
     setMouseDegree(mouseDegree)
   }
 
-  const onMouseDown = () => {
-    setActive(true)
+  const onMouseDown = (e) => {
+    detectLeftButtonBtn(e) && setActive(true)
   }
 
   const onMouseUp = () => {

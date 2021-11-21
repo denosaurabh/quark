@@ -41,12 +41,18 @@ const LControl = () => {
         zoom={25}
         makeDefault
         ref={camera}
+        near={0.001}
       />
       <OrbitControls
         camera={camera.current}
         domElement={dom.current}
         enablePan={false}
         enableRotate={false}
+        mouseButtons={{
+          LEFT: THREE.MOUSE.PAN,
+          MIDDLE: THREE.MOUSE.DOLLY,
+          RIGHT: THREE.MOUSE.ROTATE,
+        }}
         rotateSpeed={0.4}
         zoomSpeed={0.8}
         target={characterPosV}
@@ -72,11 +78,11 @@ const LCanvas = ({ children }) => {
         // raycaster.layers.set(1)
       }}
     >
+      <color attach='background' args={[0x343a40]} />
+
       <LControl />
       <Preload all />
-
       <axesHelper scale={100} />
-
       {children}
     </Canvas>
   )
