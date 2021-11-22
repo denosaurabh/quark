@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useState, useEffect, useRef } from 'react'
-import ether from 'ethers'
+import { ethers } from 'ethers'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 import { useGLTF } from '@react-three/drei'
@@ -41,9 +41,9 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const loadNFTs = async () => {
-    const provider = new ether.providers.JsonRpcProvider()
-    const tokenContract = new ether.Contract(nftAddress, NFT.abi, provider)
-    const marketContract = new ether.Contract(
+    const provider = new ethers.providers.JsonRpcProvider()
+    const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
+    const marketContract = new ethers.Contract(
       nftMarketAddress,
       Market.abi,
       provider
@@ -52,9 +52,9 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
 
     const items = await Promise.all(
       data.map(async (item) => {
-        const tokenUri = await tokenContract.tokenURI(i.tokenId)
+        const tokenUri = await tokenContract.tokenURI(item.tokenId)
         const meta = await axios.get(tokenUri)
-        const price = ether.utils.formatUnits(item.price.toString(), 'ether')
+        const price = ethers.utils.formatUnits(item.price.toString(), 'ether')
 
         let itemObj = {
           id: item.tokenId,
@@ -76,12 +76,12 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
   const buyNFT = async (nft) => {
     const web3modal = new Web3Modal()
     const connection = await web3modal.connect()
-    const provider = new ether.providers.Web3Provider(connection)
+    const provider = new ethers.providers.Web3Provider(connection)
 
     const signer = provider.getSigner()
-    const contract = new ether.Contract(nftAddress, Market.abi, signer)
+    const contract = new ethers.Contract(nftAddress, Market.abi, signer)
 
-    const price = ether.utils.parseUnits(nft.price.toString(), 'ether')
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
 
     const transaction = await contract.createMarketSale(
       nftAddress,

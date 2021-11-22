@@ -1,9 +1,24 @@
 import { useEffect, useState, useRef } from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Preload, OrthographicCamera } from '@react-three/drei'
+import {
+  OrbitControls,
+  Preload,
+  OrthographicCamera,
+  Stats,
+  Html,
+} from '@react-three/drei'
+import {
+  DepthOfField,
+  EffectComposer,
+  Vignette,
+} from '@react-three/postprocessing'
+
 import useStore from '@/store/store'
 import useCharacter from '@/store/character'
+
+import HUD from '@/components/hud'
+
 import {
   computeBoundsTree,
   disposeBoundsTree,
@@ -80,9 +95,24 @@ const LCanvas = ({ children }) => {
     >
       <color attach='background' args={[0x343a40]} />
 
+      <EffectComposer>
+        {/* <DepthOfField
+          focusDistance={0.07}
+          focalLength={0.02}
+          bokehScale={2}
+          // height={1000}
+          // width={1000}
+        />
+        <Vignette eskil={false} offset={0.05} darkness={0.4} /> */}
+      </EffectComposer>
+
+      <Stats showPanel={0} className='stats' />
+
+      {/* <HUD /> */}
+
       <LControl />
       <Preload all />
-      <axesHelper scale={100} />
+      <axesHelper scale={1000} />
       {children}
     </Canvas>
   )

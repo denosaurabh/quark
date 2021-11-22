@@ -43,7 +43,10 @@ export default function Character({
   const mouseDeg = useMouseDegreeOnDrag()
   // console.log(mouseDeg, 'mouse')
 
-  const setPosition = useCharacter(({ setPosition }) => setPosition)
+  const { setPosition, canMove } = useCharacter(({ setPosition, canMove }) => ({
+    setPosition,
+    canMove,
+  }))
 
   const [moveForward, setMoveForward] = useState(false)
 
@@ -75,9 +78,9 @@ export default function Character({
         }
       }
 
-      if (moveForward) {
+      if (moveForward && canMove) {
         if (collidesData.length > 0) return
-        chracRef.current.translateX(-0.15)
+        chracRef.current.translateX(-0.5) //-0.15
       }
 
       const currentCameraPos = camera.position.clone()

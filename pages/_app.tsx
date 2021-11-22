@@ -4,6 +4,7 @@ import { useEffect, Children } from 'react'
 import Header from '@/config'
 import dynamic from 'next/dynamic'
 import Dom from '@/components/layout/dom'
+import { globalStyles } from '@/stitches.config'
 
 import '@/styles/index.css'
 
@@ -47,6 +48,8 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
 }
 
 function App({ Component, pageProps = { title: 'index' } }) {
+  globalStyles()
+
   const router = useRouter()
   useEffect(() => {
     useStore.setState({ router })
