@@ -1,5 +1,4 @@
 require('@nomiclabs/hardhat-waffle')
-require('dotenv').config({ path: './secret.env' })
 
 const fs = require('fs')
 const privateKey = fs

@@ -17,7 +17,8 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import axios from 'axios'
 import { Camera } from '@react-three/fiber'
-import DropModel from './myAccount/dropModel'
+import DropModel from '@/components/chunks/shared/dropModel'
+import NFTComp from '@/components/nft'
 import useCharacter from '@/store/character'
 import useCreateNFT from '@/store/huds/createNFT'
 import useHUD from '@/store/huds/main'
@@ -40,6 +41,10 @@ type GLTFResult = GLTF & {
     ['voxel_map_level1-4-0_7']: THREE.Mesh
     ['voxel_map_level1-4-0_8']: THREE.Mesh
     ['show-model']: THREE.Mesh
+    ['model-placeholder-1']: THREE.Mesh
+    ['model-placeholder-2']: THREE.Mesh
+    ['model-placeholder-3']: THREE.Mesh
+    ['model-placeholder-4']: THREE.Mesh
   }
   materials: {
     ['floor-wall']: THREE.MeshBasicMaterial
@@ -62,7 +67,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   )
 
   const { nodes, materials } = useGLTF(
-    'models/level3-model-placeholder-new.glb'
+    'models/level3-placeholders.glb'
   ) as GLTFResult
 
   const [fileUrl, setFileUrl] = useState<string>('')
@@ -81,7 +86,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
     const provider = new ethers.providers.Web3Provider(connection)
     const signer = provider.getSigner()
 
-    console.log(url)
+    console.log(url, nftAddress)
     let contract = new ethers.Contract(nftAddress, NFT.abi, signer)
     let transaction = await contract.createToken(url)
     let tx = await transaction.wait()
@@ -108,17 +113,20 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
     const { price, name, description } = formInput
     if (!price || !name || !description) return
 
+    console.log('saving file url:', fileUrl)
     const data = JSON.stringify({
       name,
       description,
       image: fileUrl,
     })
 
+    console.log('data:', data, price, name, description)
+
     try {
       const added = await client.add(data)
-      const url = `https://ipfs.infura.io/ifps/${added.path}`
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`
 
-      createSale(url)
+      await createSale(url)
     } catch (err) {
       console.log(`Error uploading file: ${err}`)
     }
@@ -133,54 +141,69 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
     }
   }, [isSubmitted])
 
-  // const [nfts, setNfts] = useState([])
-  // const [loadingState, setLoadingState] = useState('not-loaded')
+  const [nfts, setNfts] = useState([])
+  const [sold, setSold] = useState([])
+  const [loadingState, setLoadingState] = useState('not-loaded')
 
-  // useEffect(() => {
-  //   loadNFTs()
-  // }, [])
+  useEffect(() => {
+    loadNFTs()
+  }, [])
 
-  // async function loadNFTs() {
-  //   const web3Modal = new Web3Modal({
-  //     network: 'mainnet',
-  //     cacheProvider: true,
-  //   })
-  //   const connection = await web3Modal.connect()
-  //   const provider = new ethers.providers.Web3Provider(connection)
-  //   const signer = provider.getSigner()
+  async function loadNFTs() {
+    const web3Modal = new Web3Modal()
 
-  //   const marketContract = new ethers.Contract(
-  //     nftMarketAddress,
-  //     Market.abi,
-  //     signer
-  //   )
-  //   const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
-  //   const data = await marketContract.fetchMyNFTs()
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
 
-  //   const items = await Promise.all(
-  //     data.map(async (i) => {
-  //       const tokenUri = await tokenContract.tokenURI(i.tokenId)
-  //       const meta = await axios.get(tokenUri)
-  //       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-  //       let item = {
-  //         price,
-  //         tokenId: i.tokenId.toNumber(),
-  //         seller: i.seller,
-  //         owner: i.owner,
-  //         image: meta.data.image,
-  //       }
-  //       return item
-  //     })
-  //   )
-  //   setNfts(items)
-  //   setLoadingState('loaded')
-  // }
+    const marketContract = new ethers.Contract(
+      nftMarketAddress,
+      Market.abi,
+      signer
+    )
+    const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
+    const data = await marketContract.fetchItemsCreated()
+
+    const items = await Promise.all(
+      data.map(async (i) => {
+        const tokenUri = await tokenContract.tokenURI(i.tokenId)
+
+        // console.log(tokenUri)
+        const meta = await axios.get(tokenUri).catch((err) => {
+          // console.log('get model axios err', err)
+        })
+
+        // console.log(meta)
+
+        let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+
+        let item = {
+          price,
+          tokenId: i.tokenId.toNumber(),
+          seller: i.seller,
+          owner: i.owner,
+          sold: i.sold,
+          image: meta?.data?.image,
+        }
+
+        return item
+      })
+    )
+
+    // filtering NFts with no image
+    const filteredItems = items.filter((i) => i.image)
+    console.log(filteredItems)
+
+    /* create a filtered array of items that have been sold */
+    const soldItems = filteredItems.filter((i) => i.sold)
+    setSold(soldItems)
+    setNfts(filteredItems)
+    setLoadingState('loaded')
+  }
 
   const onModelDrop = async (e) => {
     e.preventDefault()
     e.stopPropagation()
-
-    const reader = new FileReader()
 
     const files = e.dataTransfer.files
     console.log('files', files)
@@ -194,6 +217,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
         })
 
         const url = `https://ipfs.infura.io/ipfs/${uploadedModel.path}`
+        console.log('uploaded file url:', url)
 
         setFileUrl(url)
       }
@@ -214,6 +238,13 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
       // window.removeEventListener('drop', onModelDrop)
     }
   }, [])
+
+  const modelPlaceholdersPosition = [
+    [-53.31, 27.86, -55.63],
+    [-17.48, 27.86, -55.63],
+    [17.12, 27.86, -55.68],
+    [51.93, 27.86, -55.51],
+  ]
 
   return (
     <group
@@ -309,6 +340,20 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
           scale={13.35}
         />
       )}
+      {loadingState === 'loaded' && nfts
+        ? nfts.map((el, i) => {
+            return (
+              <NFTComp
+                position={modelPlaceholdersPosition[i]}
+                key={i}
+                {...el}
+                onClick={() => {
+                  console.log('clicked', el)
+                }}
+              />
+            )
+          })
+        : null}
     </group>
   )
 }

@@ -2,7 +2,7 @@ import create from 'zustand'
 
 interface StoreI {
   router: unknown
-  dom: unknown
+  dom: HTMLDivElement
 }
 
 const useStore = create<StoreI>(() => {

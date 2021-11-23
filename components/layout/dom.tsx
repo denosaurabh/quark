@@ -6,7 +6,7 @@ import CreateNFTHUD from '@/components/huds/createNFT'
 import useHUD from '@/store/huds/main'
 
 const Dom = ({ children }) => {
-  const domRef = useRef(null)
+  const domRef = useRef<HTMLDivElement>(null)
   const { currentHud, showHud, setShowHud } = useHUD(
     ({ currentHud, showHud, setShowHud }) => ({
       currentHud,
@@ -21,6 +21,7 @@ const Dom = ({ children }) => {
 
   return (
     <HUDContainer
+      className='hud-container'
       ref={domRef}
       showHud={showHud}
       onDragEnter={(e) => {
@@ -46,8 +47,8 @@ const HUDContainer = styled('div', {
   height: '100vh',
   padding: '2rem',
 
+  overflow: 'hidden',
   userSelect: 'none',
-
   zIndex: 1000000,
 
   variants: {

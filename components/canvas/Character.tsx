@@ -51,13 +51,16 @@ export default function Character({
   const [moveForward, setMoveForward] = useState(false)
 
   useFrame(({ gl, scene, camera }) => {
+    const objs = scene.getObjectByName('world')?.children
+
     if (chracRef.current) {
       chracRef.current.rotation.set(0, mouseDeg - 1, 0)
 
       let collidesData = []
-      if (aheadRaycastRef.current) {
+
+      if (aheadRaycastRef.current && objs) {
         const intersectsAhead = aheadRaycastRef.current.intersectObjects(
-          scene.getObjectByName('world').children,
+          objs,
           true
         )
 
@@ -99,11 +102,8 @@ export default function Character({
       // ])
     }
 
-    if (downRaycastRef.current) {
-      const intersectsDown = downRaycastRef.current.intersectObjects(
-        scene.getObjectByName('world').children,
-        true
-      )
+    if (downRaycastRef.current && objs) {
+      const intersectsDown = downRaycastRef.current.intersectObjects(objs, true)
 
       if (intersectsDown.length) {
         const closestBase = intersectsDown.reduce((fir, sec) => {

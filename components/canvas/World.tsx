@@ -42,10 +42,10 @@ const World = () => {
     <>
       {/*  <Flex flexDirection="row" justifyContent='center' alignItems='center'> */}
       {/* <Box centerAnchor> */}
-      <BuyNft />
+      {/* <BuyNft /> */}
       {/* </Box> */}
       {/* <Box centerAnchor> */}
-      <MyAssets />
+      {/* <MyAssets /> */}
       <MyAccount />
       {/* </Box> */}
       {/* </Flex> */}

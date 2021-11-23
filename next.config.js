@@ -6,6 +6,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const withOffline = require('next-offline')
 
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config, { webpack, dev, isServer }) {
     config.plugins.push(
       new webpack.ProvidePlugin({

@@ -70,7 +70,6 @@ export const globalStyles = globalCss({
   },
   body: {
     margin: '0 auto',
-    padding: '2rem',
   },
   a: {
     textDecoration: 'none',

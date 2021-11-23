@@ -17,8 +17,6 @@ import {
 import useStore from '@/store/store'
 import useCharacter from '@/store/character'
 
-import HUD from '@/components/hud'
-
 import {
   computeBoundsTree,
   disposeBoundsTree,
