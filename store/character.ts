@@ -1,19 +1,49 @@
 import create from 'zustand'
+import produce from 'immer'
+import { nanoid } from 'nanoid'
 
 interface CharacterState {
+  id: string
   canMove: boolean
-  position: [number, number, number]
-  setPosition: (newPosition: [number, number, number]) => void
+  moveForward: boolean
+  mouseDegree: number
+  setMoveForward: (val: boolean) => void
   setCanMove: (canMove: boolean) => void
+  setMouseDegree: (mouseDegree: number) => void
 }
 
 const useCharacter = create<CharacterState>((set) => {
   return {
+    id: nanoid(),
     canMove: true,
-    position: [0, 5, 0],
-    setPosition: (newPos) => set(() => ({ position: newPos })),
-    setCanMove: (canMove) => set(() => ({ canMove })),
+    moveForward: false,
+    mouseDegree: 0,
+    setMoveForward: (val: boolean) => {
+      set(
+        produce((state) => {
+          state.moveForward = val
+        })
+      )
+    },
+    setCanMove: (val) => {
+      set(
+        produce((state) => {
+          state.canMove = val
+        })
+      )
+    },
+    setMouseDegree: (val) => {
+      set(
+        produce((state) => {
+          state.mouseDegree = val
+        })
+      )
+    },
   }
 })
 
 export default useCharacter
+
+useCharacter.subscribe((state: CharacterState) => {
+  // console.log(state.mouseDegree)
+})

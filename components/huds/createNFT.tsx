@@ -2,7 +2,6 @@ import Header from '@/components/header'
 import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
 import useCreateNFT from '@/store/huds/createNFT'
-import { useState } from 'react'
 
 const CreateNFTHUD = () => {
   const { setCanMove } = useCharacter(({ setCanMove }) => ({ setCanMove }))

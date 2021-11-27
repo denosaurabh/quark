@@ -3,13 +3,14 @@ import { useState, useEffect, useRef } from 'react'
 import { ethers } from 'ethers'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
-import { useGLTF } from '@react-three/drei'
+import { useBVH, useGLTF, useHelper } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
 import { nftAddress, nftMarketAddress } from '@/nftConfig'
 
 import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
+import { MeshBVHVisualizer } from 'three-mesh-bvh'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -37,6 +38,7 @@ type GLTFResult = GLTF & {
 }
 
 const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
+  const buyNFTsGeoRef = useRef<THREE.Mesh>()
   const [nfts, setNfts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -95,6 +97,11 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF('models/level1-mid.glb') as GLTFResult
 
+  // Object.values(nodes).forEach((node) => {
+  //   useBVH(node.material)
+  //   useHelper(node.material, MeshBVHVisualizer)
+  // })
+
   return (
     <>
       <group
@@ -106,6 +113,7 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
         rotation={[0, 4.4, 0]}
       >
         <mesh
+          ref={buyNFTsGeoRef}
           geometry={nodes['voxel_map_level1-export-union_1'].geometry}
           material={materials.floor}
         />

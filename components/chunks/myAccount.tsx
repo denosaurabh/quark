@@ -61,10 +61,11 @@ type GLTFResult = GLTF & {
 export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const dropBoxRef = useRef<THREE.Mesh>()
-  const { setCanMove } = useCharacter(({ setCanMove }) => ({ setCanMove }))
-  const { setCurrentHud, setShowHud } = useHUD(
-    ({ setCurrentHud, setShowHud }) => ({ setCurrentHud, setShowHud })
-  )
+  const { setCanMove } = useCharacter.getState()
+  const { setCurrentHud, setShowHud } = useHUD.getState()
+  // const { setCurrentHud, setShowHud } = useHUD(
+  //   ({ setCurrentHud, setShowHud }) => ({ setCurrentHud, setShowHud })
+  // )
 
   const { nodes, materials } = useGLTF(
     'models/level3-placeholders.glb'
@@ -127,6 +128,8 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
 
       await createSale(url)
+      setFileUrl('')
+      setCurrentHud('default')
     } catch (err) {
       console.log(`Error uploading file: ${err}`)
     }

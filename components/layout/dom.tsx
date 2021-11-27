@@ -49,7 +49,7 @@ const HUDContainer = styled('div', {
 
   overflow: 'hidden',
   userSelect: 'none',
-  zIndex: 1000000,
+  zIndex: 1000,
 
   variants: {
     showHud: {
