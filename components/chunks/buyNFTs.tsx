@@ -61,7 +61,7 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
         let itemObj = {
           id: item.tokenId,
           price,
-          image: meta.data.image,
+          image: meta?.data?.image,
           name: meta.data.name,
           description: meta.data.description,
           owner: item.owner,

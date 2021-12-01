@@ -12,6 +12,7 @@ import { EffectComposer } from '@react-three/postprocessing'
 import useStore from '@/store/store'
 import AdaptivePixelRatio from '@/components/adaptivePixelRatio'
 import { Perf } from 'r3f-perf'
+import { Leva, useControls } from 'leva'
 
 const LControl = () => {
   const dom = useStore((state) => state.dom)
@@ -53,8 +54,8 @@ const LControl = () => {
         ref={control}
         camera={camera.current}
         domElement={dom.current}
-        enablePan={false}
-        enableRotate={false}
+        // enablePan={false}
+        // enableRotate={false}
         mouseButtons={{
           LEFT: THREE.MOUSE.PAN,
           MIDDLE: THREE.MOUSE.DOLLY,
@@ -69,6 +70,11 @@ const LControl = () => {
 }
 const LCanvas = ({ children }) => {
   const dom = useStore((state) => state.dom)
+
+  const { showStats, showPerf } = useControls({
+    showStats: true,
+    showPerf: true,
+  })
 
   return (
     <Canvas
@@ -94,7 +100,15 @@ const LCanvas = ({ children }) => {
       }}
     >
       <color attach='background' args={[0x000000]} /> {/* 0x343a40 */}
-      <Perf position='bottom-right' />
+       {/* <Leva
+      // fill // default = false,  true makes the pane fill the parent dom node it's rendered in
+      // flat // default = false,  true removes border radius and shadow
+      // oneLineLabels // default = false, alternative layout for labels, with labels and fields on separate rows
+      // hideTitleBar // default = false, hides the GUI header
+      // collapsed // default = false, when true the GUI is collpased
+      // hidden // default = false, when true the GUI is hidden
+      /> */}
+      {showPerf && <Perf position='bottom-right' />}
       {/* <AdaptivePixelRatio /> */}
       {/* <AdaptiveDpr pixelated /> */}
       {/* <EffectComposer> */}
@@ -107,11 +121,13 @@ const LCanvas = ({ children }) => {
         />
         <Vignette eskil={false} offset={0.05} darkness={0.4} /> */}
       {/* </EffectComposer> */}
-      <Stats showPanel={0} className='stats' />
+      {showStats && <Stats showPanel={0} className='stats' />}
       {/* <HUD /> */}
       <LControl />
       <Preload all />
-      {/* <axesHelper scale={1000} /> */}
+      <axesHelper scale={1000} />
+      <directionalLight />
+      <ambientLight intensity={0.5} />
       {children}
     </Canvas>
   )

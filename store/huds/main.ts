@@ -1,7 +1,7 @@
 import create from 'zustand'
 import produce from 'immer'
 
-type HUD = 'default' | 'createNFT'
+type HUD = 'default' | 'createNFT' | 'buyNFT'
 
 interface CreateHUDState {
   currentHud: HUD

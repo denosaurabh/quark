@@ -1,8 +1,11 @@
 import useStore from '@/store/store'
 import { useEffect, useRef } from 'react'
 import { styled } from '@/stitches.config'
+
 import DefaultHUD from '@/components/huds/default'
 import CreateNFTHUD from '@/components/huds/createNFT'
+import BuyNFTHUD from '@/components/huds/buyNFT'
+
 import useHUD from '@/store/huds/main'
 
 const Dom = ({ children }) => {
@@ -32,6 +35,7 @@ const Dom = ({ children }) => {
       {children}
       {currentHud === 'default' && <DefaultHUD />}
       {currentHud === 'createNFT' && <CreateNFTHUD />}
+      {currentHud === 'buyNFT' && <BuyNFTHUD />}
     </HUDContainer>
   )
 }

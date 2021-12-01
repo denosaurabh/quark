@@ -15,6 +15,7 @@ interface NFTProps {
   sold: boolean
   image: string
   position: [number, number, number]
+  onClick: () => void
 }
 
 const NFT = ({
@@ -25,6 +26,7 @@ const NFT = ({
   sold,
   image,
   position,
+  onClick,
 }: NFTProps) => {
   const modelRef = useRef<GroupProps>(null)
   const model = useGLTF(image)
@@ -32,10 +34,10 @@ const NFT = ({
   const maxSize = new THREE.Vector3(10, 10, 10)
 
   const box = new THREE.Box3().setFromObject(model.scene)
-  console.log(box)
+  // console.log(box)
 
   const size = box.getSize(new THREE.Vector3())
-  console.log(size)
+  // console.log(size)
 
   // console.log(modelRef)
 
@@ -60,7 +62,14 @@ const NFT = ({
   })
 
   return (
-    <group ref={modelRef} position={position}>
+    <group
+      name={`nft-${tokenId}`}
+      ref={modelRef}
+      position={position}
+      onClick={() => {
+        onClick()
+      }}
+    >
       <primitive object={model.scene} />
     </group>
   )
