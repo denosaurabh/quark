@@ -11,6 +11,13 @@ import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import useHUD from '@/store/huds/main'
 import useBuyNFT from '@/store/huds/buyNFT'
 
+// let rpcEndpoint = 'http://localhost:8545'
+
+// console.log(process.env.NEXT_PUBLIC_WORKSPACE_URL)
+// if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
+//   rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL
+// }
+
 const CastleNFTs = () => {
   const [nfts, setNfts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -55,17 +62,28 @@ const CastleNFTs = () => {
     const connection = await web3modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
 
+    console.log('after error')
+
     const signer = provider.getSigner()
-    const contract = new ethers.Contract(nftAddress, Market.abi, signer)
+    const contract = new ethers.Contract(nftMarketAddress, Market.abi, signer)
 
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
+    console.log('after error 2')
+
+    console.log(nft.tokenId, price, nftAddress)
 
     const transaction = await contract.createMarketSale(
       nftAddress,
       nft.tokenId,
       { value: price }
     )
+
+    console.log('after error 3')
+
     await transaction.wait()
+
+    console.log('after error 4')
+
     loadNFTs()
   }
 

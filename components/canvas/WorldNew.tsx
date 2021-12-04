@@ -26,6 +26,8 @@ import CastlePillorThroneRight from '@/components/canvas/world/castle/Castle_pil
 import CastlePillorTopLeft from '@/components/canvas/world/castle/Castle_pillor_top_left'
 import CastlePillorTopRight from '@/components/canvas/world/castle/Castle_pillor_top_right'
 import CastleNFTs from '@/components/canvas/world/castle/castleNFts'
+import { useBVH, useHelper } from '@react-three/drei'
+import { MeshBVHVisualizer } from 'three-mesh-bvh'
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()

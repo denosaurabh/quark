@@ -16,6 +16,14 @@ export default class Document extends NextDocument {
             crossOrigin='anonymous'
           />
 
+          <link
+            rel='preload'
+            href='/fonts/mago2.woff2'
+            as='font'
+            type='font/woff2'
+            crossOrigin='anonymous'
+          />
+
           <style
             id='stitches'
             dangerouslySetInnerHTML={{ __html: getCssText() }}

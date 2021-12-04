@@ -72,13 +72,14 @@ const LCanvas = ({ children }) => {
   const dom = useStore((state) => state.dom)
 
   const { showStats, showPerf } = useControls({
-    showStats: true,
-    showPerf: true,
+    showStats: false,
+    showPerf: false,
   })
 
   return (
     <Canvas
       mode='concurrent'
+      // dpr={Math.min(2, window.devicePixelRatio)}
       // frameloop='demand'
       style={{
         position: 'absolute',
@@ -99,8 +100,9 @@ const LCanvas = ({ children }) => {
         // raycaster.layers.set(1)
       }}
     >
-      <color attach='background' args={[0x000000]} /> {/* 0x343a40 */}
-       {/* <Leva
+      <color attach='background' args={[0x361c48]} /> {/* 0x343a40 */}
+      <Leva hidden />
+      {/* <Leva
       // fill // default = false,  true makes the pane fill the parent dom node it's rendered in
       // flat // default = false,  true removes border radius and shadow
       // oneLineLabels // default = false, alternative layout for labels, with labels and fields on separate rows
@@ -108,7 +110,7 @@ const LCanvas = ({ children }) => {
       // collapsed // default = false, when true the GUI is collpased
       // hidden // default = false, when true the GUI is hidden
       /> */}
-      {showPerf && <Perf position='bottom-right' />}
+      {/* {showPerf && <Perf position='bottom-right' />} */}
       {/* <AdaptivePixelRatio /> */}
       {/* <AdaptiveDpr pixelated /> */}
       {/* <EffectComposer> */}
@@ -121,7 +123,7 @@ const LCanvas = ({ children }) => {
         />
         <Vignette eskil={false} offset={0.05} darkness={0.4} /> */}
       {/* </EffectComposer> */}
-      {showStats && <Stats showPanel={0} className='stats' />}
+      {/* {showStats && <Stats showPanel={0} className='stats' />} */}
       {/* <HUD /> */}
       <LControl />
       <Preload all />

@@ -1,7 +1,7 @@
 import create from 'zustand'
 import produce from 'immer'
 
-type HUD = 'default' | 'createNFT' | 'buyNFT'
+type HUD = 'default' | 'createNFT' | 'buyNFT' | 'startPlay' | 'menu'
 
 interface CreateHUDState {
   currentHud: HUD
@@ -12,7 +12,7 @@ interface CreateHUDState {
 
 const useHUD = create<CreateHUDState>((set) => {
   return {
-    currentHud: 'default',
+    currentHud: 'startPlay',
     showHud: true,
     setCurrentHud: (hud) =>
       set(

@@ -6,6 +6,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const withOffline = require('next-offline')
 
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_WORKSPACE_URL: 'http://localhost:3000',
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

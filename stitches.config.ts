@@ -14,7 +14,7 @@ export const {
   theme: {
     fonts: {
       main: 'ClashGrotesk-Variable',
-      display: 'Monofett-Regular',
+      display: 'Mago',
 
       websafe: `-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif`,
     },
@@ -70,6 +70,8 @@ export const globalStyles = globalCss({
   },
   body: {
     margin: '0 auto',
+    fontFamily: '$display',
+    lineHeight: '20px',
   },
   a: {
     textDecoration: 'none',
@@ -83,8 +85,8 @@ export const globalStyles = globalCss({
     outline: 'none',
   },
   '@font-face': {
-    fontFamily: 'Monofett-Regular',
-    src: `url('/fonts/Monofett-Regular.woff2') format('woff2')`,
+    fontFamily: 'Mago',
+    src: `url('/fonts/mago2.woff2') format('woff2')`,
     fontDisplay: 'optional',
     fontStyle: 'normal',
   },

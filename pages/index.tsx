@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 // If something goes wrong go back to a static import to show the error.
 // https://github.com/pmndrs/react-three-next/issues/49
 
-const World = dynamic(() => import('@/components/canvas/World'), {
+const Castle = dynamic(() => import('@/components/canvas/castle'), {
   ssr: false,
 })
 
@@ -24,7 +24,8 @@ const R3F = () => {
     <>
       <Suspense fallback={null} r3f>
         <Character r3f />
-        <World r3f />
+        <Castle r3f />
+        {/* <World r3f /> */}
       </Suspense>
     </>
   )

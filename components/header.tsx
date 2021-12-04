@@ -28,4 +28,6 @@ const Heading = styled('h1', {
   color: 'white',
   textShadow: '6px 4px 0px #000',
   backdropFilter: 'blur(2px)',
+
+  marginBottom: '2rem',
 })

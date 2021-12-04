@@ -21,7 +21,6 @@
     "@react-three/postprocessing": "^2.0.5",
     "@stitches/react": "latest",
     "axios": "^0.24.0",
-    "dotenv": "^10.0.0",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
     "glsl-random": "^0.0.5",
