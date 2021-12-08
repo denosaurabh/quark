@@ -51,13 +51,24 @@ function App({ Component, pageProps = { title: 'index' } }) {
   globalStyles()
 
   const router = useRouter()
+  console.log('router', router)
+
   useEffect(() => {
     useStore.setState({ router })
   }, [router])
   return (
     <>
-      <Header title={pageProps.title} />
-      <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+      {router.pathname !== '/note' ? (
+        <>
+          <Header title={pageProps.title} />
+          <ForwardPropsToR3fComponent comp={Component} pageProps={pageProps} />
+        </>
+      ) : (
+        <>
+          <Header title={pageProps.title} />
+          <Component {...pageProps} />
+        </>
+      )}
     </>
   )
 }

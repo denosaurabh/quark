@@ -24,12 +24,12 @@ const StartPlayHUD = () => {
     <StartPlayHUDStyled>
       <Header />
       <StartPlayContainer
-        onPointerDown={() => {
-          useCharacter.getState().setCanMove(false)
-        }}
-        onPointerUp={() => {
-          useCharacter.getState().setCanMove(true)
-        }}
+      // onPointerDown={() => {
+      //   useCharacter.getState().setCanMove(false)
+      // }}
+      // onPointerUp={() => {
+      //   useCharacter.getState().setCanMove(true)
+      // }}
       >
         <LeftBox>
           <h4>About the Project</h4>
@@ -50,6 +50,54 @@ const StartPlayHUD = () => {
             build with # by
             <a href='https://denosaurabh.me' target='_blank' rel='noreferrer'>
               <u>denosaurabh</u>
+            </a>
+            <br />
+            <br />
+            <br />
+            Things to know to most enjoy the world:
+            <br />
+            <br />- Enable fullscreen by pressing F11
+            <br />- Install
+            <a
+              href='https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <u>Metamask chrome extension</u>
+            </a>
+            , important for buying and selling NFTs and this app to be able to
+            work properly.
+            <br />
+            <u>
+              !! This is a test project and heavy in development, do not send
+              any real crypto in sake of buying any NFTs shown in this world,
+              they will end up nowhere !!
+            </u>
+            <br />
+            <br />
+            <br />
+            There are some bugs and glitches you may encounter during the
+            experience, most notable one will be going through the world and bad
+            collision detection, so please avoid going into the walls for now{' '}
+            {'>'}. If you do accidently get into the walls, press ESCAPE to open
+            the menu and click on redeploy. {'/'}
+            <br />
+            <br />
+            <br />
+            Basic Controls:
+            <br />
+            <br />- Click and drag your mouse to move your character.
+            <br />
+            <br />
+            <br />
+            If you have any questions or want to report any issues, feel free to
+            reach out to me on Twitter at
+            <a
+              href='https://twitter.com/denosaurabh'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <u>@denosaurabh</u>
             </a>
           </p>
         </LeftBox>
@@ -92,6 +140,9 @@ const StartPlayHUDStyled = styled('div', {
   gap: '8rem',
 
   height: '100%',
+
+  background:
+    'radial-gradient(82.3% 82.3% at 47.42% 54.07%, rgba(202, 161, 255, 0.27) 12.63%, rgba(255, 255, 255, 0) 76.93%)',
 })
 
 const StartPlayContainer = styled('div', {
@@ -124,7 +175,7 @@ const LeftBox = styled('div', {
     color: '#DDDDDD',
 
     a: {
-      marginLeft: '1rem',
+      margin: '0 1rem',
     },
   },
 })

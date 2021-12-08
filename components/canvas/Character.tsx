@@ -156,6 +156,8 @@ export default function Character({ ...props }) {
     if (chracRef.current) {
       chracRef.current.rotation.set(0, mouseDegree - 0.7, 0) // -1
 
+      console.log(canMove)
+
       if (moveForward && canMove) {
         // if (collidesData.length > 0) return
 

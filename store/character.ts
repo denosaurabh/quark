@@ -15,7 +15,7 @@ interface CharacterState {
 const useCharacter = create<CharacterState>((set) => {
   return {
     id: nanoid(),
-    canMove: true,
+    canMove: false,
     moveForward: false,
     mouseDegree: 0,
     setMoveForward: (val: boolean) => {

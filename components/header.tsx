@@ -1,10 +1,19 @@
 import { styled } from '@/stitches.config'
+import useHUD from '@/store/huds/main'
 
 const Header = () => {
+  const onMenuClick = () => {
+    const { currentHud, setCurrentHud } = useHUD.getState()
+    const nextHud = currentHud === 'default' ? 'menu' : 'default'
+    setCurrentHud(nextHud)
+  }
+
   return (
     <HeaderStyled>
-      <Heading>denosaurabh</Heading>
-      <Heading>Players 1 / 50</Heading>
+      <Heading css={{ fontSize: '14rem' }} onClick={onMenuClick}>
+        *
+      </Heading>
+      <Heading css={{ textDecoration: 'underline' }}>Credits</Heading>
     </HeaderStyled>
   )
 }
@@ -26,8 +35,12 @@ const Heading = styled('h1', {
   letterSpacing: '4px',
 
   color: 'white',
-  textShadow: '6px 4px 0px #000',
+  // textShadow: '6px 4px 0px #000',
   backdropFilter: 'blur(2px)',
 
   marginBottom: '2rem',
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 })
