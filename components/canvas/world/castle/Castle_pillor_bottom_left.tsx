@@ -9,12 +9,14 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['world_export-4_1']: THREE.Mesh
-    ['world_export-4_2']: THREE.Mesh
+    ['more_nfts_voxel_final-7_1']: THREE.Mesh
+    ['more_nfts_voxel_final-7_2']: THREE.Mesh
+    ['more_nfts_voxel_final-7_3']: THREE.Mesh
   }
   materials: {
-    ['world_export-4 #1']: THREE.MeshStandardMaterial
-    ['world_export-4 #254']: THREE.MeshStandardMaterial
+    ['more_nfts_voxel_final-7 #249']: THREE.MeshBasicMaterial
+    ['more_nfts_voxel_final-7 #250']: THREE.MeshBasicMaterial
+    ['more_nfts_voxel_final-7 #242']: THREE.MeshBasicMaterial
   }
 }
 
@@ -23,18 +25,22 @@ export default function CastlePillorBottomLeft(
 ) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/castle/castle_pillor_bottom_left.glb'
+    'models/world/castle/castle_nfts_pillor.glb'
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
       <group position={[-410.77, 0.05, 88.89]}>
         <mesh
-          geometry={nodes['world_export-4_1'].geometry}
-          material={materials['world_export-4 #1']}
+          geometry={nodes['more_nfts_voxel_final-7_1'].geometry}
+          material={materials['more_nfts_voxel_final-7 #249']}
         />
         <mesh
-          geometry={nodes['world_export-4_2'].geometry}
-          material={materials['world_export-4 #254']}
+          geometry={nodes['more_nfts_voxel_final-7_2'].geometry}
+          material={materials['more_nfts_voxel_final-7 #250']}
+        />
+        <mesh
+          geometry={nodes['more_nfts_voxel_final-7_3'].geometry}
+          material={materials['more_nfts_voxel_final-7 #242']}
         />
       </group>
     </group>

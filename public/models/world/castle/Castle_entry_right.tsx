@@ -18,27 +18,17 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function CastleEnterRight(
-  props: JSX.IntrinsicElements['group']
-) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF(
-    'models/world/castle/castle_entry_right.glb'
-  ) as GLTFResult
+  const { nodes, materials } = useGLTF('/castle_entry_right.glb') as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
-      <group position={[-254.39, 0, -66.57]}>
-        <mesh
-          geometry={nodes['more_nfts_voxel-5'].geometry}
-          material={materials['more_nfts_voxel-5 #249']}
-        />
-        <mesh
-          geometry={nodes['more_nfts_voxel-5_1'].geometry}
-          material={materials['more_nfts_voxel-5 #242']}
-        />{' '}
+      <group position={[0, 100, 0]}>
+        <mesh geometry={nodes['more_nfts_voxel-5'].geometry} material={materials['more_nfts_voxel-5 #249']} />
+        <mesh geometry={nodes['more_nfts_voxel-5_1'].geometry} material={materials['more_nfts_voxel-5 #242']} />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_entry_right.glb')
+useGLTF.preload('/castle_entry_right.glb')

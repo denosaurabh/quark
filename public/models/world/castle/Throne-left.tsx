@@ -18,27 +18,15 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function CastlePillorThroneLeft(
-  props: JSX.IntrinsicElements['group']
-) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF(
-    'models/world/castle/throne-left.glb'
-  ) as GLTFResult
+  const { nodes, materials } = useGLTF('/throne-left.glb') as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
-      <group position={[-723.37, 0, 89.06]}>
-        <mesh
-          geometry={nodes['more_nfts_voxel-1'].geometry}
-          material={materials['more_nfts_voxel-1 #249']}
-        />
-        <mesh
-          geometry={nodes['more_nfts_voxel-1_1'].geometry}
-          material={materials['more_nfts_voxel-1 #242']}
-        />
-      </group>
+      <mesh geometry={nodes['more_nfts_voxel-1'].geometry} material={materials['more_nfts_voxel-1 #249']} />
+      <mesh geometry={nodes['more_nfts_voxel-1_1'].geometry} material={materials['more_nfts_voxel-1 #242']} />
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_pillor_throne_left.glb')
+useGLTF.preload('/throne-left.glb')

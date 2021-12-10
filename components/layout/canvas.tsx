@@ -110,7 +110,6 @@ const LCanvas = ({ children }) => {
       // collapsed // default = false, when true the GUI is collpased
       // hidden // default = false, when true the GUI is hidden
       /> */}
-      {/* {showPerf && <Perf position='bottom-right' />} */}
       {/* <AdaptivePixelRatio /> */}
       {/* <AdaptiveDpr pixelated /> */}
       {/* <EffectComposer> */}
@@ -123,8 +122,11 @@ const LCanvas = ({ children }) => {
         />
         <Vignette eskil={false} offset={0.05} darkness={0.4} /> */}
       {/* </EffectComposer> */}
+      {/* {showPerf && <Perf position='bottom-right' />} */}
       {/* {showStats && <Stats showPanel={0} className='stats' />} */}
       {/* <HUD /> */}
+      <Perf position='bottom-right' />
+      <Stats showPanel={0} className='stats' />
       <LControl />
       <Preload all />
       <axesHelper scale={1000} />
