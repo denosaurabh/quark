@@ -33,14 +33,17 @@ export default function CastlePillorBottomRight(
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_1'].geometry}
           material={materials['more_nfts_voxel_final-7 #249']}
+          name="castle-pillor-bottom-right"
         />
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_2'].geometry}
           material={materials['more_nfts_voxel_final-7 #250']}
+          name="castle-pillor-bottom-right"
         />
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_3'].geometry}
           material={materials['more_nfts_voxel_final-7 #242']}
+          name="castle-pillor-bottom-right"
         />{' '}
       </group>
     </group>

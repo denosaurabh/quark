@@ -41,6 +41,8 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import PortalBox from '@/components/portalBox'
+import { useThree } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -60,6 +62,13 @@ export default function UserPortal(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     'models/world/user/user_portal.glb'
   ) as GLTFResult
+
+  const { scene } = useThree()
+
+  const onPortalClick = () => {
+    scene.getObjectByName('character').position.set(-110, -75, 238)
+  }
+
   return (
     <group
       ref={group}
@@ -67,19 +76,28 @@ export default function UserPortal(props: JSX.IntrinsicElements['group']) {
       dispose={null}
       position={[-97, 0, 401]}
       rotation={[-Math.PI, 0, -Math.PI]}
-      name="user-bridge-portal"
+      name='user-bridge-portal'
     >
       <mesh
         geometry={nodes.bridge_portal_1.geometry}
         material={materials['bridge_portal #249']}
+        name='user-bridge-portal'
       />
       <mesh
         geometry={nodes.bridge_portal_2.geometry}
         material={materials['bridge_portal #250']}
+        name='user-bridge-portal'
       />
       <mesh
         geometry={nodes.bridge_portal_3.geometry}
         material={materials['bridge_portal #242']}
+        name='user-bridge-portal'
+      />
+
+      <PortalBox
+        scale={[2, 20, 20]}
+        position={[70, 0, -16]}
+        onClickHandler={onPortalClick}
       />
     </group>
   )

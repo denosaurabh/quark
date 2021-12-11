@@ -24,6 +24,7 @@ import {
 } from 'three-mesh-bvh'
 import CollisionSystem from './collisionSystem'
 import { styled } from '@/stitches.config'
+import { chunkIndex, chunksData } from '@/utils/chunksLoad'
 
 // Add the extension functions
 THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree
@@ -136,43 +137,53 @@ export default function Character({ ...props }) {
   // actions['left_handAction'].play()
   // }
 
-  useEffect(() => {
-    console.log(actions)
-    actions['headAction']?.play()
-    actions['bodyAction']?.play()
-    actions['right_legAction']?.play()
-    actions['left_legAction']?.play()
-    actions['right_handAction']?.play()
-    actions['left_handAction']?.play()
-  })
+  // useEffect(() => {
+  //   console.log(actions)
+  //   actions['headAction']?.play()
+  //   actions['bodyAction']?.play()
+  //   actions['right_legAction']?.play()
+  //   actions['left_legAction']?.play()
+  //   actions['right_handAction']?.play()
+  //   actions['left_handAction']?.play()
+  // })
 
   useFrame(({ scene, camera, mouse, get }) => {
     const { x, y } = mouse
     const mouseDegree = Math.atan2(y, x)
     // mouseDegRef.current = mouseDegree
 
-    const { canMove, moveForward, setMouseDegree } = useCharacter.getState()
+    const { canMove, moveForward, currentChunk } = useCharacter.getState()
+    const chunkI = chunkIndex(currentChunk)
+    const chunk = chunksData[chunkI[0]][chunkI[1]]
+    const { cameraOffset, mouseDegreeOffset } = chunk
 
     if (chracRef.current) {
-      chracRef.current.rotation.set(0, mouseDegree - 0.7, 0) // -1
+      chracRef.current.rotation.set(0, mouseDegree + mouseDegreeOffset, 0) // -1
 
-      console.log(canMove)
+      // console.log(canMove)
+
+      // console.log(chracRef.current.position)
 
       if (moveForward && canMove) {
         // if (collidesData.length > 0) return
 
         // setMouseDegree(mouseDegree)
-        chracRef.current.translateZ(-0.13) //-0.15
+        chracRef.current.translateZ(-0.13) //-0.15 --- -0.13
+
+        const [x, y, z] = cameraOffset
+
+        const charNewPos = {
+          x: x + chracRef.current.position.x,
+          y: y + chracRef.current.position.y,
+          z: z + chracRef.current.position.z,
+        }
+
+        // camera.position.set(charNewPos.x, charNewPos.y, charNewPos.z)
+        // THREE.MathUtils.lerp(charNewPos, 100, 0.1)
+        camera.position.lerp(charNewPos, 0.06)
       }
 
-      const charNewPos = {
-        x: 50 + chracRef.current.position.x,
-        y: 50 + chracRef.current.position.y,
-        z: 50 + chracRef.current.position.z,
-      }
-
-      // THREE.MathUtils.lerp(camera.position, 100, 0.1)
-      camera.position.set(charNewPos.x, charNewPos.y, charNewPos.z)
+      // console.log(chracRef.current.position.y)
     }
   })
 
@@ -237,7 +248,7 @@ export default function Character({ ...props }) {
         userData={{ id: 'character' }}
         dispose={null}
         scale={0.3}
-        position={[0, 140, -20]}
+        position={[240, 5, 70]}
       >
         <Html
           as='div' // Wrapping element (default: 'div')

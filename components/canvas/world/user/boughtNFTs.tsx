@@ -111,15 +111,15 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
 
 
       
-      <mesh position={[90, -62, 320]} scale={[6, 6, 6]}>
+      <mesh position={[80, -60, 310]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      <mesh position={[60, -62, 320]} scale={[6, 6, 6]}>
+      <mesh position={[40, -60, 310]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      <mesh position={[30, -62, 320]} scale={[6, 6, 6]}>
+      <mesh position={[10, -60, 310]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>

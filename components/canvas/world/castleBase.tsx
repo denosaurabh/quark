@@ -28,16 +28,18 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
       ref={group}
       {...props}
       dispose={null}
-      position={[214, -5, -9]}
+      position={[214, -5, 89]}
       name='castle-bottom'
     >
       <mesh
         geometry={nodes.castle_floor_voxel_white_export_1.geometry}
         material={materials['castle_floor_voxel_white_export #249']}
+        name='castle-bottom'
       />
       <mesh
         geometry={nodes.castle_floor_voxel_white_export_2.geometry}
         material={materials['castle_floor_voxel_white_export #242']}
+        name='castle-bottom'
       />
     </group>
   )

@@ -43,16 +43,18 @@ export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
       dispose={null}
       position={[59, 0, 245]}
       rotation={[-Math.PI, 0, -Math.PI]}
-      name="user-enter"
+      name='user-enter'
     >
       <group>
         <mesh
           geometry={nodes['user_voxel-bottom-1'].geometry}
           material={materials['user_voxel-bottom-1 #249']}
+          name='user-enter'
         />
         <mesh
           geometry={nodes['user_voxel-bottom-1_1'].geometry}
           material={materials['user_voxel-bottom-1 #242']}
+          name='user-enter'
         />
       </group>
     </group>

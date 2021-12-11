@@ -31,10 +31,12 @@ export default function CastleEnterRight(
         <mesh
           geometry={nodes['more_nfts_voxel-5'].geometry}
           material={materials['more_nfts_voxel-5 #249']}
+          name="castle-enter-right"
         />
         <mesh
           geometry={nodes['more_nfts_voxel-5_1'].geometry}
           material={materials['more_nfts_voxel-5 #242']}
+          name="castle-enter-right"
         />{' '}
       </group>
     </group>

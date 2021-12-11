@@ -45,16 +45,17 @@ const LControl = () => {
     <>
       <OrthographicCamera
         position={[100, 100, 100]}
-        zoom={15}
+        zoom={8}
         makeDefault
         ref={camera}
-        near={0.001}
+        near={0.00001}
       />
       <OrbitControls
         ref={control}
         camera={camera.current}
         domElement={dom.current}
-        // enablePan={false}
+        enablePan={false}
+        enableDamping={false}
         // enableRotate={false}
         mouseButtons={{
           LEFT: THREE.MOUSE.PAN,
@@ -63,6 +64,12 @@ const LControl = () => {
         }}
         rotateSpeed={0.4}
         zoomSpeed={0.8}
+        minZoom={2}
+        maxZoom={10}
+        // minZoom={2}
+        // minZoom={1}
+        // maxZoom={2}
+
         // target={character?.position}
       />
     </>

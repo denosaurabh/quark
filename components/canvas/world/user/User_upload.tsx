@@ -54,32 +54,43 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
   )
 
   const createSale = async (url) => {
-    const web3modal = new Web3Modal()
-    const connection = await web3modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
-    const signer = provider.getSigner()
+    try {
+      const web3modal = new Web3Modal()
+      const connection = await web3modal.connect()
+      const provider = new ethers.providers.Web3Provider(connection)
+      const signer = provider.getSigner()
 
-    console.log(url, nftAddress)
-    let contract = new ethers.Contract(nftAddress, NFT.abi, signer)
-    let transaction = await contract.createToken(url)
-    let tx = await transaction.wait()
-    console.log(tx)
+      console.log(url, nftAddress)
+      let contract = new ethers.Contract(nftAddress, NFT.abi, signer)
+      let transaction = await contract.createToken(url)
+      let tx = await transaction.wait()
+      console.log(tx)
 
-    let event = tx.events[0]
-    let value = event.args[2]
-    let tokenId = value.toNumber()
+      let event = tx.events[0]
+      let value = event.args[2]
+      let tokenId = value.toNumber()
 
-    const price = ethers.utils.parseUnits(formInput.price, 'ether')
+      const price = ethers.utils.parseUnits(formInput.price, 'ether')
 
-    // added this NFT on marketplace
-    contract = new ethers.Contract(nftMarketAddress, Market.abi, signer)
-    let listingPrice = await contract.getListingPrice()
-    listingPrice = listingPrice.toString()
+      // added this NFT on marketplace
+      contract = new ethers.Contract(nftMarketAddress, Market.abi, signer)
+      let listingPrice = await contract.getListingPrice()
+      listingPrice = listingPrice.toString()
 
-    transaction = await contract.createMarketItem(nftAddress, tokenId, price, {
-      value: listingPrice,
-    })
-    await transaction.wait()
+      transaction = await contract.createMarketItem(
+        nftAddress,
+        tokenId,
+        price,
+        {
+          value: listingPrice,
+        }
+      )
+      await transaction.wait()
+    } catch (err) {
+      useHUD.getState().setCurrentHud('default')
+    } finally {
+      useHUD.getState().setCurrentHud('default')
+    }
   }
 
   const createNFT = async () => {

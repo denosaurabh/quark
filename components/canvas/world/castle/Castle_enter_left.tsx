@@ -24,15 +24,17 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
     'models/world/castle/castle_entry_left.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="castle-enter-left">
+    <group ref={group} {...props} dispose={null} name='castle-enter-left'>
       <group position={[-254, 0, 89]}>
         <mesh
           geometry={nodes['more_nfts_voxel-6'].geometry}
           material={materials['more_nfts_voxel-6 #249']}
+          name='castle-enter-left'
         />
         <mesh
           geometry={nodes['more_nfts_voxel-6_1'].geometry}
           material={materials['more_nfts_voxel-6 #242']}
+          name='castle-enter-left'
         />
       </group>
     </group>

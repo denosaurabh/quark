@@ -31,14 +31,17 @@ export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
         <mesh
           geometry={nodes['world_export-16_1'].geometry}
           material={materials['world_export-16 #1']}
+          name='palace-top-left'
         />
         <mesh
           geometry={nodes['world_export-16_2'].geometry}
           material={materials['world_export-16 #246']}
+          name='palace-top-left'
         />
         <mesh
           geometry={nodes['world_export-16_3'].geometry}
           material={materials['world_export-16 #254']}
+          name='palace-top-left'
         />
       </group>
     </group>

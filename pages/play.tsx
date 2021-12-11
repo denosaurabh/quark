@@ -23,7 +23,7 @@ const R3F = () => {
   return (
     <>
       <Suspense fallback={null} r3f>
-        {/* <Character r3f /> */}
+        <Character r3f />
         <WorldNew r3f />
       </Suspense>
     </>

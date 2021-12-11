@@ -33,10 +33,12 @@ export default function CastlePillorThroneRight(
         <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}
+          name="throne-right"
         />
         <mesh
           geometry={nodes['more_nfts_voxel-1_1'].geometry}
           material={materials['more_nfts_voxel-1 #242']}
+          name="throne-right"
         />
       </group>
     </group>

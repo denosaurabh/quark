@@ -4,20 +4,33 @@ import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
 import useHUD from '@/store/huds/main'
 import Button from '../button'
+import { useThree } from '@react-three/fiber'
 
 const MenuHUD = () => {
+  // const { scene } = useThree()
+
+  const onResumeClick = () => {
+    useHUD.getState().setCurrentHud('default')
+  }
+
+  const onRedeployClick = () => {
+    // scene.getObjectByName('character').position.set(240, 5, 70)
+  }
+
   return (
     <>
       <Header />
       <MenuHUDContainer>
         <div>
-          <Button>Resume {'>'}</Button>
-          <Button>Redeploy \</Button>
+          <Button onClickHandler={onResumeClick}>Resume {'>'}</Button>
+          <Button onClickHandler={onRedeployClick}>Redeploy \</Button>
         </div>
         <div>
           <Button>Settings []</Button>
-          <Button>About {'/'} </Button>
-          <Button>Credits #</Button>
+
+          <Button as='a' href='/note' taget='_blank'>
+            About {'/'}
+          </Button>
         </div>
       </MenuHUDContainer>
     </>
