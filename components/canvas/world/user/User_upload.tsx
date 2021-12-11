@@ -144,53 +144,55 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
   }
 
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group
-        position={[213.21, -23.17, 410.99]}
-        rotation={[-Math.PI, 0, -Math.PI]}
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      position={[215, -23, 410]}
+      rotation={[-Math.PI, 0, -Math.PI]}
+      name='user-drop-model'
+    >
+      <Html
+        as='div'
+        prepend
+        center
+        fullscreen
+        distanceFactor={10}
+        zIndexRange={[100, 0]}
+        transform
+        onOcclude={(visible) => null}
+        translateX={-100}
+        scale={[8, 8, 8]}
+        rotation={[1.57, 0, 0]}
+        position={[43, 8, -12]}
       >
-        <Html
-          as='div'
-          prepend
-          center
-          fullscreen
-          distanceFactor={10}
-          zIndexRange={[100, 0]}
-          transform
-          onOcclude={(visible) => null}
-          translateX={-100}
-          scale={[8, 8, 8]}
-          rotation={[1.57, 0, 0]}
-          position={[43, 8, -12]}
-        >
-          <div
-            style={{ width: '100px', height: '100px', backgroundColor: '#fff' }}
-            onDragEnter={(e) => {
-              console.log('drag enter', e)
-            }}
-            onDragOver={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
+        <div
+          style={{ width: '100px', height: '100px', backgroundColor: '#fff' }}
+          onDragEnter={(e) => {
+            console.log('drag enter', e)
+          }}
+          onDragOver={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
 
-              console.log('canvas drag over', e)
-            }}
-            onDrop={onModelDrop}
-          ></div>
-        </Html>
+            console.log('canvas drag over', e)
+          }}
+          onDrop={onModelDrop}
+        ></div>
+      </Html>
 
-        <mesh
-          geometry={nodes.user_upload_1.geometry}
-          material={materials['user_upload #255']}
-        />
-        <mesh
-          geometry={nodes.user_upload_2.geometry}
-          material={materials['user_upload #249']}
-        />
-        <mesh
-          geometry={nodes.user_upload_3.geometry}
-          material={materials['user_upload #242']}
-        />
-      </group>
+      <mesh
+        geometry={nodes.user_upload_1.geometry}
+        material={materials['user_upload #255']}
+      />
+      <mesh
+        geometry={nodes.user_upload_2.geometry}
+        material={materials['user_upload #249']}
+      />
+      <mesh
+        geometry={nodes.user_upload_3.geometry}
+        material={materials['user_upload #242']}
+      />
     </group>
   )
 }

@@ -28,8 +28,8 @@ export default function CastlePillorBottomLeft(
     'models/world/castle/castle_nfts_pillor.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-410.77, 0.05, 88.89]}>
+    <group ref={group} {...props} dispose={null} name="castle-pillor-bottom-left">
+      <group position={[-410, 0, 88]}>
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_1'].geometry}
           material={materials['more_nfts_voxel_final-7 #249']}

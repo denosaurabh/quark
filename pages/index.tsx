@@ -19,10 +19,20 @@ const Character = dynamic(() => import('@/components/canvas/Character'), {
 // })
 
 // canvas components goes here
+
+function Box() {
+  return (
+    <mesh>
+      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial attach="material" transparent opacity={0.5} />
+    </mesh>
+  )
+}
+
 const R3F = () => {
   return (
     <>
-      <Suspense fallback={null} r3f>
+      <Suspense fallback={<Box />} r3f>
         <Character r3f />
         <Castle r3f />
         {/* <World r3f /> */}

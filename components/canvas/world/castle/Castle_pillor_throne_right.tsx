@@ -9,26 +9,38 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['world_export-3_1']: THREE.Mesh
-    ['world_export-3_2']: THREE.Mesh
+    ['more_nfts_voxel-1']: THREE.Mesh
+    ['more_nfts_voxel-1_1']: THREE.Mesh
   }
   materials: {
-    ['world_export-3 #1']: THREE.MeshStandardMaterial
-    ['world_export-3 #254']: THREE.MeshStandardMaterial
+    ['more_nfts_voxel-1 #249']: THREE.MeshBasicMaterial
+    ['more_nfts_voxel-1 #242']: THREE.MeshBasicMaterial
   }
 }
 
-export default function CastlePillorThroneRight(props: JSX.IntrinsicElements['group']) {
+export default function CastlePillorThroneRight(
+  props: JSX.IntrinsicElements['group']
+) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('models/world/castle/castle_pillor_throne_right.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    'models/world/castle/throne-right.glb'
+  ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-722.64, 0, -67.05]}>
-        <mesh geometry={nodes['world_export-3_1'].geometry} material={materials['world_export-3 #1']} />
-        <mesh geometry={nodes['world_export-3_2'].geometry} material={materials['world_export-3 #254']} />
+    <group ref={group} {...props} dispose={null} name="throne-right">
+      <group position={[-722, 0, -267]}>
+        {' '}
+        {/* -67.05 */}
+        <mesh
+          geometry={nodes['more_nfts_voxel-1'].geometry}
+          material={materials['more_nfts_voxel-1 #249']}
+        />
+        <mesh
+          geometry={nodes['more_nfts_voxel-1_1'].geometry}
+          material={materials['more_nfts_voxel-1 #242']}
+        />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_pillor_throne_right.glb')
+useGLTF.preload('models/world/castle/throne-right.glb')

@@ -24,7 +24,13 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
     'models/world/castle_floor.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} position={[214, -4, -9]}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      position={[214, -5, -9]}
+      name='castle-bottom'
+    >
       <mesh
         geometry={nodes.castle_floor_voxel_white_export_1.geometry}
         material={materials['castle_floor_voxel_white_export #249']}

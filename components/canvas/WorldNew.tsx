@@ -28,6 +28,7 @@ import CastlePillorTopRight from '@/components/canvas/world/castle/Castle_pillor
 import CastleNFTs from '@/components/canvas/world/castle/castleNFts'
 import { useBVH, useHelper } from '@react-three/drei'
 import { MeshBVHVisualizer } from 'three-mesh-bvh'
+import BoughtNFTs from './world/user/boughtNFts'
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
@@ -46,6 +47,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       <UserTopLeft />
       <UserTopRight />
       <UserUpload />
+      <BoughtNFTs />
 
       <CastleEnterLeft />
       <CastleEnterRight />

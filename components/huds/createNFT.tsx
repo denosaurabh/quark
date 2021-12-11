@@ -2,6 +2,8 @@ import Header from '@/components/header'
 import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
 import useCreateNFT from '@/store/huds/createNFT'
+import Button from '../button'
+import Input from '../input'
 
 const CreateNFTHUD = () => {
   const { setCanMove } = useCharacter(({ setCanMove }) => ({ setCanMove }))
@@ -26,75 +28,109 @@ const CreateNFTHUD = () => {
   return (
     <>
       <Header />
-      <CreateNFTForm
-        onPointerDown={() => {
-          setCanMove(false)
-        }}
-        onPointerUp={() => {
-          setCanMove(true)
-        }}
-        onSubmit={onSubmit}
-      >
-        <Input
-          type='text'
-          placeholder='Name'
-          name='name'
-          value={formInput.name}
-          onChange={onInputChangeHandler}
-        />
-        <Input
-          type='text'
-          placeholder='description'
-          name='description'
-          value={formInput.description}
-          onChange={onInputChangeHandler}
-        />
-        <Input
-          type='text'
-          placeholder='price'
-          name='price'
-          value={formInput.price}
-          onChange={onInputChangeHandler}
-        />
+      <MidBox>
+        <InfoBox>
+          <h4>
+            Publish your own NFT
+            <br />
+            !!PLEASE READ BELOW!!
+          </h4>
+          <p>
+            This is a test version of the application, and not meant for being
+            used as production. So, please do not publish your NFT only in sake
+            of selling it.
+          </p>
+        </InfoBox>
+        <CreateNFTForm
+          onPointerDown={() => {
+            setCanMove(false)
+          }}
+          onPointerUp={() => {
+            setCanMove(true)
+          }}
+          onSubmit={onSubmit}
+        >
+          <Input
+            label='NFT Name'
+            type='text'
+            placeholder='Name'
+            name='name'
+            value={formInput.name}
+            onChange={onInputChangeHandler}
+          />
+          <Input
+            label='NFT Description'
+            type='text'
+            placeholder='description'
+            name='description'
+            value={formInput.description}
+            onChange={onInputChangeHandler}
+            css={{ input: { height: '20rem' } }}
+          />
+          <Input
+            label='NFT Price'
+            type='text'
+            placeholder='100eth'
+            name='price'
+            value={formInput.price}
+            onChange={onInputChangeHandler}
+          />
 
-        <Button type='submit'>Create NFT</Button>
-      </CreateNFTForm>
+          <Button type='submit'>publish your nft {'>'}</Button>
+        </CreateNFTForm>
+      </MidBox>
     </>
   )
 }
 
 export default CreateNFTHUD
 
-const CreateNFTForm = styled('form', {
-  width: 'fit-content',
-  height: 'fit-content',
+const MidBox = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+
+  height: '100%',
+})
+
+const InfoBox = styled('div', {
+  justifySelf: 'flex-start',
+
   display: 'flex',
   flexDirection: 'column',
+  gap: '3rem',
 
-  margin: '10rem 0',
+  width: '50rem',
+  marginRight: 'auto',
+
+  fontFamily: '$display',
+
+  padding: '3rem 0',
+
+  h4: {
+    fontSize: '8rem',
+    lineHeight: '50px',
+
+    color: '#DDDDDD',
+    textDecoration: 'underline',
+  },
+
+  p: {
+    fontSize: '3rem',
+    color: '#DDDDDD',
+
+    a: {
+      margin: '0 1rem',
+    },
+  },
 })
 
-const Input = styled('input', {
-  width: '30rem',
-  height: 'fit-content',
-  padding: '1rem',
-  margin: '2rem 0',
+const CreateNFTForm = styled('form', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4rem',
 
-  fontSize: '2rem',
-  fontFamily: '$websafe',
-})
-
-const Button = styled('button', {
-  width: 'fit-content',
+  width: '40rem',
   height: 'fit-content',
 
-  padding: '2rem',
-  margin: '2rem 0',
-
-  fontSize: '2rem',
-  fontFamily: '$websafe',
-
-  color: '#000',
-  backgroundColor: 'white',
-  border: '4px solid grey',
+  margin: 'auto 0 10rem 0',
 })

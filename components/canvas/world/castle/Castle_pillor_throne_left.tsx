@@ -26,8 +26,8 @@ export default function CastlePillorThroneLeft(
     'models/world/castle/throne-left.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-723.37, 0, 89.06]}>
+    <group ref={group} {...props} dispose={null} name="throne-left">
+      <group position={[-722, 0, 91.8]}>
         <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}

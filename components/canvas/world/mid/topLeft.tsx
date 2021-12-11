@@ -26,8 +26,8 @@ export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
     '/models/world/mid/mid_top_left.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-97.85, 0, 89.08]} rotation={[0, Math.PI / 2, 0]}>
+    <group ref={group} {...props} dispose={null} name='palace-top-left'>
+      <group position={[-98, 0, 89]} rotation={[0, Math.PI / 2, 0]}>
         <mesh
           geometry={nodes['world_export-16_1'].geometry}
           material={materials['world_export-16 #1']}

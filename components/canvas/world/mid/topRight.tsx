@@ -24,8 +24,8 @@ export default function MidTopRight(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF('models/world/mid/mid_top_right.glb') as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-98.17, 0, -66.72]} rotation={[0, Math.PI / 2, 0]}>
+    <group ref={group} {...props} dispose={null} name="palace-top-right">
+      <group position={[-98, 0, -66]} rotation={[0, Math.PI / 2, 0]}>
         <mesh geometry={nodes['world_export-15_1'].geometry} material={materials['world_export-15 #1']} />
         <mesh geometry={nodes['world_export-15_2'].geometry} material={materials['world_export-15 #246']} />
         <mesh geometry={nodes['world_export-15_3'].geometry} material={materials['world_export-15 #254']} />

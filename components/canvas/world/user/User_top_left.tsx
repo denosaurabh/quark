@@ -63,10 +63,10 @@ export default function NFtUploadBridge(props: JSX.IntrinsicElements['group']) {
       ref={group}
       {...props}
       dispose={null}
-      position={[58.56, -83, 401]}
+      position={[59, 0, 401]}
       rotation={[-Math.PI, 0, -Math.PI]}
+      name="user-bridge-end"
     >
-      <group position={[0, 83.15, 0]}>
         <mesh
           geometry={nodes['user-upload-bridge_1'].geometry}
           material={materials['user-upload-bridge #249']}
@@ -75,7 +75,6 @@ export default function NFtUploadBridge(props: JSX.IntrinsicElements['group']) {
           geometry={nodes['user-upload-bridge_2'].geometry}
           material={materials['user-upload-bridge #242']}
         />
-      </group>
     </group>
   )
 }

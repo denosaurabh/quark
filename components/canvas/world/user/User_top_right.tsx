@@ -65,8 +65,9 @@ export default function UserPortal(props: JSX.IntrinsicElements['group']) {
       ref={group}
       {...props}
       dispose={null}
-      position={[-97.14, 0, 400.9]}
+      position={[-97, 0, 401]}
       rotation={[-Math.PI, 0, -Math.PI]}
+      name="user-bridge-portal"
     >
       <mesh
         geometry={nodes.bridge_portal_1.geometry}

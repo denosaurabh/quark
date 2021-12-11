@@ -9,7 +9,10 @@ const NoteForOrganizers = () => {
           <a>Home</a>
         </Link>
         <h2>Note for Hackathon Organizers|Judges|Community</h2>
-        <p>Thank you soo much for</p>
+        <p>
+          Thank you soo much for organizing this hackathon, I have learned so
+          much during this time
+        </p>
 
         <section>
           <h6>Little about denosaurabh (Saurabh Gupta)</h6>
@@ -23,7 +26,7 @@ const NoteForOrganizers = () => {
           <p>A NFT marketplace in a interactive 3d experience.</p>
         </section>
         <section>
-          <h6>Categories</h6>
+          <h6>Applicable Categories</h6>
           <ul>
             <li>-Core Prizes</li>
             <li>-Best NFT/Gaming </li>
@@ -52,10 +55,9 @@ const NoteForOrganizers = () => {
             </li>
             <li>
               - The source code for the project is currently private, I do have
-              some plans making it open source, but I cant promise for now. But,
-              If you are an organizer or judge and want to see the code for
-              proof or safety of hackathon, please contact me and we can will
-              set something up.
+              some plans for making it open source, but I cant promise for now.
+              But, If you are an organizer or judge and want to see the code for
+              proof or other purposes, please contact.
             </li>
           </ul>
         </section>

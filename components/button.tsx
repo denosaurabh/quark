@@ -1,13 +1,18 @@
 import { styled } from '@/stitches.config'
 
 interface ButtonProps {
-  onClickHandler?: () => void
+  onClickHandler?: (e: any) => void
   css?: Record<string, unknown>
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClickHandler, css }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClickHandler,
+  css,
+  ...props
+}) => {
   return (
-    <ButtonStyled css={css} onClick={onClickHandler}>
+    <ButtonStyled css={css} onClick={onClickHandler} {...props}>
       {children}
     </ButtonStyled>
   )

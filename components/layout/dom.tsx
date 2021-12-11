@@ -64,7 +64,6 @@ const Dom = ({ children }) => {
       {currentHud === 'startPlay' && <StartPlayHUD />}
       {currentHud === 'createNFT' && <CreateNFTHUD />}
       {currentHud === 'buyNFT' && <BuyNFTHUD />}
-      {currentHud === 'buyNFT' && <BuyNFTHUD />}
       {currentHud === 'menu' && <MenuHUD />}
     </HUDContainer>
   )

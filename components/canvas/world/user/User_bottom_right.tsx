@@ -203,8 +203,9 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       ref={group}
       {...props}
       dispose={null}
-      position={[-97.34, 0, 245.49]}
+      position={[-97, 0, 245]}
       rotation={[-Math.PI, 0, -Math.PI]}
+      name="user-portal"
     >
       <mesh
         geometry={nodes['user_voxel-bottom-0'].geometry}

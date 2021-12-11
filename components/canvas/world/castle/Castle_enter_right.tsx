@@ -26,8 +26,8 @@ export default function CastleEnterRight(
     'models/world/castle/castle_entry_right.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group position={[-254.39, 0, -66.57]}>
+    <group ref={group} {...props} dispose={null} name="castle-enter-right">
+      <group position={[-254, 0, -66]}>
         <mesh
           geometry={nodes['more_nfts_voxel-5'].geometry}
           material={materials['more_nfts_voxel-5 #249']}
