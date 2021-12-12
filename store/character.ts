@@ -54,6 +54,6 @@ const useCharacter = create<CharacterState>((set) => {
 
 export default useCharacter
 
-useCharacter.subscribe((state: CharacterState) => {
-  // console.log(state.mouseDegree)
-})
+// useCharacter.subscribe((state: CharacterState) => {
+//   // console.log(state.mouseDegree)
+// })

@@ -15,6 +15,7 @@ import useCreateNFT from '@/store/huds/createNFT'
 import { nftAddress, nftMarketAddress } from '@/nftConfig'
 import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
+import BillBoard from '@/components/billboard'
 
 const client = IPFSHTTPClient({
   apiPath: '/api/v0',
@@ -204,8 +205,12 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
         geometry={nodes.user_upload_3.geometry}
         material={materials['user_upload #242']}
       />
+
+      <BillBoard position={[43, 28, -12]}>
+        Publish your NFT to Market, drop your NFT onto this pool
+      </BillBoard>
     </group>
   )
 }
 
-useGLTF.preload('models/world/user/user_water_upload.glb')
+// useGLTF.preload('models/world/user/user_water_upload.glb')

@@ -26,23 +26,23 @@ export default function CastlePillorThroneRight(
     'models/world/castle/throne-right.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="throne-right">
+    <group ref={group} {...props} dispose={null} name='throne-right'>
       <group position={[-722, 0, -267]}>
         {' '}
         {/* -67.05 */}
         <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}
-          name="throne-right"
+          name='throne-right'
         />
         <mesh
           geometry={nodes['more_nfts_voxel-1_1'].geometry}
           material={materials['more_nfts_voxel-1 #242']}
-          name="throne-right"
+          name='throne-right'
         />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/throne-right.glb')
+// useGLTF.preload('models/world/castle/throne-right.glb')

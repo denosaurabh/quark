@@ -70,10 +70,12 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     }
   }, [, castleRef.current])
 
-  const { nodes, materials } = useGLTF('models/castle-compressed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    'models/castle-compressed.glb'
+  ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="world">
-      <group position={[0, 1.38, 0]} name="world">
+    <group ref={group} {...props} dispose={null} name='world'>
+      <group position={[0, 1.38, 0]} name='world'>
         <mesh
           ref={castleRef}
           geometry={nodes.castle_voxel_save_white_export_1.geometry}
@@ -88,4 +90,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// useGLTF.preload('models/castle-compressed.glb')
+// // useGLTF.preload('models/castle-compressed.glb')

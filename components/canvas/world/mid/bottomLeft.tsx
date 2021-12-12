@@ -9,38 +9,38 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['world_export-13_1']: THREE.Mesh
-    ['world_export-13_2']: THREE.Mesh
-    ['world_export-13_3']: THREE.Mesh
+    ['palace_voxel_final-3']: THREE.Mesh
+    ['palace_voxel_final-3_1']: THREE.Mesh
+    ['palace_voxel_final-3_2']: THREE.Mesh
   }
   materials: {
-    ['world_export-13 #1']: THREE.MeshStandardMaterial
-    ['world_export-13 #246']: THREE.MeshStandardMaterial
-    ['world_export-13 #254']: THREE.MeshStandardMaterial
+    ['palace_voxel_final-3 #249']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-3 #250']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-3 #242']: THREE.MeshBasicMaterial
   }
 }
 
-export default function MidBottomLeft(props: JSX.IntrinsicElements['group']) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/mid/mid_bottom_left.glb'
+    'models/world/mid/palace-table-compressed.glb'
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null} name='palace-bottom-left'>
       <group position={[58, 0, 89]} rotation={[0, Math.PI / 2, 0]}>
         <mesh
-          geometry={nodes['world_export-13_1'].geometry}
-          material={materials['world_export-13 #1']}
+          geometry={nodes['palace_voxel_final-3'].geometry}
+          material={materials['palace_voxel_final-3 #249']}
           name='palace-bottom-left'
         />
         <mesh
-          geometry={nodes['world_export-13_2'].geometry}
-          material={materials['world_export-13 #246']}
+          geometry={nodes['palace_voxel_final-3_1'].geometry}
+          material={materials['palace_voxel_final-3 #250']}
           name='palace-bottom-left'
         />
         <mesh
-          geometry={nodes['world_export-13_3'].geometry}
-          material={materials['world_export-13 #254']}
+          geometry={nodes['palace_voxel_final-3_2'].geometry}
+          material={materials['palace_voxel_final-3 #242']}
           name='palace-bottom-left'
         />
       </group>
@@ -48,4 +48,4 @@ export default function MidBottomLeft(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/mid/mid_bottom_left.glb')
+// useGLTF.preload('models/world/mid/palace_table.glb')

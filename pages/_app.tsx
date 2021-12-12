@@ -51,7 +51,6 @@ function App({ Component, pageProps = { title: 'index' } }) {
   globalStyles()
 
   const router = useRouter()
-  console.log('router', router)
 
   useEffect(() => {
     useStore.setState({ router })

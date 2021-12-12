@@ -23,6 +23,7 @@
     "axios": "^0.24.0",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
+    "eventdispatcher.js": "^0.0.2",
     "glsl-random": "^0.0.5",
     "gun": "^0.2020.1235",
     "hardhat": "^2.6.8",

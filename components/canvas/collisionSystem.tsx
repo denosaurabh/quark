@@ -133,7 +133,14 @@ const CollisionSystem = () => {
         }
 
         // console.log(closestBase.distance)
+        // console.log(character.position.y - closestBase.distance - 1 < -76)
         character.position.y -= closestBase.distance - 1
+
+        // if (character.position.y - closestBase.distance - 1 < -75) {
+        //   character.position.y = -75
+        // } else {
+        //   character.position.y -= closestBase.distance - 1
+        // }
       }
     }
 
@@ -186,7 +193,7 @@ const CollisionSystem = () => {
           0xffff00,
         ]}
       /> */}
-      <arrowHelper
+      {/* <arrowHelper
         ref={arrowHelperRef}
         hex={0xffff00}
         length={1000}
@@ -194,7 +201,7 @@ const CollisionSystem = () => {
           new THREE.Vector3(0, -100, 0).normalize(),
           new THREE.Vector3(100, 100, 100),
         ]}
-      />
+      /> */}
       <raycaster
         args={[
           chracRef.current?.getWorldPosition(chracRef.current?.position),

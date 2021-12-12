@@ -9,38 +9,38 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['world_export-16_1']: THREE.Mesh
-    ['world_export-16_2']: THREE.Mesh
-    ['world_export-16_3']: THREE.Mesh
+    ['palace_voxel_final-0']: THREE.Mesh
+    ['palace_voxel_final-0_1']: THREE.Mesh
+    ['palace_voxel_final-0_2']: THREE.Mesh
   }
   materials: {
-    ['world_export-16 #1']: THREE.MeshStandardMaterial
-    ['world_export-16 #246']: THREE.MeshStandardMaterial
-    ['world_export-16 #254']: THREE.MeshStandardMaterial
+    ['palace_voxel_final-0 #249']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-0 #250']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-0 #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    '/models/world/mid/mid_top_left.glb'
+    '/models/world/mid/palace-rock.glb'
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null} name='palace-top-left'>
       <group position={[-98, 0, 89]} rotation={[0, Math.PI / 2, 0]}>
         <mesh
-          geometry={nodes['world_export-16_1'].geometry}
-          material={materials['world_export-16 #1']}
+          geometry={nodes['palace_voxel_final-0'].geometry}
+          material={materials['palace_voxel_final-0 #249']}
           name='palace-top-left'
         />
         <mesh
-          geometry={nodes['world_export-16_2'].geometry}
-          material={materials['world_export-16 #246']}
+          geometry={nodes['palace_voxel_final-0_1'].geometry}
+          material={materials['palace_voxel_final-0 #250']}
           name='palace-top-left'
         />
         <mesh
-          geometry={nodes['world_export-16_3'].geometry}
-          material={materials['world_export-16 #254']}
+          geometry={nodes['palace_voxel_final-0_2'].geometry}
+          material={materials['palace_voxel_final-0 #242']}
           name='palace-top-left'
         />
       </group>
@@ -48,4 +48,4 @@ export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/mid/mid_top_left.glb')
+// useGLTF.preload('models/world/mid/palace-rock.glb')

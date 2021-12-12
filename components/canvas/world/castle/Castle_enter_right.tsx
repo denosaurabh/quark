@@ -26,21 +26,21 @@ export default function CastleEnterRight(
     'models/world/castle/castle_entry_right.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="castle-enter-right">
+    <group ref={group} {...props} dispose={null} name='castle-enter-right'>
       <group position={[-254, 0, -66]}>
         <mesh
           geometry={nodes['more_nfts_voxel-5'].geometry}
           material={materials['more_nfts_voxel-5 #249']}
-          name="castle-enter-right"
+          name='castle-enter-right'
         />
         <mesh
           geometry={nodes['more_nfts_voxel-5_1'].geometry}
           material={materials['more_nfts_voxel-5 #242']}
-          name="castle-enter-right"
+          name='castle-enter-right'
         />{' '}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_entry_right.glb')
+// useGLTF.preload('models/world/castle/castle_entry_right.glb')

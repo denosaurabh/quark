@@ -11,64 +11,66 @@ import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import NFTComp from '@/components/nft'
 
 export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
-  // const [nfts, setNfts] = useState([])
-  // const [loadingState, setLoadingState] = useState('not-loaded')
+  const [nfts, setNfts] = useState([])
+  const [loadingState, setLoadingState] = useState('not-loaded')
 
-  // useEffect(() => {
-  //   loadNFTs()
-  // }, [])
+  useEffect(() => {
+    loadNFTs()
+  }, [])
 
-  // async function loadNFTs() {
-  //   const web3Modal = new Web3Modal()
-  //   const connection = await web3Modal.connect()
-  //   const provider = new ethers.providers.Web3Provider(connection)
-  //   const signer = provider.getSigner()
+  async function loadNFTs() {
+    const web3Modal = new Web3Modal()
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
 
-  //   const marketContract = new ethers.Contract(
-  //     nftMarketAddress,
-  //     Market.abi,
-  //     signer
-  //   )
-  //   const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
-  //   const data = await marketContract.fetchMyNFTs()
+    const marketContract = new ethers.Contract(
+      nftMarketAddress,
+      Market.abi,
+      signer
+    )
+    const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
+    const data = await marketContract.fetchMyNFTs()
 
-  //   const items = await Promise.all(
-  //     data.map(async (i) => {
-  //       const tokenUri = await tokenContract.tokenURI(i.tokenId)
-  //       const meta = await axios.get(tokenUri)
-  //       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-  //       let item = {
-  //         price,
-  //         tokenId: i.tokenId.toNumber(),
-  //         seller: i.seller,
-  //         owner: i.owner,
-  //         image: meta.data.image,
-  //       }
-  //       return item
-  //     })
-  //   )
+    const items = await Promise.all(
+      data.map(async (i) => {
+        const tokenUri = await tokenContract.tokenURI(i.tokenId)
+        const meta = await axios.get(tokenUri)
+        let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+        let item = {
+          price,
+          tokenId: i.tokenId.toNumber(),
+          seller: i.seller,
+          owner: i.owner,
+          image: meta.data.image,
+        }
+        return item
+      })
+    )
 
-  //   console.log('bought items', items)
+    console.log('bought items', items)
 
-  //   setNfts(items)
-  //   setLoadingState('loaded')
-  // }
+    setNfts(items)
+    setLoadingState('loaded')
+  }
 
-  // const nftPositions = [
-  //   [80, -62, 270],
-  //   [60, -62, 270],
-  //   [40, -62, 270],
-  //   [80, -62, 320],
-  //   [60, -62, 320],
-  //   [40, -62, 320],
-  //   [80, -62, 220],
-  //   [60, -62, 220],
-  //   [40, -62, 220],
-  // ]
+  const nftPositions = [
+    [-60, -62, 337],
+    [-90, -62, 337],
+    [-118, -62, 337],
+
+    [-45, -62, 310],
+    [-85, -62, 310],
+    [-120, -62, 310],
+
+    [-45, -62, 290],
+    [-85, -62, 290],
+    [-120, -62, 290],
+  ]
 
   return (
     <group {...props} dispose={null}>
-      {/* {loadingState === 'loaded' && nfts
+      {loadingState === 'loaded' && nfts
         ? nfts.map((el, i) => {
             return (
               <NFTComp
@@ -81,111 +83,48 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
               />
             )
           })
-        : null} */}
+        : null}
 
-      <mesh position={[90, -62, 360]} scale={[6, 6, 6]}>
+      {/* <mesh position={[-60, -62, 337]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      <mesh position={[60, -62, 360]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[30, -62, 360]} scale={[6, 6, 6]}>
+      <mesh position={[-90, -62, 337]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
 
-      <mesh position={[90, -62, 340]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[60, -62, 340]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[30, -62, 340]} scale={[6, 6, 6]}>
+      <mesh position={[-118, -62, 337]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
 
+      <mesh position={[-45, -62, 310]} scale={[6, 6, 6]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={'hotpink'} />
+      </mesh>
+      <mesh position={[-85, -62, 310]} scale={[6, 6, 6]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={'hotpink'} />
+      </mesh>
 
-      
-      <mesh position={[80, -60, 310]} scale={[6, 6, 6]}>
+      <mesh position={[-120, -62, 310]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      <mesh position={[40, -60, 310]} scale={[6, 6, 6]}>
+
+      <mesh position={[-45, -62, 290]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      <mesh position={[10, -60, 310]} scale={[6, 6, 6]}>
+      <mesh position={[-85, -62, 290]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh>
-      {/* <mesh position={[80, -62, 320]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[60, -62, 320]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[40, -62, 320]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[80, -62, 220]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[60, -62, 220]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'hotpink'} />
-      </mesh>
-      <mesh position={[40, -62, 220]} scale={[6, 6, 6]}>
+      <mesh position={[-120, -62, 290]} scale={[6, 6, 6]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={'hotpink'} />
       </mesh> */}
     </group>
   )
 }
-
-// useGLTF.preload('models/world/user/user_bottom_enter.glb')
-
-// <mesh position={[80, -62, 270]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[60, -62, 270]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[40, -62, 270]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[80, -62, 320]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[60, -62, 320]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[40, -62, 320]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[80, -62, 220]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[60, -62, 220]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>
-//       <mesh position={[40, -62, 220]} scale={[6, 6, 6]}>
-//         <boxGeometry args={[1, 1, 1]} />
-//         <meshStandardMaterial color={'hotpink'} />
-//       </mesh>

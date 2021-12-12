@@ -5,6 +5,7 @@ import useCharacter from '@/store/character'
 import useHUD from '@/store/huds/main'
 import Button from '../button'
 import { useThree } from '@react-three/fiber'
+import respawnEvent from '@/events/respawn'
 
 const MenuHUD = () => {
   // const { scene } = useThree()
@@ -14,6 +15,7 @@ const MenuHUD = () => {
   }
 
   const onRedeployClick = () => {
+    // respawnEvent.start()
     // scene.getObjectByName('character').position.set(240, 5, 70)
   }
 

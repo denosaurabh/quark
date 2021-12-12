@@ -75,4 +75,4 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/level2-compressed.glb')
+// useGLTF.preload('/level2-compressed.glb')

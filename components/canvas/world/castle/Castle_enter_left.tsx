@@ -41,4 +41,4 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/castle/castle_entry_left.glb')
+// useGLTF.preload('models/world/castle/castle_entry_left.glb')

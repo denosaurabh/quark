@@ -26,21 +26,21 @@ export default function CastlePillorThroneLeft(
     'models/world/castle/throne-left.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="throne-left">
+    <group ref={group} {...props} dispose={null} name='throne-left'>
       <group position={[-722, 0, 91.8]}>
         <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}
-          name="throne-left"
+          name='throne-left'
         />
         <mesh
           geometry={nodes['more_nfts_voxel-1_1'].geometry}
           material={materials['more_nfts_voxel-1 #242']}
-          name="throne-left"
+          name='throne-left'
         />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_pillor_throne_left.glb')
+// useGLTF.preload('models/world/castle/throne-left.glb')

@@ -50,4 +50,4 @@ export default function CastlePillorTopLeft(
   )
 }
 
-useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')
+// useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')

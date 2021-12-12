@@ -57,4 +57,4 @@ const World = () => {
 
 export default World
 
-// useGLTF.preload('/level1-com.glb')
+// // useGLTF.preload('/level1-com.glb')

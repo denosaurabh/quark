@@ -23,7 +23,10 @@ const CastleNFTs = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const loadNFTs = async () => {
-    const provider = new ethers.providers.JsonRpcProvider("https://matic-mumbai.chainstacklabs.com")
+    const provider = new ethers.providers.JsonRpcProvider(
+      'https://matic-mumbai.chainstacklabs.com'
+    )
+
     const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(
       nftMarketAddress,

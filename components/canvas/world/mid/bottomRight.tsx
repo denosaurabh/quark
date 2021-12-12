@@ -6,46 +6,54 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['world_export-14_1']: THREE.Mesh
-    ['world_export-14_2']: THREE.Mesh
-    ['world_export-14_3']: THREE.Mesh
+    ['palace_voxel_final-2']: THREE.Mesh
+    ['palace_voxel_final-2_1']: THREE.Mesh
+    ['palace_voxel_final-2_2']: THREE.Mesh
   }
   materials: {
-    ['world_export-14 #1']: THREE.MeshStandardMaterial
-    ['world_export-14 #246']: THREE.MeshStandardMaterial
-    ['world_export-14 #254']: THREE.MeshStandardMaterial
+    ['palace_voxel_final-2 #249']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-2 #242']: THREE.MeshBasicMaterial
+    ['palace_voxel_final-2 #250']: THREE.MeshBasicMaterial
   }
 }
 
-export default function MidBottomRight(props: JSX.IntrinsicElements['group']) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/mid/mid_bottom_right.glb'
+    'models/world/mid/palace-thanks.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name='palace-bottom-right'>
-      <group position={[58, 0, -66]} rotation={[0, Math.PI / 2, 0]}>
-        <mesh
-          geometry={nodes['world_export-14_1'].geometry}
-          material={materials['world_export-14 #1']}
-          name='palace-bottom-left'
-        />
-        <mesh
-          geometry={nodes['world_export-14_2'].geometry}
-          material={materials['world_export-14 #246']}
-          name='palace-bottom-left'
-        />
-        <mesh
-          geometry={nodes['world_export-14_3'].geometry}
-          material={materials['world_export-14 #254']}
-          name='palace-bottom-left'
-        />
-      </group>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      position={[58, 0, -67]}
+      rotation={[0, Math.PI / 2, 0]}
+      name='palace-bottom-right'
+    >
+      <mesh
+        geometry={nodes['palace_voxel_final-2'].geometry}
+        material={materials['palace_voxel_final-2 #249']}
+        name='palace-bottom-right'
+      />
+      <mesh
+        geometry={nodes['palace_voxel_final-2_1'].geometry}
+        material={materials['palace_voxel_final-2 #242']}
+        name='palace-bottom-right'
+      />
+      <mesh
+        geometry={nodes['palace_voxel_final-2_2'].geometry}
+        material={materials['palace_voxel_final-2 #250']}
+        name='palace-bottom-right'
+      />
+
+      <BillBoard position={[-95, -10, -60]}>NFT of the Day </BillBoard>
     </group>
   )
 }
 
-useGLTF.preload('models/world/mid/mid_bottom_right.glb')
+// useGLTF.preload('models/world/mid/palace-thanks.glb')

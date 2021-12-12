@@ -11,7 +11,12 @@ import {
   useGLTF,
   useHelper,
 } from '@react-three/drei'
-import { MeshProps, RaycasterProps, useFrame } from '@react-three/fiber'
+import {
+  MeshProps,
+  RaycasterProps,
+  useFrame,
+  useThree,
+} from '@react-three/fiber'
 import { GLTF } from 'three-stdlib'
 import useCharacter from '@/store/character'
 import detectLeftButtonBtn from '@/utils/detectLeftMouseBtn'
@@ -25,6 +30,7 @@ import {
 import CollisionSystem from './collisionSystem'
 import { styled } from '@/stitches.config'
 import { chunkIndex, chunksData } from '@/utils/chunksLoad'
+import respawnEvent from '@/events/respawn'
 
 // Add the extension functions
 THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree
@@ -100,19 +106,19 @@ type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export default function Character({ ...props }) {
   const chracRef = useRef<MeshProps>()
-  const charGeoRef = useRef<THREE.Mesh>()
-  useBVH(charGeoRef)
-  useHelper(charGeoRef, MeshBVHVisualizer)
+  // const charGeoRef = useRef<THREE.Mesh>()
+  // useBVH(charGeoRef)
+  // useHelper(charGeoRef, MeshBVHVisualizer)
 
-  const mouseDegRef = useRef<number>(0)
+  // const mouseDegRef = useRef<number>(0)
 
   const { nodes, materials, animations } = useGLTF(
     'models/character-3-with-ani.glb'
   ) as GLTFResult
-  const { actions, mixer, clips, names } = useAnimations<GLTFActions>(
-    animations,
-    chracRef
-  )
+  // const { actions, mixer, clips, names } = useAnimations<GLTFActions>(
+  //   animations,
+  //   chracRef
+  // )
   // console.log({ mixer, clips, names })
 
   // console.log(actions)
@@ -147,10 +153,17 @@ export default function Character({ ...props }) {
   //   actions['left_handAction']?.play()
   // })
 
-  useFrame(({ scene, camera, mouse, get }) => {
+  // const { setDpr } = useThree()
+  // setDpr(2)
+
+  const { invalidate } = useThree()
+
+  useFrame(({ scene, camera, mouse, get, clock, performance, frameloop }) => {
     const { x, y } = mouse
     const mouseDegree = Math.atan2(y, x)
     // mouseDegRef.current = mouseDegree
+
+    // console.log(clock, (60 * 1000) / clock.elapsedTime)
 
     const { canMove, moveForward, currentChunk } = useCharacter.getState()
     const chunkI = chunkIndex(currentChunk)
@@ -168,7 +181,7 @@ export default function Character({ ...props }) {
         // if (collidesData.length > 0) return
 
         // setMouseDegree(mouseDegree)
-        chracRef.current.translateZ(-0.13) //-0.15 --- -0.13
+        chracRef.current.translateZ(-0.7) //-0.15 --- -0.13
 
         const [x, y, z] = cameraOffset
 
@@ -188,20 +201,47 @@ export default function Character({ ...props }) {
   })
 
   const onMouseDown = (e) => {
-    detectLeftButtonBtn(e) && useCharacter.getState().setMoveForward(true)
+    console.log('mouse down')
+
+    if (!useCharacter.getState().moveForward) {
+      detectLeftButtonBtn(e) && useCharacter.getState().setMoveForward(true)
+      // invalidate()
+    }
   }
 
   const onMouseUp = (e) => {
-    useCharacter.getState().setMoveForward(false)
+    if (useCharacter.getState().moveForward) {
+      useCharacter.getState().setMoveForward(false)
+    }
   }
 
   useEffect(() => {
+    console.log('character rerender')
+
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup', onMouseUp)
+
+    window.addEventListener('pointerdown', onMouseDown)
+    window.addEventListener('pointerup', onMouseUp)
+
+    // respawnEvent.addEventListener('start', () => {
+    //   if (chracRef.current) {
+    //     chracRef.current.position.set(240, 5, 70)
+    //   }
+    // })
 
     return () => {
       window.removeEventListener('mousedown', onMouseDown)
       window.removeEventListener('mouseup', onMouseUp)
+
+      window.removeEventListener('pointerdown', onMouseDown)
+      window.removeEventListener('pointerup', onMouseUp)
+
+      // respawnEvent.removeEventListener('start', () => {
+      //   if (chracRef.current) {
+      //     chracRef.current.position.set(240, 5, 70)
+      //   }
+      // })
     }
   }, [])
 
@@ -385,7 +425,7 @@ export default function Character({ ...props }) {
   )
 }
 
-// useGLTF.preload('/character.glb')
+// // useGLTF.preload('/character.glb')
 
 const PlayerHeading = styled('h6', {
   fontSize: '16rem',

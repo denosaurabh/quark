@@ -17,12 +17,19 @@ import { Leva, useControls } from 'leva'
 const LControl = () => {
   const dom = useStore((state) => state.dom)
 
-  const { scene } = useThree()
-
   const camera = useRef(null)
   const control = useRef(null)
 
   const vector = new THREE.Vector3()
+
+  const { scene } = useThree()
+  // if (control.current) {
+  //   const character = scene.getObjectByName('character')
+  //   if (character) {
+  //     const { x, y, z } = character.position
+  //     control.current.target = vector.set(x, y, z)
+  //   }
+  // }
 
   useFrame(() => {
     if (control.current) {
@@ -56,7 +63,7 @@ const LControl = () => {
         domElement={dom.current}
         enablePan={false}
         enableDamping={false}
-        // enableRotate={false}
+        enableRotate={false}
         mouseButtons={{
           LEFT: THREE.MOUSE.PAN,
           MIDDLE: THREE.MOUSE.DOLLY,
@@ -64,8 +71,8 @@ const LControl = () => {
         }}
         rotateSpeed={0.4}
         zoomSpeed={0.8}
-        minZoom={2}
-        maxZoom={10}
+        minZoom={6}
+        maxZoom={14}
         // minZoom={2}
         // minZoom={1}
         // maxZoom={2}
@@ -87,11 +94,11 @@ const LCanvas = ({ children }) => {
     <Canvas
       mode='concurrent'
       // dpr={Math.min(2, window.devicePixelRatio)}
-      // frameloop='demand'
       style={{
         position: 'absolute',
         top: 0,
       }}
+      // frameloop='demand'
       onCreated={(state) => {
         const { camera, gl } = state
         state.events.connect(dom.current)
@@ -101,7 +108,7 @@ const LCanvas = ({ children }) => {
         // gl.powerPreference = 'high-performance'
         // gl.setPixelRatio(Math.min(window.devicePixelRatio, 3))
 
-        console.log(gl.info)
+        // console.log(gl.info)
 
         camera.layers.enableAll()
         // raycaster.layers.set(1)

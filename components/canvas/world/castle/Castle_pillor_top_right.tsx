@@ -28,26 +28,26 @@ export default function CastlePillorTopRight(
     'models/world/castle/castle_nfts_pillor.glb'
   ) as GLTFResult
   return (
-    <group ref={group} {...props} dispose={null} name="castle-pillor-top-right">
+    <group ref={group} {...props} dispose={null} name='castle-pillor-top-right'>
       <group position={[-566, 0, -66]} rotation={[0, Math.PI, 0]}>
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_1'].geometry}
           material={materials['more_nfts_voxel_final-7 #249']}
-          name="castle-pillor-top-right"
+          name='castle-pillor-top-right'
         />
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_2'].geometry}
           material={materials['more_nfts_voxel_final-7 #250']}
-          name="castle-pillor-top-right"
+          name='castle-pillor-top-right'
         />
         <mesh
           geometry={nodes['more_nfts_voxel_final-7_3'].geometry}
           material={materials['more_nfts_voxel_final-7 #242']}
-          name="castle-pillor-top-right"
+          name='castle-pillor-top-right'
         />{' '}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')
+// useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')

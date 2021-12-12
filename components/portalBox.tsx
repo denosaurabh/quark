@@ -7,11 +7,9 @@ const PortalBox: React.FC<PortalBoxProps> = ({ onClickHandler, ...props }) => {
     <mesh
       onClick={onClickHandler}
       {...props}
-      material-opacity={0}
-      material-transparent={true}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={'hotpink'} />
+      <meshStandardMaterial color={'hotpink'} opacity={0} transparent={true} />
     </mesh>
   )
 }

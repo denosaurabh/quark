@@ -2,6 +2,7 @@ import Header from '@/components/header'
 import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
 import useBuyNFT from '@/store/huds/buyNFT'
+import useHUD from '@/store/huds/main'
 import Button from '../button'
 
 const BuyNFTHUD = () => {
@@ -55,6 +56,16 @@ const BuyNFTHUD = () => {
 
         <Button onClickHandler={onBuyNFTClick}>
           Buy NFT ({price}eth) {'/'}
+        </Button>
+
+        <Button
+          onClickHandler={() => {
+            useCharacter.getState().setCanMove(true)
+            useHUD.getState().setCurrentHud('default')
+          }}
+          css={{ backgroundColor: 'transparent', color: '#fff' }}
+        >
+          Cancel
         </Button>
       </BuyNFTBox>
     </>
