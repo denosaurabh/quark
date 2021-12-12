@@ -53,7 +53,7 @@ const CreateNFTHUD = () => {
           <Input
             label='NFT Name'
             type='text'
-            placeholder='Name'
+            placeHolder='Name'
             name='name'
             value={formInput.name}
             onChange={onInputChangeHandler}
@@ -61,7 +61,7 @@ const CreateNFTHUD = () => {
           <Input
             label='NFT Description'
             type='text'
-            placeholder='description'
+            placeHolder='description'
             name='description'
             value={formInput.description}
             onChange={onInputChangeHandler}
@@ -70,7 +70,7 @@ const CreateNFTHUD = () => {
           <Input
             label='NFT Price'
             type='text'
-            placeholder='100eth'
+            placeHolder='100eth'
             name='price'
             value={formInput.price}
             onChange={onInputChangeHandler}

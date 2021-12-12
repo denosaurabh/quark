@@ -120,7 +120,7 @@ export const chunksData = [
       name: 'user-drop-model',
       cameraOffset: [150, 150, 150],
       mouseDegreeOffset: -0.7,
-      load: false,
+      load: true,
     },
     null,
     {

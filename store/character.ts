@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid'
 
 interface CharacterState {
   id: string
+  name: string
   canMove: boolean
   moveForward: boolean
   mouseDegree: number
@@ -12,11 +13,13 @@ interface CharacterState {
   setCanMove: (canMove: boolean) => void
   setMouseDegree: (mouseDegree: number) => void
   setCurrentChunk: (chunk: string) => void
+  setName: (newName: string) => void
 }
 
 const useCharacter = create<CharacterState>((set) => {
   return {
     id: nanoid(),
+    name: 'anonymous',
     canMove: false,
     moveForward: false,
     mouseDegree: 0,
@@ -46,6 +49,13 @@ const useCharacter = create<CharacterState>((set) => {
       set(
         produce((state) => {
           state.currentChunk = newChunk
+        })
+      )
+    },
+    setName: (newName) => {
+      set(
+        produce((state) => {
+          state.name = newName
         })
       )
     },

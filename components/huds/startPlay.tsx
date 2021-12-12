@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/header'
 import { styled } from '@/stitches.config'
@@ -10,9 +10,13 @@ import Input from '../input'
 const StartPlayHUD = () => {
   const { setCurrentHud } = useHUD(({ setCurrentHud }) => ({ setCurrentHud }))
 
+  const [name, setName] = useState('')
+
   const onStartPlayClick = () => {
     useCharacter.getState().setCanMove(true)
-    console.log('settnig default hud')
+    useCharacter.getState().setName(name)
+
+    console.log('setting default hud')
     setCurrentHud('default')
   }
 
@@ -102,9 +106,15 @@ const StartPlayHUD = () => {
           </p>
         </LeftBox>
         <RightBox>
-          <Input label='Choose Your Name' type='name' />
+          <Input
+            label='Choose Your Name'
+            type='name'
+            placeHolder='anonymous'
+            value={name}
+            onChangeHandler={(e) => setName(e.target.value)}
+          />
 
-          <Label>Choose Lobby</Label>
+          {/* <Label>Choose Lobby</Label>
           <LobbyContainer>
             <LobbyBox>
               <h6>Main Lobby</h6>
@@ -118,7 +128,7 @@ const StartPlayHUD = () => {
               <h6>Lobby @3</h6>
               <p>2{'<'} </p>
             </LobbyBox>
-          </LobbyContainer>
+          </LobbyContainer> */}
           <Button
             css={{ width: '100%', padding: '0.5rem 2rem 1.5rem 2rem' }}
             onClickHandler={onStartPlayClick}
@@ -158,6 +168,10 @@ const StartPlayContainer = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   flexWrap: 'wrap',
+
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 })
 
 const LeftBox = styled('div', {

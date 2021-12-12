@@ -137,6 +137,11 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
 
     const model = files[0]
 
+    if (files[0].size > 10000) {
+      console.log('too big file...')
+      return
+    }
+
     try {
       if (model) {
         const uploadedModel = await client.add(model, {
@@ -214,7 +219,8 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
       />
 
       <BillBoard position={[43, 28, -12]}>
-        Publish your NFT to Market, drop your NFT onto this pool
+        Publish your NFT to Market, drop your NFT onto this pool. 3d Model (GLB)
+        Max 10MB
       </BillBoard>
     </group>
   )
