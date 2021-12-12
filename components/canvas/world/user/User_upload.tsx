@@ -137,7 +137,7 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
 
     const model = files[0]
 
-    if (files[0].size > 10000) {
+    if (files[0].size > 1000000) {
       console.log('too big file...')
       return
     }
