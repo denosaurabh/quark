@@ -1,27 +1,7 @@
 import Header from '@/components/header'
 
 const DefaultHUD = () => {
-  return (
-    <Header />
-
-  )
+  return <Header />
 }
 
 export default DefaultHUD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

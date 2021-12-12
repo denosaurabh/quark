@@ -52,6 +52,11 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       />
 
       <BillBoard position={[-95, -10, -60]}>NFT of the Day </BillBoard>
+
+      <BillBoard position={[40, -50, -40]}>
+        Hands down for people like Nader Dabit & Jeff Delaney (Fireship) for
+        making awesome web3 tutorials, that made this project possible for me.
+      </BillBoard>
     </group>
   )
 }

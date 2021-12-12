@@ -29,6 +29,7 @@ import CastleNFTs from '@/components/canvas/world/castle/castleNFts'
 import BoughtNFTs from './world/user/boughtNFTs'
 import PublishedAssets from './world/user/publishedAssets'
 import BillBoard from '../billboard'
+import NFTOftheDay from './world/mid/nftOfTheDay'
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
@@ -39,7 +40,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
   return (
     <Suspense
-      fallback={<BillBoard position={[0, 0, 0]}>loading....</BillBoard>}
+      fallback={<BillBoard position={[0, 0, 0]}>loading world....</BillBoard>}
     >
       <group ref={group} {...props} dispose={null}>
         <group name='world'>
@@ -69,6 +70,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         <BoughtNFTs />
         <CastleNFTs />
         <PublishedAssets />
+        <NFTOftheDay />
       </group>
     </Suspense>
   )

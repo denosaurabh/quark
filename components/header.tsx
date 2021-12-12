@@ -13,7 +13,10 @@ const Header = () => {
       <Heading css={{ fontSize: '14rem' }} onClick={onMenuClick}>
         *
       </Heading>
-      <Heading css={{ textDecoration: 'underline' }}>Credits</Heading>
+      <Heading css={{ textDecoration: 'underline' }}>[ESC] MENU</Heading>
+      <Heading css={{ textDecoration: 'underline', marginLeft: 'auto' }}>
+        Credits
+      </Heading>
     </HeaderStyled>
   )
 }
@@ -25,8 +28,9 @@ const HeaderStyled = styled('header', {
   height: 'fit-content',
 
   display: 'flex',
-  justifyContent: 'space-between',
+  // justifyContent: 'space-between',
   alignItems: 'center',
+  gap: '2rem',
 })
 
 const Heading = styled('h1', {

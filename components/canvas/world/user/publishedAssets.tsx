@@ -13,6 +13,8 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import axios from 'axios'
 import NFTComp from '@/components/nft'
+import useNFT from '@/store/huds/nft'
+import useHUD from '@/store/huds/main'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -119,49 +121,13 @@ export default function PublishedAssets(props: JSX.IntrinsicElements['group']) {
                 key={i}
                 {...el}
                 onClick={() => {
-                  console.log('clicked', el)
+                  useNFT.getState().setNFTInfo(el)
+                  useHUD.getState().setCurrentHud('nft')
                 }}
               />
             )
           })
         : null}
-
-      {/* <mesh position={[90, -62, 360]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[60, -62, 360]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[30, -62, 360]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[90, -62, 340]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[60, -62, 340]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[30, -62, 340]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[82, -60, 310]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[42, -60, 310]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh>
-      <mesh position={[7, -60, 310]} scale={[6, 6, 6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={'white'} />
-      </mesh> */}
     </group>
   )
 }

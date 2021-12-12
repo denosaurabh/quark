@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import BillBoard from '@/components/billboard'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -23,8 +24,8 @@ const Character = dynamic(() => import('@/components/canvas/Character'), {
 function Box() {
   return (
     <mesh>
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial attach="material" transparent opacity={0.5} />
+      <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
+      <meshStandardMaterial attach='material' transparent opacity={0.5} />
     </mesh>
   )
 }
@@ -32,8 +33,8 @@ function Box() {
 const R3F = () => {
   return (
     <>
-      <Suspense fallback={<Box />} r3f>
-        <Character r3f />
+      <Suspense fallback={<BillBoard>loading.....</BillBoard>} r3f>
+        <Character position={[0, 100, -20]} r3f />
         <Castle r3f />
         {/* <World r3f /> */}
       </Suspense>

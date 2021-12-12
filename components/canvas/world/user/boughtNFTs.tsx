@@ -9,6 +9,8 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 
 import NFTComp from '@/components/nft'
+import useNFT from '@/store/huds/nft'
+import useHUD from '@/store/huds/main'
 
 export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
   const [nfts, setNfts] = useState([])
@@ -44,6 +46,7 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
           owner: i.owner,
           image: meta.data.image,
         }
+
         return item
       })
     )
@@ -55,17 +58,17 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
   }
 
   const nftPositions = [
-    [-60, -62, 337],
-    [-90, -62, 337],
-    [-118, -62, 337],
+    [-60, -55, 337],
+    [-90, -55, 337],
+    [-118, -55, 337],
 
-    [-45, -62, 310],
-    [-85, -62, 310],
-    [-120, -62, 310],
+    [-45, -55, 310],
+    [-85, -55, 310],
+    [-120, -55, 310],
 
-    [-45, -62, 290],
-    [-85, -62, 290],
-    [-120, -62, 290],
+    [-45, -55, 290],
+    [-85, -55, 290],
+    [-120, -55, 290],
   ]
 
   return (
@@ -78,7 +81,8 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
                 key={i}
                 {...el}
                 onClick={() => {
-                  console.log('clicked', el)
+                  useNFT.getState().setNFTInfo(el)
+                  useHUD.getState().setCurrentHud('nft')
                 }}
               />
             )

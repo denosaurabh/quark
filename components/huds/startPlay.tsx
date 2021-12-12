@@ -141,6 +141,8 @@ const StartPlayHUDStyled = styled('div', {
 
   height: '100%',
 
+  overflow: 'scroll',
+
   background:
     'radial-gradient(82.3% 82.3% at 47.42% 54.07%, rgba(202, 161, 255, 0.27) 12.63%, rgba(255, 255, 255, 0) 76.93%)',
 })
@@ -151,6 +153,7 @@ const StartPlayContainer = styled('div', {
 
   display: 'flex',
   justifyContent: 'space-between',
+  flexWrap: 'wrap',
 })
 
 const LeftBox = styled('div', {

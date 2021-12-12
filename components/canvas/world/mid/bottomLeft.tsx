@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/mid/palace-table-compressed.glb'
+    'models/world/mid/palace_table.glb'
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null} name='palace-bottom-left'>

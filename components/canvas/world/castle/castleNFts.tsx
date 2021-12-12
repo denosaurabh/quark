@@ -10,6 +10,7 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import useHUD from '@/store/huds/main'
 import useBuyNFT from '@/store/huds/buyNFT'
+import useCharacter from '@/store/character'
 
 // let rpcEndpoint = 'http://localhost:8545'
 
@@ -61,31 +62,33 @@ const CastleNFTs = () => {
   }
 
   const buyNFT = async (nft) => {
-    const web3modal = new Web3Modal()
-    const connection = await web3modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
+    try {
+      const web3modal = new Web3Modal()
+      const connection = await web3modal.connect()
+      const provider = new ethers.providers.Web3Provider(connection)
 
-    console.log('after error')
+      const signer = provider.getSigner()
+      const contract = new ethers.Contract(nftMarketAddress, Market.abi, signer)
 
-    const signer = provider.getSigner()
-    const contract = new ethers.Contract(nftMarketAddress, Market.abi, signer)
+      const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
 
-    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
-    console.log('after error 2')
+      console.log(nft.tokenId, price, nftAddress)
 
-    console.log(nft.tokenId, price, nftAddress)
+      const transaction = await contract.createMarketSale(
+        nftAddress,
+        nft.tokenId,
+        { value: price }
+      )
 
-    const transaction = await contract.createMarketSale(
-      nftAddress,
-      nft.tokenId,
-      { value: price }
-    )
-
-    console.log('after error 3')
-
-    await transaction.wait()
-
-    console.log('after error 4')
+      await transaction.wait()
+    } catch (err) {
+      console.log(err)
+      useHUD.getState().setCurrentHud('default')
+      useCharacter.getState().setCanMove(true)
+    } finally {
+      useHUD.getState().setCurrentHud('default')
+      useCharacter.getState().setCanMove(true)
+    }
 
     loadNFTs()
   }

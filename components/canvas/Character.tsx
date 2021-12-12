@@ -21,21 +21,22 @@ import { GLTF } from 'three-stdlib'
 import useCharacter from '@/store/character'
 import detectLeftButtonBtn from '@/utils/detectLeftMouseBtn'
 
-import {
-  computeBoundsTree,
-  disposeBoundsTree,
-  acceleratedRaycast,
-  MeshBVHVisualizer,
-} from 'three-mesh-bvh'
+// import {
+//   computeBoundsTree,
+//   disposeBoundsTree,
+//   acceleratedRaycast,
+//   MeshBVHVisualizer,
+// } from 'three-mesh-bvh'
 import CollisionSystem from './collisionSystem'
 import { styled } from '@/stitches.config'
 import { chunkIndex, chunksData } from '@/utils/chunksLoad'
 import respawnEvent from '@/events/respawn'
+import { useRouter } from 'next/router'
 
 // Add the extension functions
-THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree
-THREE.BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree
-THREE.Mesh.prototype.raycast = acceleratedRaycast
+// THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree
+// THREE.BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree
+// THREE.Mesh.prototype.raycast = acceleratedRaycast
 
 // type GLTFResult = GLTF & {
 //   nodes: {
@@ -104,7 +105,7 @@ type ActionName =
   | 'left_handAction'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export default function Character({ ...props }) {
+export default function Character({ position, ...props }) {
   const chracRef = useRef<MeshProps>()
   // const charGeoRef = useRef<THREE.Mesh>()
   // useBVH(charGeoRef)
@@ -169,6 +170,11 @@ export default function Character({ ...props }) {
     const chunkI = chunkIndex(currentChunk)
     const chunk = chunksData[chunkI[0]][chunkI[1]]
     const { cameraOffset, mouseDegreeOffset } = chunk
+      ? chunk
+      : {
+          cameraOffset: [50, 50, 50],
+          mouseDegreeOffset: -0.7,
+        }
 
     if (chracRef.current) {
       chracRef.current.rotation.set(0, mouseDegree + mouseDegreeOffset, 0) // -1
@@ -181,7 +187,7 @@ export default function Character({ ...props }) {
         // if (collidesData.length > 0) return
 
         // setMouseDegree(mouseDegree)
-        chracRef.current.translateZ(-0.7) //-0.15 --- -0.13
+        chracRef.current.translateZ(-0.1) //-0.15 --- -0.13
 
         const [x, y, z] = cameraOffset
 
@@ -201,6 +207,8 @@ export default function Character({ ...props }) {
   })
 
   const onMouseDown = (e) => {
+    e.preventDefault()
+
     console.log('mouse down')
 
     if (!useCharacter.getState().moveForward) {
@@ -210,6 +218,8 @@ export default function Character({ ...props }) {
   }
 
   const onMouseUp = (e) => {
+    e.preventDefault()
+
     if (useCharacter.getState().moveForward) {
       useCharacter.getState().setMoveForward(false)
     }
@@ -217,6 +227,8 @@ export default function Character({ ...props }) {
 
   useEffect(() => {
     console.log('character rerender')
+
+    console.log(window)
 
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup', onMouseUp)
@@ -244,6 +256,8 @@ export default function Character({ ...props }) {
       // })
     }
   }, [])
+
+  // const router = useRouter()
 
   // useEffect(() => {
   //   if (charGeoRef.current) {
@@ -288,7 +302,7 @@ export default function Character({ ...props }) {
         userData={{ id: 'character' }}
         dispose={null}
         scale={0.3}
-        position={[240, 5, 70]}
+        position={position}
       >
         <Html
           as='div' // Wrapping element (default: 'div')

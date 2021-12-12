@@ -9,6 +9,7 @@ import StartPlayHUD from '@/components/huds/startPlay'
 import MenuHUD from '@/components/huds/menu'
 
 import useHUD from '@/store/huds/main'
+import NFTHUD from '../huds/nft'
 
 const Dom = ({ children }) => {
   const domRef = useRef<HTMLDivElement>(null)
@@ -64,6 +65,7 @@ const Dom = ({ children }) => {
       {currentHud === 'startPlay' && <StartPlayHUD />}
       {currentHud === 'createNFT' && <CreateNFTHUD />}
       {currentHud === 'buyNFT' && <BuyNFTHUD />}
+      {currentHud === 'nft' && <NFTHUD />}
       {currentHud === 'menu' && <MenuHUD />}
     </HUDContainer>
   )

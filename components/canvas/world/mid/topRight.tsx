@@ -6,6 +6,7 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -43,6 +44,18 @@ export default function MidTopRight(props: JSX.IntrinsicElements['group']) {
           material={materials['palace_voxel_final-1 #250']}
           name='palace-top-right'
         />
+
+        <BillBoard position={[40, -50, -40]}>
+          Thank you for{' '}
+          <a href='https://polygon.technology' target='_blank' rel='noreferrer'>
+            <u>Polygon</u>
+          </a>{' '}
+          for making this project possible.
+          <br />
+          <br />
+          Amazing tools like Blender, Poimandres, Vercel, Magicavoxel, ThreeJS,
+          Radix, Ethereum, Solidity, Hardhat have big hands too.. /
+        </BillBoard>
       </group>
     </group>
   )

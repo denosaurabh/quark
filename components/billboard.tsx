@@ -29,6 +29,7 @@ export default BillBoard
 const Text = styled('h6', {
   fontSize: '16rem',
   fontFamily: '$display',
+  minWidth: '10rem',
 
   lineHeight: '90px',
 
