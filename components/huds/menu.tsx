@@ -25,12 +25,12 @@ const MenuHUD = () => {
       <MenuHUDContainer>
         <div>
           <Button onClickHandler={onResumeClick}>Resume {'>'}</Button>
-          <Button onClickHandler={onRedeployClick}>Redeploy \</Button>
+          {/* <Button onClickHandler={onRedeployClick}>Redeploy \</Button> */}
         </div>
         <div>
           <Button>Settings []</Button>
 
-          <Button as='a' href='/note' taget='_blank'>
+          <Button as='a' href='/note' target='_blank'>
             About {'/'}
           </Button>
         </div>

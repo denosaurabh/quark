@@ -13,9 +13,13 @@ const Header = () => {
       <Heading css={{ fontSize: '14rem' }} onClick={onMenuClick}>
         *
       </Heading>
-      <Heading css={{ textDecoration: 'underline' }}>[ESC] MENU</Heading>
-      <Heading css={{ textDecoration: 'underline', marginLeft: 'auto' }}>
-        Credits
+      <Heading
+        css={{ textDecoration: 'underline', marginLeft: 'auto' }}
+        as='a'
+        href='/note'
+        target='_blank'
+      >
+        Note for Organizers "
       </Heading>
     </HeaderStyled>
   )

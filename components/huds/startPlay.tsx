@@ -10,7 +10,7 @@ import Input from '../input'
 const StartPlayHUD = () => {
   const { setCurrentHud } = useHUD(({ setCurrentHud }) => ({ setCurrentHud }))
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState('anonymous')
 
   const onStartPlayClick = () => {
     useCharacter.getState().setCanMove(true)

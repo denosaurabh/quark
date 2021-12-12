@@ -17,8 +17,8 @@ const NoteForOrganizers = () => {
         <section>
           <h6>Little about denosaurabh (Saurabh Gupta)</h6>
           <p>
-            Hi, I am denosaurabh, 17 years old Creative developer & Designer
-            from India.
+            Hi, I am Saurabh Gupta, 17 y"old Independent Front End developer &
+            designer from India.
           </p>
         </section>
         <section>
@@ -46,7 +46,7 @@ const NoteForOrganizers = () => {
                 target='_blank'
                 rel='noreferrer'
               >
-                Font Used
+                Font
               </a>
             </li>
             <li>

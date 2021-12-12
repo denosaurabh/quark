@@ -5,7 +5,6 @@ const InputContainer = styled('div', {
   flexDirection: 'column',
 
   width: 'auto',
-  zIndex: 1000000000000,
 })
 
 const InputLabel = styled('label', {
@@ -46,14 +45,16 @@ const Input: React.FC<InputI> = ({
   label,
   css,
   value,
+  name,
   onChangeHandler,
   ...inputProps
 }) => {
   return (
     <InputContainer css={css}>
-      {label ? <InputLabel htmlFor='input'>{label}</InputLabel> : null}
+      {label ? <InputLabel htmlFor={`${name}`}>{label}</InputLabel> : null}
       <StyledInput
-        id='input'
+        id={`${name}`}
+        name={name}
         value={value}
         onChange={onChangeHandler}
         {...inputProps}
