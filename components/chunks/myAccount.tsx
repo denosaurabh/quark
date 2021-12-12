@@ -361,4 +361,4 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   )
 }
 
-// // useGLTF.preload('models/level3.glb')
+// useGLTF.preload('models/level3.glb')

@@ -157,59 +157,100 @@ export default function Character({ position, ...props }) {
   // const { setDpr } = useThree()
   // setDpr(2)
 
-  const { invalidate } = useThree()
+  var lastCalledTime
+  var counter = 0
+  var fpsArray = []
 
-  useFrame(({ scene, camera, mouse, get, clock, performance, frameloop }) => {
-    const { x, y } = mouse
-    const mouseDegree = Math.atan2(y, x)
-    // mouseDegRef.current = mouseDegree
+  useFrame(
+    ({ scene, camera, mouse, get, clock, performance, frameloop }, delta) => {
+      var fps
+      let avgFPS
 
-    // console.log(clock, (60 * 1000) / clock.elapsedTime)
-
-    const { canMove, moveForward, currentChunk } = useCharacter.getState()
-    const chunkI = chunkIndex(currentChunk)
-    const chunk = chunksData[chunkI[0]][chunkI[1]]
-    const { cameraOffset, mouseDegreeOffset } = chunk
-      ? chunk
-      : {
-          cameraOffset: [50, 50, 50],
-          mouseDegreeOffset: -0.7,
-        }
-
-    if (chracRef.current) {
-      chracRef.current.rotation.set(0, mouseDegree + mouseDegreeOffset, 0) // -1
-
-      // console.log(canMove)
-
-      // console.log(chracRef.current.position)
-
-      if (moveForward && canMove) {
-        // if (collidesData.length > 0) return
-
-        // setMouseDegree(mouseDegree)
-        chracRef.current.translateZ(-0.1) //-0.15 --- -0.13
-
-        const [x, y, z] = cameraOffset
-
-        const charNewPos = {
-          x: x + chracRef.current.position.x,
-          y: y + chracRef.current.position.y,
-          z: z + chracRef.current.position.z,
-        }
-
-        // camera.position.set(charNewPos.x, charNewPos.y, charNewPos.z)
-        // THREE.MathUtils.lerp(charNewPos, 100, 0.1)
-        camera.position.lerp(charNewPos, 0.06)
+      if (!lastCalledTime) {
+        lastCalledTime = new Date().getTime()
+        fps = 0
       }
 
-      // console.log(chracRef.current.position.y)
+      var delta = (new Date().getTime() - lastCalledTime) / 1000
+      lastCalledTime = new Date().getTime()
+      fps = Math.ceil(1 / delta)
+
+      if (counter >= 60) {
+        var sum = fpsArray.reduce(function (a, b) {
+          return a + b
+        })
+        var average = Math.ceil(sum / fpsArray.length)
+        // console.log(average)
+        avgFPS = average
+        counter = 0
+      } else {
+        if (fps !== Infinity) {
+          fpsArray.push(fps)
+        }
+
+        counter++
+      }
+
+      // console.log(fps)
+
+      const { x, y } = mouse
+      const mouseDegree = Math.atan2(y, x)
+      // mouseDegRef.current = mouseDegree
+
+      // console.log(clock, (60 * 1000) / clock.elapsedTime)
+
+      // console.log(frameloop.frame)
+      // console.log(frameloop.delta)
+
+      // console.log(delta)
+
+      const { canMove, moveForward, currentChunk } = useCharacter.getState()
+      const chunkI = chunkIndex(currentChunk)
+      const chunk = chunksData[chunkI[0]][chunkI[1]]
+      const { cameraOffset, mouseDegreeOffset } = chunk
+        ? chunk
+        : {
+            cameraOffset: [50, 50, 50],
+            mouseDegreeOffset: -0.7,
+          }
+
+      if (chracRef.current) {
+        chracRef.current.rotation.set(0, mouseDegree + mouseDegreeOffset, 0) // -1
+
+        // console.log(canMove)
+
+        // console.log(chracRef.current.position)
+
+        if (moveForward && canMove) {
+          // if (collidesData.length > 0) return
+
+          const counterFPS = 120 / fps
+
+          // setMouseDegree(mouseDegree)
+          chracRef.current.translateZ(-0.15 * counterFPS) //-0.15 --- -0.13
+
+          const [x, y, z] = cameraOffset
+
+          const charNewPos = {
+            x: x + chracRef.current.position.x,
+            y: y + chracRef.current.position.y,
+            z: z + chracRef.current.position.z,
+          }
+
+          // camera.position.set(charNewPos.x, charNewPos.y, charNewPos.z)
+          // THREE.MathUtils.lerp(charNewPos, 100, 0.1)
+          camera.position.lerp(charNewPos, 0.06)
+        }
+
+        // console.log(chracRef.current.position.y)
+      }
     }
-  })
+  )
 
   const onMouseDown = (e) => {
     e.preventDefault()
 
-    console.log('mouse down')
+    // console.log('mouse down')
 
     if (!useCharacter.getState().moveForward) {
       detectLeftButtonBtn(e) && useCharacter.getState().setMoveForward(true)
@@ -439,7 +480,7 @@ export default function Character({ position, ...props }) {
   )
 }
 
-// // useGLTF.preload('/character.glb')
+// useGLTF.preload('/character.glb')
 
 const PlayerHeading = styled('h6', {
   fontSize: '16rem',

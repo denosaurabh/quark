@@ -7,6 +7,7 @@ import {
   useThree,
 } from '@react-three/fiber'
 import useCharacter from '@/store/character'
+import useLoad from '@/store/load'
 
 const CollisionSystem = () => {
   const aheadRaycastRef = useRef<RaycasterProps>()
@@ -125,6 +126,13 @@ const CollisionSystem = () => {
           if (currentChunk !== closestBase?.object?.name) {
             console.log('another chunk')
             useCharacter.getState().setCurrentChunk(closestBase?.object?.name)
+
+            if (closestBase?.object?.name !== 'castle') {
+              const currentChunkLoc = useLoad
+                .getState()
+                .chunkIndex(closestBase?.object?.name)
+              useLoad.getState().loadNeighbourChunks(currentChunkLoc)
+            }
           }
 
           // console.log('close')

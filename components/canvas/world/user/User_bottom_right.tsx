@@ -9,6 +9,7 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import PortalBox from '@/components/portalBox'
 import { useThree } from '@react-three/fiber'
 import BillBoard from '@/components/billboard'
+import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -32,6 +33,9 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const onPortalClick = () => {
     scene.getObjectByName('character').position.set(-153, 40, 416)
   }
+
+  const load = useLoad(({ chunkData }) => chunkData('user-portal').load)
+  if (!load) return null
 
   return (
     <group
@@ -58,9 +62,13 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         position={[35, -50, 0]}
         onClickHandler={onPortalClick}
       />
+      <BillBoard position={[70, -150, -200]}>
+        Enjoy the NFTs you bought on the market
+      </BillBoard>
+
       <BillBoard position={[35, -50, 0]}>Teleport to Bridge</BillBoard>
     </group>
   )
 }
 
-// useGLTF.preload('models/world/user/user_bottom_portal.glb')
+useGLTF.preload('models/world/user/user_bottom_portal.glb')

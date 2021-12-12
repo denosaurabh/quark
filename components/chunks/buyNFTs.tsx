@@ -165,6 +165,6 @@ const NFTsChunk = ({ ...props }: JSX.IntrinsicElements['group']) => {
   )
 }
 
-// // useGLTF.preload('/level1-com.glb')
+// useGLTF.preload('/level1-com.glb')
 
 export default NFTsChunk

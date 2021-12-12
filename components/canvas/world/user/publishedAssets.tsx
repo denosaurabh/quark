@@ -132,4 +132,4 @@ export default function PublishedAssets(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// // useGLTF.preload('models/world/user/user_bottom_right.glb')
+// useGLTF.preload('models/world/user/user_bottom_right.glb')

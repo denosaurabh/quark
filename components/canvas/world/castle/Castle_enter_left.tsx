@@ -6,6 +6,8 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import useLoad from '@/store/load'
+import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,6 +25,10 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     'models/world/castle/castle_entry_left.glb'
   ) as GLTFResult
+
+  const load = useLoad(({ chunkData }) => chunkData('castle-enter-left').load)
+  if (!load) return null
+
   return (
     <group ref={group} {...props} dispose={null} name='castle-enter-left'>
       <group position={[-254, 0, 89]}>
@@ -36,9 +42,13 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
           material={materials['more_nfts_voxel-6 #242']}
           name='castle-enter-left'
         />
+
+        <BillBoard position={[-40, -40, -40]}>
+          Buy NFTs in A Frozen Castle
+        </BillBoard>
       </group>
     </group>
   )
 }
 
-// useGLTF.preload('models/world/castle/castle_entry_left.glb')
+useGLTF.preload('models/world/castle/castle_entry_left.glb')

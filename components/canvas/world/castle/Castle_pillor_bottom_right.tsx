@@ -6,6 +6,8 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import useLoad from '@/store/load'
+import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,6 +29,12 @@ export default function CastlePillorBottomRight(
   const { nodes, materials } = useGLTF(
     'models/world/castle/castle_nfts_pillor.glb'
   ) as GLTFResult
+
+  const load = useLoad(
+    ({ chunkData }) => chunkData('castle-pillor-bottom-right').load
+  )
+  if (!load) return null
+
   return (
     <group
       ref={group}
@@ -55,4 +63,4 @@ export default function CastlePillorBottomRight(
   )
 }
 
-// useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')
+useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')

@@ -65,4 +65,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// // useGLTF.preload('models/castle-compressed.glb')
+// useGLTF.preload('models/castle-compressed.glb')

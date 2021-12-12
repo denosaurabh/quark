@@ -16,6 +16,7 @@ import { nftAddress, nftMarketAddress } from '@/nftConfig'
 import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import BillBoard from '@/components/billboard'
+import useLoad from '@/store/load'
 
 const client = IPFSHTTPClient({
   apiPath: '/api/v0',
@@ -155,6 +156,9 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
     }
   }
 
+  const load = useLoad(({ chunkData }) => chunkData('user-drop-model').load)
+  if (!load) return null
+
   return (
     <group
       ref={group}
@@ -196,14 +200,17 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
       <mesh
         geometry={nodes.user_upload_1.geometry}
         material={materials['user_upload #255']}
+        name='user-drop-model'
       />
       <mesh
         geometry={nodes.user_upload_2.geometry}
         material={materials['user_upload #249']}
+        name='user-drop-model'
       />
       <mesh
         geometry={nodes.user_upload_3.geometry}
         material={materials['user_upload #242']}
+        name='user-drop-model'
       />
 
       <BillBoard position={[43, 28, -12]}>
@@ -213,4 +220,4 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// useGLTF.preload('models/world/user/user_water_upload.glb')
+useGLTF.preload('models/world/user/user_water_upload.glb')

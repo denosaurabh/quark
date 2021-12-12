@@ -76,4 +76,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// // useGLTF.preload('models/world.glb')
+// useGLTF.preload('models/world.glb')

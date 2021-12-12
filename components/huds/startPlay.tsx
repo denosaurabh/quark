@@ -145,6 +145,10 @@ const StartPlayHUDStyled = styled('div', {
 
   background:
     'radial-gradient(82.3% 82.3% at 47.42% 54.07%, rgba(202, 161, 255, 0.27) 12.63%, rgba(255, 255, 255, 0) 76.93%)',
+
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 })
 
 const StartPlayContainer = styled('div', {

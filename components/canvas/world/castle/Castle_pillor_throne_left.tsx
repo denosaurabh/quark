@@ -6,6 +6,7 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -25,6 +26,10 @@ export default function CastlePillorThroneLeft(
   const { nodes, materials } = useGLTF(
     'models/world/castle/throne-left.glb'
   ) as GLTFResult
+
+  const load = useLoad(({ chunkData }) => chunkData('throne-left').load)
+  if (!load) return null
+
   return (
     <group ref={group} {...props} dispose={null} name='throne-left'>
       <group position={[-722, 0, 91.8]}>
@@ -43,4 +48,4 @@ export default function CastlePillorThroneLeft(
   )
 }
 
-// useGLTF.preload('models/world/castle/throne-left.glb')
+useGLTF.preload('models/world/castle/throne-left.glb')

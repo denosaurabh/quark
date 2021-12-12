@@ -48,4 +48,4 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// // useGLTF.preload('/castle_floor.glb')
+// useGLTF.preload('/castle_floor.glb')

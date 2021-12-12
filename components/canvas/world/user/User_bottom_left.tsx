@@ -18,6 +18,8 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 
 import NFTComp from '@/components/nft'
+import useLoad from '@/store/load'
+import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,6 +37,9 @@ export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     'models/world/user/user_bottom_enter.glb'
   ) as GLTFResult
+
+  const load = useLoad(({ chunkData }) => chunkData('user-enter').load)
+  if (!load) return null
 
   return (
     <group
@@ -56,6 +61,12 @@ export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
           material={materials['user_voxel-bottom-1 #242']}
           name='user-enter'
         />
+
+        <BillBoard position={[-40, -60, 40]}>Welcome to your Garden</BillBoard>
+
+        <BillBoard position={[10, -70, -40]}>
+          See the NFTs that you have published on the market
+        </BillBoard>
       </group>
     </group>
   )
