@@ -19,7 +19,7 @@ const Header = () => {
         href='/note'
         target='_blank'
       >
-        Note for Organizers "
+        Note for Organizers {'"'}
       </Heading>
     </HeaderStyled>
   )

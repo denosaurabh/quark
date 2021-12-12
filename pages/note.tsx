@@ -17,8 +17,8 @@ const NoteForOrganizers = () => {
         <section>
           <h6>Little about denosaurabh (Saurabh Gupta)</h6>
           <p>
-            Hi, I am Saurabh Gupta, 17 y"old Independent Front End developer &
-            designer from India.
+            Hi, I am Saurabh Gupta, 17 y{'"'}old Independent Front End developer
+            & designer from India.
           </p>
         </section>
         <section>
