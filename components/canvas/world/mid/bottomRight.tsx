@@ -11,21 +11,17 @@ import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['palace_voxel_final-2']: THREE.Mesh
-    ['palace_voxel_final-2_1']: THREE.Mesh
-    ['palace_voxel_final-2_2']: THREE.Mesh
+    palace_thanks: THREE.Mesh
   }
   materials: {
     ['palace_voxel_final-2 #249']: THREE.MeshBasicMaterial
-    ['palace_voxel_final-2 #242']: THREE.MeshBasicMaterial
-    ['palace_voxel_final-2 #250']: THREE.MeshBasicMaterial
   }
 }
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/mid/palace-thanks.glb'
+    'models/world/mid/palace_thanks_com.glb'
   ) as GLTFResult
 
   // const loadRef = useRef(
@@ -52,7 +48,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       rotation={[0, Math.PI / 2, 0]}
       name='palace-bottom-right'
     >
-      <mesh
+      {/* <mesh
         geometry={nodes['palace_voxel_final-2'].geometry}
         material={materials['palace_voxel_final-2 #249']}
         name='palace-bottom-right'
@@ -66,6 +62,12 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         geometry={nodes['palace_voxel_final-2_2'].geometry}
         material={materials['palace_voxel_final-2 #250']}
         name='palace-bottom-right'
+      /> */}
+
+      <mesh
+        geometry={nodes.palace_thanks.geometry}
+        material={materials['palace_voxel_final-2 #249']}
+        name='palace-bottom-right'
       />
 
       <BillBoard position={[-95, -10, -60]}>NFT of the Day </BillBoard>
@@ -78,4 +80,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/mid/palace-thanks.glb')
+// useGLTF.preload('models/world/mid/palace-thanks.glb')

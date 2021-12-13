@@ -11,19 +11,17 @@ import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['more_nfts_voxel-6']: THREE.Mesh
-    ['more_nfts_voxel-6_1']: THREE.Mesh
+    more_nfts_ice: THREE.Mesh
   }
   materials: {
     ['more_nfts_voxel-6 #249']: THREE.MeshBasicMaterial
-    ['more_nfts_voxel-6 #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/castle/castle_entry_left.glb'
+    'models/world/castle/castle-entry-left-com.glb'
   ) as GLTFResult
 
   const load = useLoad(({ chunkData }) => chunkData('castle-enter-left').load)
@@ -33,6 +31,13 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
     <group ref={group} {...props} dispose={null} name='castle-enter-left'>
       <group position={[-254, 0, 89]}>
         <mesh
+          name='castle-enter-left'
+          geometry={nodes.more_nfts_ice.geometry}
+          material={materials['more_nfts_voxel-6 #249']}
+          // position={[0, 100, 156]}
+        />
+
+        {/* <mesh
           geometry={nodes['more_nfts_voxel-6'].geometry}
           material={materials['more_nfts_voxel-6 #249']}
           name='castle-enter-left'
@@ -41,7 +46,7 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
           geometry={nodes['more_nfts_voxel-6_1'].geometry}
           material={materials['more_nfts_voxel-6 #242']}
           name='castle-enter-left'
-        />
+        /> */}
 
         <BillBoard position={[-40, -40, -40]}>
           Buy NFTs in A Frozen Castle
@@ -51,4 +56,4 @@ export default function CastleEnterLeft(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/castle/castle_entry_left.glb')
+// useGLTF.preload('models/world/castle/castle_entry_left.glb')

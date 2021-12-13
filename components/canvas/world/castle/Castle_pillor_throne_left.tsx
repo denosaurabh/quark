@@ -10,12 +10,10 @@ import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['more_nfts_voxel-1']: THREE.Mesh
-    ['more_nfts_voxel-1_1']: THREE.Mesh
+    ['throne-left']: THREE.Mesh
   }
   materials: {
     ['more_nfts_voxel-1 #249']: THREE.MeshBasicMaterial
-    ['more_nfts_voxel-1 #242']: THREE.MeshBasicMaterial
   }
 }
 
@@ -33,7 +31,19 @@ export default function CastlePillorThroneLeft(
   return (
     <group ref={group} {...props} dispose={null} name='throne-left'>
       <group position={[-722, 0, 91.8]}>
+        {/* <mesh
+          name='throne-left'
+          geometry={nodes['throne-left'].geometry}
+          material={materials['more_nfts_voxel-1 #249']}
+        /> */}
+
         <mesh
+          name='throne-left'
+          geometry={nodes['more_nfts_voxel-1'].geometry}
+          material={materials['more_nfts_voxel-1 #249']}
+        />
+
+        {/* <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}
           name='throne-left'
@@ -42,10 +52,10 @@ export default function CastlePillorThroneLeft(
           geometry={nodes['more_nfts_voxel-1_1'].geometry}
           material={materials['more_nfts_voxel-1 #242']}
           name='throne-left'
-        />
+        /> */}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/throne-left.glb')
+// useGLTF.preload('models/world/castle/throne-left.glb')

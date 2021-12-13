@@ -36,6 +36,11 @@ export default function CastlePillorThroneRight(
         {' '}
         {/* -67.05 */}
         <mesh
+          name='throne-left'
+          geometry={nodes['throne-left'].geometry}
+          material={materials['more_nfts_voxel-1 #249']}
+        />
+        {/* <mesh
           geometry={nodes['more_nfts_voxel-1'].geometry}
           material={materials['more_nfts_voxel-1 #249']}
           name='throne-right'
@@ -44,10 +49,10 @@ export default function CastlePillorThroneRight(
           geometry={nodes['more_nfts_voxel-1_1'].geometry}
           material={materials['more_nfts_voxel-1 #242']}
           name='throne-right'
-        />
+        /> */}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/throne-right.glb')
+// useGLTF.preload('models/world/castle/throne-right.glb')

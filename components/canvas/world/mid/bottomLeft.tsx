@@ -24,7 +24,7 @@ type GLTFResult = GLTF & {
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/mid/palace_table.glb'
+    'models/world/mid/palace_table_com.glb'
   ) as GLTFResult
 
   // const loadRef = useRef(
@@ -48,18 +48,8 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     <group ref={group} {...props} dispose={null} name='palace-bottom-left'>
       <group position={[58, 0, 89]} rotation={[0, Math.PI / 2, 0]}>
         <mesh
-          geometry={nodes['palace_voxel_final-3'].geometry}
-          material={materials['palace_voxel_final-3 #249']}
-          name='palace-bottom-left'
-        />
-        <mesh
-          geometry={nodes['palace_voxel_final-3_1'].geometry}
-          material={materials['palace_voxel_final-3 #250']}
-          name='palace-bottom-left'
-        />
-        <mesh
-          geometry={nodes['palace_voxel_final-3_2'].geometry}
-          material={materials['palace_voxel_final-3 #242']}
+          geometry={nodes.palace_table.geometry}
+          material={materials['palace_voxel_final-3 #249.001']}
           name='palace-bottom-left'
         />
       </group>
@@ -67,4 +57,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/mid/palace_table.glb')
+// useGLTF.preload('models/world/mid/palace_table.glb')

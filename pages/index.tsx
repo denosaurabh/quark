@@ -1,6 +1,8 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import BillBoard from '@/components/billboard'
+import { Html, useProgress } from '@react-three/drei'
+import CollisionSystem from '@/components/canvas/collisionSystem'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -30,12 +32,22 @@ function Box() {
   )
 }
 
+function Loader() {
+  const { active, progress, errors, item, loaded, total } = useProgress()
+  return <Html center>{progress} % loaded</Html>
+}
+
 const R3F = () => {
   return (
     <>
-      <Suspense fallback={<BillBoard>loading.....</BillBoard>} r3f>
+      <Suspense
+        // fallback={<BillBoard>loading.....</BillBoard>}
+        fallback={<Loader />}
+        r3f
+      >
         <Character position={[0, 100, -20]} r3f />
         <Castle r3f />
+        <CollisionSystem r3f />
         {/* <World r3f /> */}
       </Suspense>
     </>

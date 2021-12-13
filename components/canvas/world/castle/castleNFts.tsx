@@ -139,7 +139,7 @@ const CastleNFTs = () => {
   ]
 
   return (
-    <group>
+    <group dispose={null}>
       {!isLoading && nfts
         ? nfts.map((el, i) => {
             return (

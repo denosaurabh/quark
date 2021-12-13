@@ -115,7 +115,7 @@ const NFTOftheDay = () => {
   }, [isSubmitted])
 
   return (
-    <group>
+    <group dispose={null}>
       {!isLoading && nft ? (
         <NFTComp
           {...nft}

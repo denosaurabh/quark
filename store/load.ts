@@ -92,8 +92,8 @@ export const chunksData = [
   [
     {
       name: 'user-bridge-end',
-      cameraOffset: [150, 150, 150],
-      mouseDegreeOffset: -0.7,
+      cameraOffset: [150, 150, -150],
+      mouseDegreeOffset: 7,
       load: false,
     },
     {

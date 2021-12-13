@@ -22,7 +22,7 @@ type GLTFResult = GLTF & {
 export default function CastleBase(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/castle_floor.glb'
+    'models/world/castle_floor_com.glb'
   ) as GLTFResult
   return (
     <group
@@ -32,7 +32,7 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
       position={[214, -5, 89]}
       name='castle-bottom'
     >
-      <mesh
+      {/* <mesh
         geometry={nodes.castle_floor_voxel_white_export_1.geometry}
         material={materials['castle_floor_voxel_white_export #249']}
         name='castle-bottom'
@@ -41,6 +41,11 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
         geometry={nodes.castle_floor_voxel_white_export_2.geometry}
         material={materials['castle_floor_voxel_white_export #242']}
         name='castle-bottom'
+      /> */}
+      <mesh
+        geometry={nodes.castle_floor_voxel_white_export.geometry}
+        material={materials['castle_floor_voxel_white_export #249']}
+        name='castle-bottom'
       />
 
       <BillBoard position={[40, -50, -40]}>Welcome to the world</BillBoard>
@@ -48,4 +53,4 @@ export default function CastleBase(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-// useGLTF.preload('/castle_floor.glb')
+// // useGLTF.preload('/castle_floor.glb')

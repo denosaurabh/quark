@@ -23,19 +23,17 @@ import BillBoard from '@/components/billboard'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['user_voxel-bottom-1']: THREE.Mesh
-    ['user_voxel-bottom-1_1']: THREE.Mesh
+    user_bottom_entry: THREE.Mesh
   }
   materials: {
     ['user_voxel-bottom-1 #249']: THREE.MeshBasicMaterial
-    ['user_voxel-bottom-1 #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/user/user_bottom_enter.glb'
+    'models/world/user/user_bottom_enter_com.glb'
   ) as GLTFResult
 
   const load = useLoad(({ chunkData }) => chunkData('user-enter').load)
@@ -52,6 +50,12 @@ export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
     >
       <group>
         <mesh
+          geometry={nodes.user_bottom_entry.geometry}
+          material={materials['user_voxel-bottom-1 #249']}
+          name='user-enter'
+        />
+
+        {/* <mesh
           geometry={nodes['user_voxel-bottom-1'].geometry}
           material={materials['user_voxel-bottom-1 #249']}
           name='user-enter'
@@ -60,7 +64,7 @@ export default function UserBottomLeft(props: JSX.IntrinsicElements['group']) {
           geometry={nodes['user_voxel-bottom-1_1'].geometry}
           material={materials['user_voxel-bottom-1 #242']}
           name='user-enter'
-        />
+        /> */}
 
         <BillBoard position={[-40, -60, 40]}>Welcome to your Garden</BillBoard>
 

@@ -27,21 +27,17 @@ const client = IPFSHTTPClient({
 
 type GLTFResult = GLTF & {
   nodes: {
-    user_upload_1: THREE.Mesh
-    user_upload_2: THREE.Mesh
-    user_upload_3: THREE.Mesh
+    user_upload: THREE.Mesh
   }
   materials: {
     ['user_upload #255']: THREE.MeshBasicMaterial
-    ['user_upload #249']: THREE.MeshBasicMaterial
-    ['user_upload #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function UserUpload(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/user/user_water_upload.glb'
+    'models/world/user/user_upload_com.glb'
   ) as GLTFResult
 
   const [fileUrl, setFileUrl] = useState<string>('')
@@ -203,11 +199,11 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
       </Html>
 
       <mesh
-        geometry={nodes.user_upload_1.geometry}
+        geometry={nodes.user_upload.geometry}
         material={materials['user_upload #255']}
         name='user-drop-model'
       />
-      <mesh
+      {/* <mesh
         geometry={nodes.user_upload_2.geometry}
         material={materials['user_upload #249']}
         name='user-drop-model'
@@ -216,7 +212,7 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
         geometry={nodes.user_upload_3.geometry}
         material={materials['user_upload #242']}
         name='user-drop-model'
-      />
+      /> */}
 
       <BillBoard position={[43, 28, -12]}>
         Publish your NFT to Market, drop your NFT onto this pool. 3d Model (GLB)
@@ -226,4 +222,4 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/user/user_water_upload.glb')
+// useGLTF.preload('models/world/user/user_water_upload.glb')

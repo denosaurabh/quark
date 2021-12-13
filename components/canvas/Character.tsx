@@ -115,7 +115,7 @@ export default function Character({ position, ...props }) {
   // const mouseDegRef = useRef<number>(0)
 
   const { nodes, materials, animations } = useGLTF(
-    'models/character-3-with-ani.glb'
+    'models/player.glb'
   ) as GLTFResult
   // const { actions, mixer, clips, names } = useAnimations<GLTFActions>(
   //   animations,
@@ -228,7 +228,7 @@ export default function Character({ position, ...props }) {
           const counterFPS = 120 / fps
 
           // setMouseDegree(mouseDegree)
-          chracRef.current.translateZ(-0.15 * counterFPS) //-0.15 --- -0.13
+          chracRef.current.translateZ(-0.15 * counterFPS) // -0.15, -0.15 --- -0.13
 
           const [x, y, z] = cameraOffset
 
@@ -349,6 +349,13 @@ export default function Character({ position, ...props }) {
         <PlayerName />
         <group position={[0, 16.37, 0]}>
           <mesh
+            geometry={nodes.Cube.geometry}
+            material={nodes.Cube.material}
+            // position={[-13.66, 15.26, -0.08]}
+            position={[5, 0, 0]}
+            scale={[1.54, 5.57, 1.93]}
+          />
+          {/* <mesh
             geometry={nodes['character_3_export-0'].geometry}
             material={materials['character_3_export-0 #220']}
           />
@@ -438,10 +445,10 @@ export default function Character({ position, ...props }) {
               material={materials['character_3_export-2 #219']}
             />
           </group>
+       */}
         </group>
       </group>
 
-      <CollisionSystem />
       {/* <group
         name='character'
         ref={chracRef}
@@ -468,4 +475,4 @@ export default function Character({ position, ...props }) {
   )
 }
 
-// useGLTF.preload('/character.glb')
+// // useGLTF.preload('/character.glb')

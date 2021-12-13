@@ -32,8 +32,6 @@ import BillBoard from '../billboard'
 import NFTOftheDay from './world/mid/nftOfTheDay'
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>()
-
   useEffect(() => {
     console.log('world rerender!')
   }, [])
@@ -42,38 +40,31 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     <Suspense
       fallback={<BillBoard position={[0, 0, 0]}>loading world....</BillBoard>}
     >
-      <group ref={group} {...props} dispose={null}>
-        <group name='world'>
-          <CastleBase />
+      <group name='world' dispose={null} {...props}>
+        <CastleBase />
 
-          <MidTopLeft />
-          <MidTopRight />
-          <MidBottomLeft />
-          <MidBottomRight />
+        <MidTopLeft />
+        <MidTopRight />
+        <MidBottomLeft />
+        <MidBottomRight />
 
-          <UserBottomLeft />
-          <UserBottomRight />
-          <UserTopLeft />
-          <UserTopRight />
-          <UserUpload />
+        <UserBottomLeft />
+        <UserBottomRight />
+        <UserTopLeft />
+        <UserTopRight />
+        <UserUpload />
 
-          <CastleEnterLeft />
-          <CastleEnterRight />
-          <CastlePillorBottomLeft />
-          <CastlePillorBottomRight />
-          <CastlePillorThroneLeft />
-          <CastlePillorThroneRight />
-          <CastlePillorTopLeft />
-          <CastlePillorTopRight />
-        </group>
-
-        <BoughtNFTs />
-        <CastleNFTs />
-        <PublishedAssets />
-        <NFTOftheDay />
+        <CastleEnterLeft />
+        <CastleEnterRight />
+        <CastlePillorBottomLeft />
+        <CastlePillorBottomRight />
+        <CastlePillorThroneLeft />
+        <CastlePillorThroneRight />
+        <CastlePillorTopLeft />
+        <CastlePillorTopRight />
       </group>
     </Suspense>
   )
 }
 
-// useGLTF.preload('models/world.glb')
+// // useGLTF.preload('models/world.glb')

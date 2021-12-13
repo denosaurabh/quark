@@ -9,7 +9,7 @@ import {
 import useCharacter from '@/store/character'
 import useLoad from '@/store/load'
 
-const CollisionSystem = () => {
+const CollisionSystem = ({ ...props }) => {
   const aheadRaycastRef = useRef<RaycasterProps>()
   const downRaycastRef = useRef<RaycasterProps>()
 
@@ -188,8 +188,12 @@ const CollisionSystem = () => {
     // }
   })
 
+  useEffect(() => {
+    console.log('collidion system refresh')
+  }, [])
+
   return (
-    <group>
+    <group dispose={null} {...props}>
       {/* <arrowHelper
         ref={arrowHelperRef}
         args={[

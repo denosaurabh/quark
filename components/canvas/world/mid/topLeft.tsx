@@ -10,21 +10,17 @@ import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['palace_voxel_final-0']: THREE.Mesh
-    ['palace_voxel_final-0_1']: THREE.Mesh
-    ['palace_voxel_final-0_2']: THREE.Mesh
+    palace_rock: THREE.Mesh
   }
   materials: {
     ['palace_voxel_final-0 #249']: THREE.MeshBasicMaterial
-    ['palace_voxel_final-0 #250']: THREE.MeshBasicMaterial
-    ['palace_voxel_final-0 #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    '/models/world/mid/palace-rock.glb'
+    '/models/world/mid/palace_rock_com.glb'
   ) as GLTFResult
 
   // const loadRef = useRef(
@@ -49,6 +45,13 @@ export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
     <group ref={group} {...props} dispose={null} name='palace-top-left'>
       <group position={[-98, 0, 89]} rotation={[0, Math.PI / 2, 0]}>
         <mesh
+          geometry={nodes.palace_rock.geometry}
+          material={materials['palace_voxel_final-0 #249']}
+          name='palace-top-left'
+          // position={[-155.45, 0, -155.65]}
+        />
+
+        {/* <mesh
           geometry={nodes['palace_voxel_final-0'].geometry}
           material={materials['palace_voxel_final-0 #249']}
           name='palace-top-left'
@@ -62,10 +65,10 @@ export default function MidTopLeft(props: JSX.IntrinsicElements['group']) {
           geometry={nodes['palace_voxel_final-0_2'].geometry}
           material={materials['palace_voxel_final-0 #242']}
           name='palace-top-left'
-        />
+        /> */}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/mid/palace-rock.glb')
+// useGLTF.preload('models/world/mid/palace-rock.glb')

@@ -26,7 +26,7 @@ export default function CastlePillorTopLeft(
 ) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/castle/castle_nfts_pillor.glb'
+    'models/world/castle/show_more_nfts_com.glb'
   ) as GLTFResult
 
   const load = useLoad(
@@ -38,6 +38,12 @@ export default function CastlePillorTopLeft(
     <group ref={group} {...props} dispose={null} name='castle-pillor-top-left'>
       <group position={[-566, 0, 89]}>
         <mesh
+          name='castle-pillor-top-left'
+          geometry={nodes['more_nfts_voxel_final-7'].geometry}
+          material={materials['more_nfts_voxel_final-7 #249']}
+        />
+
+        {/* <mesh
           geometry={nodes['more_nfts_voxel_final-7_1'].geometry}
           material={materials['more_nfts_voxel_final-7 #249']}
           name='castle-pillor-top-left'
@@ -51,10 +57,10 @@ export default function CastlePillorTopLeft(
           geometry={nodes['more_nfts_voxel_final-7_3'].geometry}
           material={materials['more_nfts_voxel_final-7 #242']}
           name='castle-pillor-top-left'
-        />
+        /> */}
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')
+// useGLTF.preload('models/world/castle/castle_nfts_pillor.glb')

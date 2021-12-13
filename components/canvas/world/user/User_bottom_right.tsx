@@ -13,19 +13,17 @@ import useLoad from '@/store/load'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['user_voxel-bottom-0']: THREE.Mesh
-    ['user_voxel-bottom-0_1']: THREE.Mesh
+    user_bottom_portal: THREE.Mesh
   }
   materials: {
     ['user_voxel-bottom-0 #249']: THREE.MeshBasicMaterial
-    ['user_voxel-bottom-0 #242']: THREE.MeshBasicMaterial
   }
 }
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
-    'models/world/user/user_bottom_portal.glb'
+    'models/world/user/user_bottom_portal_com.glb'
   ) as GLTFResult
 
   const { scene } = useThree()
@@ -47,6 +45,12 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       name='user-portal'
     >
       <mesh
+        name='user-portal'
+        geometry={nodes.user_bottom_portal.geometry}
+        material={materials['user_voxel-bottom-0 #249']}
+      />
+
+      {/* <mesh
         geometry={nodes['user_voxel-bottom-0'].geometry}
         material={materials['user_voxel-bottom-0 #249']}
         name='user-portal'
@@ -55,7 +59,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         geometry={nodes['user_voxel-bottom-0_1'].geometry}
         material={materials['user_voxel-bottom-0 #242']}
         name='user-portal'
-      />
+      /> */}
 
       <PortalBox
         scale={[20, 40, 20]}
@@ -71,4 +75,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/world/user/user_bottom_portal.glb')
+// useGLTF.preload('models/world/user/user_bottom_portal.glb')
