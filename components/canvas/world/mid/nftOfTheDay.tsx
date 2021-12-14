@@ -49,7 +49,7 @@ const NFTOftheDay = () => {
       owner: data[0].owner,
     }
 
-    console.log(nftObj)
+    // console.log(nftObj)
 
     setNFT(nftObj)
     setIsLoading(false)
@@ -91,12 +91,9 @@ const NFTOftheDay = () => {
     // buyNFT(nft)
 
     const { setCurrentHud } = useHUD.getState()
-
     setCurrentHud('buyNFT')
-
     useBuyNFT.getState().setNFTInfo(nft)
 
-    // setCurrentHud('default')
   }
 
   useEffect(() => {

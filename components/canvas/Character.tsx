@@ -270,19 +270,11 @@ export default function Character({ position, ...props }) {
   useEffect(() => {
     console.log('character rerender')
 
-    console.log(window)
-
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup', onMouseUp)
 
     window.addEventListener('pointerdown', onMouseDown)
     window.addEventListener('pointerup', onMouseUp)
-
-    // respawnEvent.addEventListener('start', () => {
-    //   if (chracRef.current) {
-    //     chracRef.current.position.set(240, 5, 70)
-    //   }
-    // })
 
     return () => {
       window.removeEventListener('mousedown', onMouseDown)

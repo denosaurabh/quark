@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import BillBoard from '@/components/billboard'
 import Marketplace from '@/components/canvas/marketplace'
 import CollisionSystem from '@/components/canvas/collisionSystem'
+import RealTimeData from '@/components/realtime_character'
+import DBPlayers from '@/components/dbPlayers'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -27,12 +29,13 @@ const R3F = () => {
     <>
       <Suspense
         fallback={<BillBoard position={[0, 0, 0]}>loading....</BillBoard>}
-        r3f
       >
         <Character position={[240, 5, 70]} r3f />
         <WorldNew r3f />
         <Marketplace r3f />
         <CollisionSystem r3f />
+        <RealTimeData r3f />
+        <DBPlayers r3f />
       </Suspense>
     </>
   )

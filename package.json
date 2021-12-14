@@ -2,6 +2,7 @@
   "name": "react-three-next",
   "version": "2.0.0",
   "authors": [
+    "denosaurabh <https://denosaurabh.me>",
     "Renaud ROHLINGER <https://twitter.com/onirenaud>"
   ],
   "license": "MIT",
@@ -21,9 +22,12 @@
     "@react-three/postprocessing": "^2.0.5",
     "@stitches/react": "latest",
     "axios": "^0.24.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
     "eventdispatcher.js": "^0.0.2",
+    "firebase": "^9.6.1",
     "glsl-random": "^0.0.5",
     "gun": "^0.2020.1235",
     "hardhat": "^2.6.8",
@@ -75,7 +79,7 @@
     "dev": "next dev",
     "build": "next build",
     "export": "EXPORT=true next build && EXPORT=true next export",
-    "analyze": "ANALYZE=true next build",
+    "analyze": "cross-env ANALYZE=true next build",
     "start": "next start"
   }
 }

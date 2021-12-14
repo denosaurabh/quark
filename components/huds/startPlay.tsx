@@ -20,6 +20,10 @@ const StartPlayHUD = () => {
     setCurrentHud('default')
   }
 
+  const onChooseLobbyClickHandler = () => {
+    
+  }
+
   useEffect(() => {
     useCharacter.getState().setCanMove(false)
   }, [])
@@ -109,14 +113,14 @@ const StartPlayHUD = () => {
           <Input
             label='Choose Your Name'
             type='name'
-            placeHolder='anonymous'
+            placeholder='anonymous'
             value={name}
             onChangeHandler={(e) => setName(e.target.value)}
           />
 
-          {/* <Label>Choose Lobby</Label>
+          <Label>Choose Lobby</Label>
           <LobbyContainer>
-            <LobbyBox>
+            <LobbyBox onClick={() => onChooseLobbyClickHandler()}>
               <h6>Main Lobby</h6>
               <p>32{'<'} </p>
             </LobbyBox>
@@ -128,7 +132,7 @@ const StartPlayHUD = () => {
               <h6>Lobby @3</h6>
               <p>2{'<'} </p>
             </LobbyBox>
-          </LobbyContainer> */}
+          </LobbyContainer>
           <Button
             css={{ width: '100%', padding: '0.5rem 2rem 1.5rem 2rem' }}
             onClickHandler={onStartPlayClick}

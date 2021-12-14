@@ -40,6 +40,8 @@ export const globalStyles = globalCss({
     margin: 0,
     padding: 0,
     boxSizing: 'border-box',
+
+    cursor: 'url("img/cursor.png"), auto',
   },
   'html, body, #__next': {
     width: '100%',
@@ -51,6 +53,8 @@ export const globalStyles = globalCss({
     fontWeight: 400,
 
     overflowX: 'hidden',
+
+    // cursor: 'url("img/cursor.png"), auto',
 
     '@laptop': {
       fontSize: '58%',

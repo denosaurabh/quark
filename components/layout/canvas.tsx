@@ -71,7 +71,7 @@ const LControl = () => {
         }}
         rotateSpeed={0.4}
         zoomSpeed={0.8}
-        minZoom={6}
+        minZoom={2} // 6
         maxZoom={14}
         // minZoom={2}
         // minZoom={1}

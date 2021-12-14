@@ -25,19 +25,7 @@ export default function MidTopRight(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult
 
   const load = useLoad(({ chunkData }) => chunkData('palace-top-right').load)
-  console.log(load, 'unsub')
   if (!load) return null
-
-  // const loadRef = useRef(useLoad.getState().chunkData('palace-top-right').load)
-  // // Connect to the store on mount, disconnect on unmount, catch state-changes in a reference
-  // useEffect(
-  //   () =>
-  //     useLoad.subscribe((state) => {
-  //       console.log(state.chunkData('palace-top-right').load, 'sub')
-  //       loadRef.current = state.chunkData('palace-top-right').load
-  //     }),
-  //   []
-  // )
 
   return (
     <group ref={group} {...props} dispose={null} name='palace-top-right'>

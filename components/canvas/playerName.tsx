@@ -2,7 +2,12 @@ import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
 import { Html } from '@react-three/drei'
 
-const PlayerName = () => {
+interface PlayerNameProps {
+  defaultName?: string
+  fontSize?: number
+}
+
+const PlayerName: React.FC<PlayerNameProps> = ({ defaultName, fontSize }) => {
   const name = useCharacter(({ name }) => name)
   console.log(name)
 
@@ -19,7 +24,9 @@ const PlayerName = () => {
       onOcclude={(visible) => null} // Callback when the visibility changes (default: undefined)
       position={[0, 50, 0]}
     >
-      <PlayerHeading>{name}</PlayerHeading>
+      <PlayerHeading css={{ fontSize: fontSize ? fontSize : '16rem' }}>
+        {defaultName ? defaultName : name}
+      </PlayerHeading>
     </Html>
   )
 }

@@ -49,6 +49,8 @@ const Heading = styled('h1', {
   marginBottom: '2rem',
 
   '&:hover': {
-    cursor: 'pointer',
+    // cursor: 'pointer',
+    cursor: 'url("img/pointer.png"), pointer',
+    // cursor: 'url("/img/cursor.png"), auto',
   },
 })

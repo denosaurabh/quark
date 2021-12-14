@@ -9,11 +9,13 @@ interface CharacterState {
   moveForward: boolean
   mouseDegree: number
   currentChunk: string
+  lobby: string
   setMoveForward: (val: boolean) => void
   setCanMove: (canMove: boolean) => void
   setMouseDegree: (mouseDegree: number) => void
   setCurrentChunk: (chunk: string) => void
   setName: (newName: string) => void
+  setLobby: (newLobby: string) => void
 }
 
 const useCharacter = create<CharacterState>((set) => {
@@ -24,6 +26,7 @@ const useCharacter = create<CharacterState>((set) => {
     moveForward: false,
     mouseDegree: 0,
     currentChunk: 'castle-bottom',
+    lobby: 'main',
     setMoveForward: (val: boolean) => {
       set(
         produce((state) => {
@@ -56,6 +59,13 @@ const useCharacter = create<CharacterState>((set) => {
       set(
         produce((state) => {
           state.name = newName
+        })
+      )
+    },
+    setLobby: (newLobby) => {
+      set(
+        produce((state) => {
+          state.lobby = newLobby
         })
       )
     },
