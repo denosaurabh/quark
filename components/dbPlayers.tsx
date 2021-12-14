@@ -43,13 +43,14 @@ const DBPlayers = () => {
         Object.values(data.users).map((el, i) => {
           const { x, y, z } = el.position
 
-          if (el.name === useCharacter.getState().name) return null
-          console.log(el)
+          if (el.id === useCharacter.getState().id) return null
+          // console.log(el)
 
           return (
             <CharacterBot
               name={el.name}
               position={[x, y, z]}
+              mouseDegree={el.mouseDegree}
               userData={{ id: el.name }}
               key={i}
             />

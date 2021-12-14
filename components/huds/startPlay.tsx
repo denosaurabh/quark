@@ -6,6 +6,7 @@ import useCharacter from '@/store/character'
 import useHUD from '@/store/huds/main'
 import Button from '../button'
 import Input from '../input'
+import ChooseLobby from '../chooseLobby'
 
 const StartPlayHUD = () => {
   const { setCurrentHud } = useHUD(({ setCurrentHud }) => ({ setCurrentHud }))
@@ -18,10 +19,6 @@ const StartPlayHUD = () => {
 
     console.log('setting default hud')
     setCurrentHud('default')
-  }
-
-  const onChooseLobbyClickHandler = () => {
-    
   }
 
   useEffect(() => {
@@ -117,22 +114,7 @@ const StartPlayHUD = () => {
             value={name}
             onChangeHandler={(e) => setName(e.target.value)}
           />
-
-          <Label>Choose Lobby</Label>
-          <LobbyContainer>
-            <LobbyBox onClick={() => onChooseLobbyClickHandler()}>
-              <h6>Main Lobby</h6>
-              <p>32{'<'} </p>
-            </LobbyBox>
-            <LobbyBox>
-              <h6>Lobby @2</h6>
-              <p>5{'<'} </p>
-            </LobbyBox>
-            <LobbyBox>
-              <h6>Lobby @3</h6>
-              <p>2{'<'} </p>
-            </LobbyBox>
-          </LobbyContainer>
+          <ChooseLobby />
           <Button
             css={{ width: '100%', padding: '0.5rem 2rem 1.5rem 2rem' }}
             onClickHandler={onStartPlayClick}
@@ -227,52 +209,5 @@ const RightBox = styled('div', {
   p: {
     fontSize: '3rem',
     color: '#DDDDDD',
-  },
-})
-
-const Label = styled('h6', {
-  fontFamily: '$display',
-  fontSize: '4rem',
-  color: '#DDDDDD',
-
-  '&:hover': {
-    cursor: 'pointer',
-  },
-})
-
-const LobbyContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-
-  '& div:first-child': {
-    borderBottom: 'none',
-  },
-})
-
-const LobbyBox = styled('div', {
-  width: '100%',
-  color: '#DDDDDD',
-
-  display: 'flex',
-  justifyContent: 'space-between',
-
-  padding: '2rem 3rem 3rem 3rem',
-  border: '5px solid #E9E9E9',
-
-  h6: {
-    fontSize: '5rem',
-    color: 'inherit',
-  },
-
-  p: {
-    fontSize: '5rem',
-    color: 'inherit',
-  },
-
-  '&:hover': {
-    cursor: 'pointer',
-
-    backgroundColor: '#E9E9E9',
-    color: '#1A1919',
   },
 })

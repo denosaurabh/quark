@@ -1,6 +1,6 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import useCharacter from '@/store/character'
-import { ref, set } from 'firebase/database'
+import { ref, remove, set, update } from 'firebase/database'
 import { db } from '@/firebase/init'
 import { chunkIndex, chunksData } from '@/utils/chunksLoad'
 import * as THREE from 'three'
@@ -10,8 +10,6 @@ const RealTimeData = () => {
   let target = new THREE.Vector3()
 
   const { scene, mouse } = useThree()
-  const { x, y } = mouse
-  const mouseDegree = Math.atan2(y, x)
 
   // useFrame(({ mouse, scene }) => {
   //   const { x, y } = mouse
@@ -34,8 +32,13 @@ const RealTimeData = () => {
     console.log('pushing data, rerender')
 
     setInterval(() => {
-      const { canMove, moveForward, name, lobby, currentChunk } =
+      if (!window) return
+
+      const { id, canMove, moveForward, name, lobby, currentChunk } =
         useCharacter.getState()
+
+      const { x, y } = mouse
+      const mouseDegree = Math.atan2(y, x)
 
       const chunkI = chunkIndex(currentChunk)
       const chunk = chunksData[chunkI[0]][chunkI[1]]
@@ -51,7 +54,8 @@ const RealTimeData = () => {
 
       // console.log(target)
 
-      set(ref(db, `lobbies/${lobby}/users/${name}`), {
+      update(ref(db, `lobbies/${lobby}/users/${id}`), {
+        id,
         name,
         mouseDegree: mouseDegree + mouseDegreeOffset,
         moveForward,
@@ -59,6 +63,11 @@ const RealTimeData = () => {
         position: target,
       })
     }, 50)
+
+    return () => {
+      const { lobby, id } = useCharacter.getState()
+      remove(ref(db, `lobbies/${lobby}/users/${id}`))
+    }
   }, [])
 
   return <></>

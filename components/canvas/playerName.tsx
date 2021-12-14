@@ -9,7 +9,6 @@ interface PlayerNameProps {
 
 const PlayerName: React.FC<PlayerNameProps> = ({ defaultName, fontSize }) => {
   const name = useCharacter(({ name }) => name)
-  console.log(name)
 
   return (
     <Html

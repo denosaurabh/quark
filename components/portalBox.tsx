@@ -9,7 +9,14 @@ const PortalBox: React.FC<PortalBoxProps> = ({
   ...props
 }) => {
   return (
-    <mesh onClick={onClickHandler} {...props}>
+    <mesh
+      onClick={onClickHandler}
+      {...props}
+      onPointerEnter={(e) => {
+        document.body.style.cursor = 'pointer'
+      }}
+      on
+    >
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial
         color={'hotpink'}

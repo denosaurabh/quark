@@ -45,9 +45,9 @@ export default function CharacterBot({
   //   }
   // }, [canMove, moveForward, mouseDegree])
 
-  useEffect(() => {
-    console.log('bot rerender')
-  }, [])
+  // useEffect(() => {
+  //   chracRef.current.rotation.set(0, mouseDegree, 0) // -1
+  // }, [, mouseDegree])
 
   return (
     <>
@@ -58,6 +58,7 @@ export default function CharacterBot({
         dispose={null}
         scale={0.3}
         position={position}
+        rotation={[0, mouseDegree, 0]}
         {...props}
       >
         <group
