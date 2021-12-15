@@ -41,6 +41,29 @@ const NoteForOrganizers = () => {
           </ul>
         </section>
         <section>
+          <h6>Video Showcase of this project</h6>
+          <p>
+            <u>
+              <a
+                href='https://www.youtube.com/watch?v=RB7b6FgOZmE'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.youtube.com/watch?v=RB7b6FgOZmE
+              </a>
+            </u>
+          </p>
+        </section>
+        <section>
+          <h6>Vision for this project</h6>
+          <p>
+            Think of the current project as a prototype of my imagination or
+            goal of the project. There's yet soo much that I want to add &
+            improve into this project like adding Multiplayer Chat, Clans,
+            Groups, NFT Bidding etc etc....
+          </p>
+        </section>
+        <section>
           <h6>Other details about the Project</h6>
           <ul>
             <li>
