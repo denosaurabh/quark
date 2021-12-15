@@ -1,15 +1,19 @@
-# Basic Sample Hardhat Project
+# Quark
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+## [https://quark-deno.vercel.app](https://quark-deno.vercel.app)
 
-Try running some of the following tasks:
+NFT Marketplace in an Interactive 3D Experience
+<br /><br />
+Made during [Polygon buidlit Hackathon](https://buidlit.polygon.technology/)
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+![Screenshot 2021-12-12 210722](https://user-images.githubusercontent.com/55626361/146234300-a9aca1e8-a783-41b4-9393-7b760320e4d6.jpg)
+
+
+
+
+Credits:
+
+- Solidity contract used from once of [Nader Dabit](https://www.youtube.com/c/naderdabit) YT video [How to Build a Full Stack NFT Marketplace on Ethereum with Polygon and Next.js - [2021 Tutorial]](https://www.youtube.com/watch?v=GKJBEEXUha0)
+
+<br /><br />
+Copyright © 2021 denosaurabh
