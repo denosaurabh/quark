@@ -19,6 +19,9 @@ const QuarkTranContainer = styled(motion.div, {
   height: '100vh',
 
   backgroundColor: '#fff',
+
+  display: 'flex',
+  justifyContent: 'center',
 })
 
 const MidBox = styled(motion.div, {
