@@ -11,6 +11,9 @@ import MenuHUD from '@/components/huds/menu'
 import useHUD from '@/store/huds/main'
 import NFTHUD from '../huds/nft'
 import Transition from '../transition/transitionHud'
+import { useRouter } from 'next/router'
+import useCharacter from '@/store/character'
+import Event from '../event'
 
 const Dom = ({ children }) => {
   const domRef = useRef<HTMLDivElement>(null)
@@ -39,8 +42,15 @@ const Dom = ({ children }) => {
     }
   }
 
+  const router = useRouter()
+
   useEffect(() => {
     useStore.setState({ dom: domRef })
+
+    if (router.pathname === '/play' && currentHud === 'startPlay') {
+      setCurrentHud('default')
+      useCharacter.getState().setCanMove(true)
+    }
 
     if (window) {
       window.addEventListener('keydown', onKeyDown)
@@ -69,6 +79,8 @@ const Dom = ({ children }) => {
       {currentHud === 'buyNFT' && <BuyNFTHUD />}
       {currentHud === 'nft' && <NFTHUD />}
       {currentHud === 'menu' && <MenuHUD />}
+
+      <Event />
     </HUDContainer>
   )
 }
@@ -87,7 +99,7 @@ const HUDContainer = styled('div', {
   userSelect: 'none',
   zIndex: 1000,
 
-  div: {
+  '& .hud-box': {
     padding: '3rem',
   },
 

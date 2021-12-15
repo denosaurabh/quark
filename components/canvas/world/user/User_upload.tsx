@@ -17,6 +17,7 @@ import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import BillBoard from '@/components/billboard'
 import useLoad from '@/store/load'
+import { eventManager } from '@/events/global'
 
 const client = IPFSHTTPClient({
   apiPath: '/api/v0',
@@ -84,6 +85,8 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
         }
       )
       await transaction.wait()
+
+      eventManager.sendMessage(`NFT successfully uploaded to Quark`)
     } catch (err) {
       useHUD.getState().setCurrentHud('default')
     } finally {
@@ -108,11 +111,14 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
       const added = await client.add(data)
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
 
+      eventManager.sendMessage(`NFT uploading... to Quark`)
+
       await createSale(url)
       setFileUrl('')
       setCurrentHud('default')
     } catch (err) {
       console.log(`Error uploading file: ${err}`)
+      eventManager.sendMessage(`Error uploading file: ${err}`)
     }
   }
 
@@ -135,6 +141,7 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
 
     if (files[0].size > 1000000) {
       console.log('too big file...')
+      eventManager.sendMessage('too big file...')
       return
     }
 
@@ -152,8 +159,11 @@ export default function UserUpload(props: JSX.IntrinsicElements['group']) {
 
       setCurrentHud('createNFT')
       setShowHud(true)
+
+      eventManager.sendMessage(`Model uploaded to IPFS`)
     } catch (err) {
       console.log(`Error uploading file: ${err}`)
+      eventManager.sendMessage(`Error uploading file: ${err}`)
     }
   }
 

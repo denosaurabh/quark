@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { motion } from 'framer-motion'
+
 import Header from '@/components/header'
 import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
@@ -22,11 +23,15 @@ const StartPlayHUD = () => {
   }
 
   useEffect(() => {
-    useCharacter.getState().setCanMove(false)
+    // useCharacter.getState().setCanMove(false)
   }, [])
 
   return (
-    <StartPlayHUDStyled>
+    <StartPlayHUDStyled
+      className='hud-box'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <Header />
       <StartPlayContainer
       // onPointerDown={() => {
@@ -57,7 +62,7 @@ const StartPlayHUD = () => {
               <u>denosaurabh</u>
             </a>
             <br />
-            <br />
+            {/* <br />
             <br />
             Things to know to most enjoy the world:
             <br />
@@ -86,7 +91,7 @@ const StartPlayHUD = () => {
             collision detection, so please avoid going into the walls for now{' '}
             {'>'}. If you do accidently get into the walls, press ESCAPE to open
             the menu and click on redeploy. {'/'}
-            <br />
+            <br /> */}
             <br />
             <br />
             Basic Controls:
@@ -129,11 +134,13 @@ const StartPlayHUD = () => {
 
 export default StartPlayHUD
 
-const StartPlayHUDStyled = styled('div', {
+const StartPlayHUDStyled = styled(motion.div, {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   gap: '8rem',
+
+  // padding: '5rem',
 
   height: '100%',
 

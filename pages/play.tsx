@@ -37,7 +37,7 @@ const R3F = () => {
         <CollisionSystem r3f />
         <RealTimeData r3f />
         <DBPlayers r3f />
-        <BackgroundMusic r3f />
+        {/* <BackgroundMusic r3f /> */}
       </Suspense>
     </>
   )

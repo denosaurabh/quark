@@ -1,16 +1,15 @@
 import * as THREE from 'three'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { ethers } from 'ethers'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
-import { useBVH, useGLTF, useHelper } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
 import { nftAddress, nftMarketAddress } from '@/nftConfig'
 
 import NFT from '@/artifacts/contracts/NFT.sol/NFT.json'
 import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
-import { MeshBVHVisualizer } from 'three-mesh-bvh'
 
 type GLTFResult = GLTF & {
   nodes: {

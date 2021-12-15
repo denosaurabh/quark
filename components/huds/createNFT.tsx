@@ -26,7 +26,7 @@ const CreateNFTHUD = () => {
   }
 
   return (
-    <div>
+    <div className='hud-box'>
       <Header />
       <MidBox>
         <InfoBox>

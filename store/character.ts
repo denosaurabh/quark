@@ -22,10 +22,10 @@ const useCharacter = create<CharacterState>((set) => {
   return {
     id: nanoid(),
     name: 'anonymous',
-    canMove: false,
+    canMove: true,
     moveForward: false,
     mouseDegree: 0,
-    currentChunk: 'castle-bottom',
+    currentChunk: 'castle',
     lobby: 'main',
     setMoveForward: (val: boolean) => {
       set(

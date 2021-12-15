@@ -61,7 +61,8 @@ export default function MidTopRight(props: JSX.IntrinsicElements['group']) {
           <br />
           <br />
           Amazing tools like Blender, Poimandres, Vercel, Magicavoxel, ThreeJS,
-          Radix, Ethereum, Solidity, Hardhat have big hands too.. /
+          Radix, Framer Motion, Ethereum, Solidity, Hardhat have big hands too..
+          /
         </BillBoard>
       </group>
     </group>

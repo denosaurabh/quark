@@ -2,7 +2,7 @@ import Header from '@/components/header'
 
 const DefaultHUD = () => {
   return (
-    <div>
+    <div className='hud-box'>
       <Header />
     </div>
   )

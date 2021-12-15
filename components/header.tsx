@@ -1,7 +1,14 @@
+import { useState } from 'react'
 import { styled } from '@/stitches.config'
+import useSound from 'use-sound'
+
 import useHUD from '@/store/huds/main'
+import BGMusic from '../audio/ea-ashkira-place-of-light-432-hz.mp3'
 
 const Header = () => {
+  const [playing, setPlaying] = useState(false)
+  const [play, { stop }] = useSound(BGMusic)
+
   const onMenuClick = () => {
     const { currentHud, setCurrentHud } = useHUD.getState()
     const nextHud = currentHud === 'default' ? 'menu' : 'default'
@@ -12,6 +19,16 @@ const Header = () => {
     <HeaderStyled>
       <Heading css={{ fontSize: '14rem' }} onClick={onMenuClick}>
         *
+      </Heading>
+      <Heading css={{ textDecoration: 'underline', marginLeft: 'auto' }}>
+        <span
+          onClick={() => {
+            !playing ? play() : stop()
+            setPlaying(!playing)
+          }}
+        >
+          {!playing ? 'play' : 'stop'} music{' '}
+        </span>
       </Heading>
       <Heading
         css={{ textDecoration: 'underline', marginLeft: 'auto' }}

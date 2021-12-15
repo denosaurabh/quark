@@ -11,6 +11,7 @@ import Market from '@/artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 import useHUD from '@/store/huds/main'
 import useBuyNFT from '@/store/huds/buyNFT'
 import useCharacter from '@/store/character'
+import { eventManager } from '@/events/global'
 
 // let rpcEndpoint = 'http://localhost:8545'
 
@@ -81,10 +82,13 @@ const CastleNFTs = () => {
       )
 
       await transaction.wait()
+      eventManager.sendMessage(`Soccessfully bought ${nft.name}`)
     } catch (err) {
       console.log(err)
       useHUD.getState().setCurrentHud('default')
       useCharacter.getState().setCanMove(true)
+
+      eventManager.sendMessage(`Error buying NFT`)
     } finally {
       useHUD.getState().setCurrentHud('default')
       useCharacter.getState().setCanMove(true)

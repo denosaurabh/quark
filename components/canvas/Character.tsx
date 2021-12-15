@@ -108,55 +108,10 @@ type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export default function Character({ position, ...props }) {
   const chracRef = useRef<MeshProps>()
-  // const charGeoRef = useRef<THREE.Mesh>()
-  // useBVH(charGeoRef)
-  // useHelper(charGeoRef, MeshBVHVisualizer)
-
-  // const mouseDegRef = useRef<number>(0)
 
   const { nodes, materials, animations } = useGLTF(
     'models/player.glb'
   ) as GLTFResult
-  // const { actions, mixer, clips, names } = useAnimations<GLTFActions>(
-  //   animations,
-  //   chracRef
-  // )
-  // console.log({ mixer, clips, names })
-
-  // console.log(actions)
-  // if (actions['Spot.001Action']) {
-  //   actions['Spot.001Action'].play()
-  //   actions['right-handAction'].play()
-  //   actions['left-handAction'].play()
-  //   actions['left-legAction'].play()
-  //   actions['right-legAction'].play()
-  //   actions['headAction'].play()
-  //   actions['bodyAction'].play()
-  // }
-
-  // if (actions['headAction']) {
-  // console.log(actions)
-
-  // actions['headAction'].play()
-  // actions['bodyAction'].play()
-  // actions['right_legAction'].play()
-  // actions['left_legAction'].play()
-  // actions['right_handAction'].play()
-  // actions['left_handAction'].play()
-  // }
-
-  // useEffect(() => {
-  //   console.log(actions)
-  //   actions['headAction']?.play()
-  //   actions['bodyAction']?.play()
-  //   actions['right_legAction']?.play()
-  //   actions['left_legAction']?.play()
-  //   actions['right_handAction']?.play()
-  //   actions['left_handAction']?.play()
-  // })
-
-  // const { setDpr } = useThree()
-  // setDpr(2)
 
   var lastCalledTime
   var counter = 0
@@ -192,18 +147,8 @@ export default function Character({ position, ...props }) {
         counter++
       }
 
-      // console.log(fps)
-
       const { x, y } = mouse
       const mouseDegree = Math.atan2(y, x)
-      // mouseDegRef.current = mouseDegree
-
-      // console.log(clock, (60 * 1000) / clock.elapsedTime)
-
-      // console.log(frameloop.frame)
-      // console.log(frameloop.delta)
-
-      // console.log(delta)
 
       const { canMove, moveForward, currentChunk } = useCharacter.getState()
       const chunkI = chunkIndex(currentChunk)
@@ -282,50 +227,8 @@ export default function Character({ position, ...props }) {
 
       window.removeEventListener('pointerdown', onMouseDown)
       window.removeEventListener('pointerup', onMouseUp)
-
-      // respawnEvent.removeEventListener('start', () => {
-      //   if (chracRef.current) {
-      //     chracRef.current.position.set(240, 5, 70)
-      //   }
-      // })
     }
   }, [])
-
-  // const router = useRouter()
-
-  // useEffect(() => {
-  //   if (charGeoRef.current) {
-  //     console.log(charGeoRef.current)
-
-  //     charGeoRef.current.geometry.boundsTree.shapecast({
-  //       intersectsBounds: (box) => {
-  //         console.log(box)
-  //       },
-  //       intersectsTriangle: (tri) => {
-  //         // check if the triangle is intersecting the capsule and adjust the
-  //         // capsule position if it is.
-
-  //         console.log(tri)
-
-  //         // const triPoint = tempVector
-  //         // const capsulePoint = tempVector2
-
-  //         // const distance = tri.closestPointToSegment(
-  //         //   tempSegment,
-  //         //   triPoint,
-  //         //   capsulePoint
-  //         // )
-  //         // if (distance < capsuleInfo.radius) {
-  //         //   const depth = capsuleInfo.radius - distance
-  //         //   const direction = capsulePoint.sub(triPoint).normalize()
-
-  //         //   tempSegment.start.addScaledVector(direction, depth)
-  //         //   tempSegment.end.addScaledVector(direction, depth)
-  //         // }
-  //       },
-  //     })
-  //   }
-  // }, [, charGeoRef.current])
 
   return (
     <>
@@ -347,122 +250,8 @@ export default function Character({ position, ...props }) {
             position={[5, 0, 0]}
             scale={[1.54, 5.57, 1.93]}
           />
-          {/* <mesh
-            geometry={nodes['character_3_export-0'].geometry}
-            material={materials['character_3_export-0 #220']}
-          />
-          <mesh
-            geometry={nodes['character_3_export-0_1'].geometry}
-            material={materials['character_3_export-0 #229']}
-          />
-          <mesh
-            geometry={nodes['character_3_export-0_2'].geometry}
-            material={materials['character_3_export-0 #225']}
-          />
-          <mesh
-            geometry={nodes['character_3_export-0_3'].geometry}
-            material={materials['character_3_export-0 #228']}
-          />
-          <group position={[0, 10, 0]}>
-            <mesh
-              geometry={nodes['character_3_export-1'].geometry}
-              material={materials['character_3_export-1 #229']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-1_1'].geometry}
-              material={materials['character_3_export-1 #231']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-1_2'].geometry}
-              material={materials['character_3_export-1 #219']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-1_3'].geometry}
-              material={materials['character_3_export-1 #232']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-1_4'].geometry}
-              material={materials['character_3_export-1 #221']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-1_5'].geometry}
-              material={materials['character_3_export-1 #220']}
-            />
-          </group>
-          <group position={[5.5, 4.92, 0.01]}>
-            <mesh
-              geometry={nodes['character_3_export-5'].geometry}
-              material={materials['character_3_export-5 #229']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-5_1'].geometry}
-              material={materials['character_3_export-5 #217']}
-            />
-          </group>
-          <group position={[1.98, -6.04, 0]}>
-            <mesh
-              geometry={nodes['character_3_export-3'].geometry}
-              material={materials['character_3_export-3 #217']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-3_1'].geometry}
-              material={materials['character_3_export-3 #229']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-3_2'].geometry}
-              material={materials['character_3_export-3 #219']}
-            />
-          </group>
-          <group position={[-5.5, 4.99, 0.1]}>
-            <mesh
-              geometry={nodes['character_3_export-4'].geometry}
-              material={materials['character_3_export-4 #229']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-4_1'].geometry}
-              material={materials['character_3_export-4 #217']}
-            />
-          </group>
-          <group position={[-2.03, -6.06, 0]}>
-            <mesh
-              geometry={nodes['character_3_export-2'].geometry}
-              material={materials['character_3_export-2 #217']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-2_1'].geometry}
-              material={materials['character_3_export-2 #229']}
-            />
-            <mesh
-              geometry={nodes['character_3_export-2_2'].geometry}
-              material={materials['character_3_export-2 #219']}
-            />
-          </group>
-       */}
         </group>
       </group>
-
-      {/* <group
-        name='character'
-        ref={chracRef}
-        {...props}
-        dispose={null}
-        userData={{ id: 'character' }}
-        position={[0, 10, 0]}
-      >
-        <group scale={0.9}>
-          <mesh
-            ref={charGeoRef}
-            geometry={nodes.character_1.geometry}
-            material={materials['character #60']}
-            userData={{ id: 'character_model' }}
-          />
-          <mesh
-            geometry={nodes.character_2.geometry}
-            material={materials['character #73']}
-            userData={{ id: 'character_model' }}
-          />
-        </group>
-      </group> */}
     </>
   )
 }

@@ -97,10 +97,19 @@ const CollisionSystem = ({ ...props }) => {
       //   new THREE.Vector3(0, -1000, 0).normalize(),
       // ]
 
-      downRaycastRef.current.set(
-        character?.getWorldPosition(character?.position),
-        new THREE.Vector3(0, -1000, 0).normalize()
-      )
+      // console.log(
+      //   character?.getWorldPosition(character?.position),
+      //   'down ray cast'
+      // )
+
+      try {
+        downRaycastRef.current.set(
+          character?.getWorldPosition(character?.position),
+          new THREE.Vector3(0, -1000, 0).normalize()
+        )
+      } catch (e) {
+        console.log(e)
+      }
 
       // console.log('setting downraycast')
 

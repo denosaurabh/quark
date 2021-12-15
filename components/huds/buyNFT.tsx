@@ -1,3 +1,5 @@
+import { motion, AnimatePresence } from 'framer-motion'
+
 import Header from '@/components/header'
 import { styled } from '@/stitches.config'
 import useCharacter from '@/store/character'
@@ -34,40 +36,48 @@ const BuyNFTHUD = () => {
   console.log(nftInfo)
 
   return (
-    <div>
+    <div className='hud-box'>
       <Header />
-      <BuyNFTBox>
-        <h4>
-          {name} <br />
-          !PLEASE READ!
-        </h4>
 
-        <p>{description}</p>
-        <p>from {owner}</p>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>
-          This is a test project and do not mean to be used as a production. So
-          Please, do not buy the NFTs shown here.
-        </p>
-
-        <Button onClickHandler={onBuyNFTClick}>
-          Buy NFT ({price}eth) {'/'}
-        </Button>
-
-        <Button
-          onClickHandler={() => {
-            useCharacter.getState().setCanMove(true)
-            useHUD.getState().setCurrentHud('default')
-          }}
-          css={{ backgroundColor: 'transparent', color: '#fff' }}
+      <AnimatePresence exitBeforeEnter>
+        <BuyNFTBox
+          key='buy-nft-hud-animate'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 1 }}
         >
-          Cancel
-        </Button>
-      </BuyNFTBox>
+          <h4>
+            {name} <br />
+            !PLEASE READ!
+          </h4>
+
+          <p>{description}</p>
+          <p>from {owner}</p>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <p>
+            This is a test project and do not mean to be used as a production.
+            So Please, do not buy the NFTs shown here.
+          </p>
+
+          <Button onClickHandler={onBuyNFTClick}>
+            Buy NFT ({price}eth) {'/'}
+          </Button>
+
+          <Button
+            onClickHandler={() => {
+              useCharacter.getState().setCanMove(true)
+              useHUD.getState().setCurrentHud('default')
+            }}
+            css={{ backgroundColor: 'transparent', color: '#fff' }}
+          >
+            Cancel
+          </Button>
+        </BuyNFTBox>
+      </AnimatePresence>
     </div>
   )
 }
@@ -94,7 +104,7 @@ const InfoBox = styled('div', {
   padding: '3rem 0',
 })
 
-const BuyNFTBox = styled('div', {
+const BuyNFTBox = styled(motion.div, {
   display: 'flex',
   flexDirection: 'column',
   gap: '4rem',

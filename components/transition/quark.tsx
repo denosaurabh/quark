@@ -1,21 +1,35 @@
 import { styled } from '@/stitches.config'
+import { motion } from 'framer-motion'
 
-const QuarkTransition = () => {
+const QuarkTransition = ({ ...props }) => {
   return (
-    <QuarkTranContainer>
-      <Heading>Quark</Heading>
-      <Text>Elo</Text>
+    <QuarkTranContainer {...props}>
+      <MidBox>
+        <Heading>Quark</Heading>
+        <Text>NFT Marketplace in an Interactive 3D experience</Text>
+      </MidBox>
     </QuarkTranContainer>
   )
 }
 
 export default QuarkTransition
 
-const QuarkTranContainer = styled('div', {
+const QuarkTranContainer = styled(motion.div, {
   width: '100vw',
   height: '100vh',
 
   backgroundColor: '#fff',
+})
+
+const MidBox = styled(motion.div, {
+  width: '30%',
+  minWidth: '50rem',
+  height: '100%',
+
+  '@mobile': {
+    width: '95%',
+    minWidth: '95%',
+  },
 })
 
 const Heading = styled('h1', {

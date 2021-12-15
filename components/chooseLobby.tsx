@@ -5,7 +5,7 @@ import { db } from '@/firebase/init'
 import { onValue, ref } from 'firebase/database'
 
 const ChooseLobby = () => {
-  const [selectedLobby, setSelectedLobby] = useState()
+  const [selectedLobby, setSelectedLobby] = useState('main')
   const [lobbies, setLobbies] = useState({})
 
   const onChooseLobbyClickHandler = (name) => {

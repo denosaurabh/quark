@@ -63,14 +63,20 @@ const NFT = ({
 
   return (
     <group
-      name={`nft-${tokenId}`}
+      name={`nft-group-${tokenId}`}
       ref={modelRef}
       position={position}
+      userData={{ id: `nft-${tokenId}` }}
       onClick={() => {
         onClick()
       }}
     >
-      <primitive object={model.scene} />
+      <primitive
+        key={`nft-${tokenId}`}
+        object={model.scene}
+        name={`nft-${tokenId}`}
+        userData={{ id: `nft-${tokenId}` }}
+      />
     </group>
   )
 }

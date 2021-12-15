@@ -6,6 +6,7 @@ import useHUD from '@/store/huds/main'
 import Button from '../button'
 import { useThree } from '@react-three/fiber'
 import respawnEvent from '@/events/respawn'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const MenuHUD = () => {
   // const { scene } = useThree()
@@ -20,28 +21,37 @@ const MenuHUD = () => {
   }
 
   return (
-    <div>
+    <div className='hud-box'>
       <Header />
-      <MenuHUDContainer>
-        <div>
-          <Button onClickHandler={onResumeClick}>Resume {'>'}</Button>
-          {/* <Button onClickHandler={onRedeployClick}>Redeploy \</Button> */}
-        </div>
-        <div>
-          <Button>Settings []</Button>
+      <AnimatePresence exitBeforeEnter>
+        <MenuHUDContainer
+          key='menu-hud-animate'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 1 }}
+        >
+          <div>
+            <Button onClickHandler={onResumeClick}>Resume {'>'}</Button>
+            {/* <Button onClickHandler={onRedeployClick}>Redeploy \</Button> */}
+          </div>
+          <div>
+            <Button>Settings []</Button>
 
-          <Button as='a' href='/note' target='_blank'>
-            About {'/'}
-          </Button>
-        </div>
-      </MenuHUDContainer>
+            <Button as='a' href='/note' target='_blank'>
+              About {'/'}
+            </Button>
+
+            <p>Lobby: {useCharacter.getState().lobby}</p>
+          </div>
+        </MenuHUDContainer>
+      </AnimatePresence>
     </div>
   )
 }
 
 export default MenuHUD
 
-const MenuHUDContainer = styled('div', {
+const MenuHUDContainer = styled(motion.div, {
   width: '100%',
   height: '70%',
 
@@ -57,9 +67,11 @@ const MenuHUDContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: '4rem',
-  },
-})
 
-const Heading = styled('h4', {
-  fontSize: '10rem',
+    p: {
+      fontFamily: '$display',
+      fontSize: '4rem',
+      color: '#fff',
+    },
+  },
 })

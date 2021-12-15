@@ -19,6 +19,7 @@ export default function BoughtNFTs(props: JSX.IntrinsicElements['group']) {
   useEffect(() => {
     loadNFTs()
   }, [])
+  
 
   async function loadNFTs() {
     const web3Modal = new Web3Modal()
