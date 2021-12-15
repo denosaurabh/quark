@@ -11,19 +11,24 @@ const NoteForOrganizers = () => {
         <h2>Note for Hackathon Organizers|Judges|Community</h2>
         <p>
           Thank you soo much for organizing this hackathon, I have learned so
-          much during this time
+          much during this time and can't thanks you enough. I always had this
+          dream to make a voxel 3D experience in the web, and as I knew the
+          hackathon month ago, I was soo excited to finally make this idea into
+          reality. Also, I have learned so much about web3 with this project. So
+          excited about where this project leads.
         </p>
 
         <section>
           <h6>Little about denosaurabh (Saurabh Gupta)</h6>
           <p>
             Hi, I am Saurabh Gupta, 17 y{'"'}old Independent Front End developer
-            & designer from India.
+            & designer from India. I am a self taught developer and specializing
+            as a Front end developer for the past 3 years
           </p>
         </section>
         <section>
           <h6>About this project</h6>
-          <p>A NFT marketplace in a interactive 3d experience.</p>
+          <p>A NFT marketplace in an interactive 3d experience.</p>
         </section>
         <section>
           <h6>Applicable Categories</h6>
@@ -48,16 +53,15 @@ const NoteForOrganizers = () => {
               >
                 Font
               </a>
+              and Royalty free music
             </li>
             <li>
               - The project is made only during the timeline of hackathon
               (19Nov-12Dec 2021), including the code, 3d models, art & design.
             </li>
             <li>
-              - The source code for the project is currently private, I do have
-              some plans for making it open source, but I cant promise for now.
-              But, If you are an organizer or judge and want to see the code for
-              proof or other purposes, please contact.
+              - The source code for the project is currently now public, at
+              https://github.com/denosaurabh/quark
             </li>
           </ul>
         </section>
