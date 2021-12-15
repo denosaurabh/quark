@@ -3,11 +3,19 @@ import { styled } from '@/stitches.config'
 import useSound from 'use-sound'
 
 import useHUD from '@/store/huds/main'
-import BGMusic from '../audio/ea-ashkira-place-of-light-432-hz.mp3'
+// import BGMusic from '../audio/ea-ashkira-place-of-light-432-hz.mp3'
+import dynamic from 'next/dynamic'
+
+// const BGMusic = dynamic(
+//   () => import('../audio/ea-ashkira-place-of-light-432-hz.mp3'),
+//   { ssr: false }
+// )
 
 const Header = () => {
   const [playing, setPlaying] = useState(false)
-  const [play, { stop }] = useSound(BGMusic)
+  const [play, { stop }] = useSound(
+    '/audio/ea-ashkira-place-of-light-432-hz.mp3'
+  )
 
   const onMenuClick = () => {
     const { currentHud, setCurrentHud } = useHUD.getState()
