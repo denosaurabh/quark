@@ -139,8 +139,8 @@ const LCanvas = ({ children }) => {
       {/* {showPerf && <Perf position='bottom-right' />} */}
       {/* {showStats && <Stats showPanel={0} className='stats' />} */}
       {/* <HUD /> */}
-      <Perf position='bottom-right' />
-      <Stats showPanel={0} className='stats' />
+      {/* <Perf position='bottom-right' /> */}
+      {/* <Stats showPanel={0} className='stats' /> */}
       {/* <axesHelper scale={1000} /> */}
       <LControl />
       {/* <Preload all /> */}
