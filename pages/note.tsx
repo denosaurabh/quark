@@ -31,7 +31,7 @@ const NoteForOrganizers = () => {
             <li>-Core Prizes</li>
             <li>-Best NFT/Gaming </li>
             <li>-Community Choice Projects</li>
-            <li>-Prize Pool</li>
+            <li>-Best Projects Prize Pool</li>
             <li>-Best metaverse tooling project</li>
           </ul>
         </section>

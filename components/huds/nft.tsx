@@ -19,7 +19,7 @@ const NFTHUD = () => {
   const { price, name, description, owner } = nftInfo
 
   return (
-    <>
+    <div>
       <Header />
       <BuyNFTBox>
         <h4>
@@ -49,7 +49,7 @@ const NFTHUD = () => {
           Back
         </Button>
       </BuyNFTBox>
-    </>
+    </div>
   )
 }
 

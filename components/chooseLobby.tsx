@@ -15,10 +15,14 @@ const ChooseLobby = () => {
 
   const lobbiesRef = ref(db, 'lobbies')
   useEffect(() => {
-    onValue(lobbiesRef, (snapshot) => {
+    const unsub = onValue(lobbiesRef, (snapshot) => {
       const lobbies = snapshot.val()
       setLobbies(lobbies)
     })
+
+    return () => {
+      unsub()
+    }
   }, [])
 
   return (

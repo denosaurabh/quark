@@ -5,6 +5,7 @@ import Marketplace from '@/components/canvas/marketplace'
 import CollisionSystem from '@/components/canvas/collisionSystem'
 import RealTimeData from '@/components/realtime_character'
 import DBPlayers from '@/components/dbPlayers'
+import BackgroundMusic from '@/components/backgroundMusic'
 
 // Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -36,6 +37,7 @@ const R3F = () => {
         <CollisionSystem r3f />
         <RealTimeData r3f />
         <DBPlayers r3f />
+        <BackgroundMusic r3f />
       </Suspense>
     </>
   )

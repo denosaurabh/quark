@@ -20,7 +20,7 @@ const MenuHUD = () => {
   }
 
   return (
-    <>
+    <div>
       <Header />
       <MenuHUDContainer>
         <div>
@@ -35,7 +35,7 @@ const MenuHUD = () => {
           </Button>
         </div>
       </MenuHUDContainer>
-    </>
+    </div>
   )
 }
 

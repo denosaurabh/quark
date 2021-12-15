@@ -10,6 +10,7 @@ import MenuHUD from '@/components/huds/menu'
 
 import useHUD from '@/store/huds/main'
 import NFTHUD from '../huds/nft'
+import Transition from '../transition/transitionHud'
 
 const Dom = ({ children }) => {
   const domRef = useRef<HTMLDivElement>(null)
@@ -60,6 +61,7 @@ const Dom = ({ children }) => {
         setShowHud(false)
       }}
     >
+      <Transition />
       {children}
       {currentHud === 'default' && <DefaultHUD />}
       {currentHud === 'startPlay' && <StartPlayHUD />}
@@ -80,11 +82,14 @@ const HUDContainer = styled('div', {
 
   width: '100vw',
   height: '100vh',
-  padding: '3rem',
 
   overflow: 'hidden',
   userSelect: 'none',
   zIndex: 1000,
+
+  div: {
+    padding: '3rem',
+  },
 
   variants: {
     showHud: {

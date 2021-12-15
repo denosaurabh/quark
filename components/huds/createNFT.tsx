@@ -26,7 +26,7 @@ const CreateNFTHUD = () => {
   }
 
   return (
-    <>
+    <div>
       <Header />
       <MidBox>
         <InfoBox>
@@ -79,7 +79,7 @@ const CreateNFTHUD = () => {
           <Button type='submit'>publish your nft {'>'}</Button>
         </CreateNFTForm>
       </MidBox>
-    </>
+    </div>
   )
 }
 

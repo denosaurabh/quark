@@ -1,6 +1,6 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import useCharacter from '@/store/character'
-import { ref, remove, set, update } from 'firebase/database'
+import { ref, remove, set, update, get, child } from 'firebase/database'
 import { db } from '@/firebase/init'
 import { chunkIndex, chunksData } from '@/utils/chunksLoad'
 import * as THREE from 'three'
@@ -30,6 +30,30 @@ const RealTimeData = () => {
 
   useEffect(() => {
     console.log('pushing data, rerender')
+    const { lobby, id } = useCharacter.getState()
+    // update(ref(db, `lobbies/${lobby}/users/*`), null)
+
+    const dbRef = ref(db)
+    get(child(dbRef, `lobbies/${lobby}/users`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val())
+
+          const allPlayers = snapshot.val()
+          // console.log(allPlayers, 'get once')
+
+          Object.keys(allPlayers).map((uid) => {
+            console.log('updating players', `lobbies/${lobby}/users/${uid}`)
+            if (uid === id) return
+            remove(ref(db, `lobbies/${lobby}/users/${uid}`))
+          })
+        } else {
+          console.log('No data available')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
 
     setInterval(() => {
       if (!window) return
@@ -64,10 +88,9 @@ const RealTimeData = () => {
       })
     }, 50)
 
-    return () => {
-      const { lobby, id } = useCharacter.getState()
-      remove(ref(db, `lobbies/${lobby}/users/${id}`))
-    }
+    // return () => {
+    // const { lobby, id } = useCharacter.getState()
+    // }
   }, [])
 
   return <></>

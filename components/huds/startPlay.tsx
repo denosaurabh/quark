@@ -199,6 +199,7 @@ const RightBox = styled('div', {
 
   width: '40rem',
   height: 'fit-content',
+  paddingBottom: '10rem',
 
   h4: {
     fontSize: '5rem',

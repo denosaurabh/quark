@@ -34,7 +34,7 @@ const BuyNFTHUD = () => {
   console.log(nftInfo)
 
   return (
-    <>
+    <div>
       <Header />
       <BuyNFTBox>
         <h4>
@@ -68,7 +68,7 @@ const BuyNFTHUD = () => {
           Cancel
         </Button>
       </BuyNFTBox>
-    </>
+    </div>
   )
 }
 
