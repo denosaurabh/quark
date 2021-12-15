@@ -16,4 +16,3 @@ Credits:
 - Solidity contract used from once of [Nader Dabit](https://www.youtube.com/c/naderdabit) YT video [How to Build a Full Stack NFT Marketplace on Ethereum with Polygon and Next.js - [2021 Tutorial]](https://www.youtube.com/watch?v=GKJBEEXUha0)
 
 <br /><br />
-Copyright © 2021 denosaurabh
